@@ -1,0 +1,20 @@
+{
+  "source": "Breaking_Bad_1986_Fleetwood_Bounder_RV.usdz",
+  "original_triangles": 118634,
+  "triangles": 32271,
+  "materials": 6,
+  "textures": 3,
+  "bytes": 3387116,
+  "bounds_min": [
+    -1.7623572402017964,
+    0.0,
+    -4.292777945128403
+  ],
+  "bounds_max": [
+    1.7623572402017964,
+    3.4582793639155867,
+    4.292777945128403
+  ],
+  "bones": 0,
+  "animations": 0
+}

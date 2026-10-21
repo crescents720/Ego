@@ -1,0 +1,27 @@
+Use case: stylized-concept / infographic-diagram.
+Create a polished landscape game-development TOWN MASTER PLAN concept map for a mobile 3D zombie survival game. This is an attractive but useful planning illustration, not an in-game screenshot. Chinese labels must be legible. Title upper left “萤火镇 · 总体规划 v1”, subtitle “低层住宅 / 房车环线 / 分区探索”. Top-down near-orthographic illustrated low-poly architectural map, only slight isometric depth to see roof shapes, north at top. Landscape 3:2 composition, map occupies left 78%, tidy cream legend panel on right 22%. Forest borders, muted sage lawns, warm terracotta and charcoal pitched roofs, asphalt roads, turquoise lake, clear elegant linework, restrained tasteful survival-game art direction, no gore, no characters. Town conceptual footprint about 500 x 600 metres including lake; schematic not surveyed construction drawing. At least 45 visibly separate detached houses, clustered in neighborhood blocks with small fenced gardens, primarily ONE or TWO storeys. No skyscrapers, no dense city skyline. Tallest hospital only THREE storeys. Businesses mostly one-storey, factory a low shed with courtyard. Lake fills eastern/right side of map (not entire page), forested curved shore, jetty, shore path.
+Spatial arrangement EXACT AS FOLLOWS: southwestern neighborhood has 01 heroine home, a recognizable detached American gabled house with garage, RV in rear parking yard and a tiny subdued smoke plume; its front entrance faces east onto the north-south starter road. 02 convenience store is further NORTH on that SAME starter road in central-west district, not adjacent to home. This starter road connects into a large complete drivable rectangular/rounded outer town loop, with two cross-town streets and several short residential lanes. Show broad unobstructed junctions and RV parking pads at major public buildings. Continuous road access to all POIs, no road ends inside the lake. Northern road spur leading out of town labelled “北向公路 / 后续区域”.
+03 hardware store northwest of convenience store, near entrance to industrial district.
+07 factory at far northwest with low sheds, fenced yard, loading bays.
+04 hospital north-central with 3 storeys, ambulance bay.
+05 police station center-northeast, a low civic building, secure yard.
+06 gun shop just southeast of police station, a small separate storefront along civic/commercial road.
+11 petrol station at southern town entrance with pumps and broad RV turning apron.
+12 residential scavenging neighborhood west-central with many small houses (other houses also fill north and south blocks).
+Lake east side: 08 lakeside water intake/pump hut at north shore, 09 fishing jetty at mid-south shore, 10 lakeside campground/RV refuge farther south shore, connected by land road and pedestrian shore path. Keep all lake facilities on dry shore.
+Overlay a subtle dashed AMBER arrow route only from 01 home rear driveway north along starter street to 02 convenience store, labelled “首日路线”. Indicate cyan continuous road highlights sparingly for RV loop and a green dotted shore footpath. Place clear numbered circular badges 01..12 attached to correct buildings without duplicate numbers; use map POI numbers and full names in legend rather than dense text over roofs.
+Right legend exact Chinese numbered entries, no additional competing list:
+“01 小萤的家”
+“02 便利店”
+“03 五金店”
+“04 医院”
+“05 警察局”
+“06 武器店”
+“07 工厂”
+“08 湖畔取水点”
+“09 垂钓码头”
+“10 湖畔营地”
+“11 加油站”
+“12 住宅搜索区”
+Small legend keys at bottom: “房车环线” cyan, “首日路线” amber dashed, “湖岸步道” green dotted.
+Bottom margin note “规划概念图 · 建筑位置与道路以后续灰盒验证为准”; subtle north arrow and schematic 0–100 m scale with “示意”. Visual hierarchy professional and clear; generous margins; beautiful illustrated town dominates composition. Do not include UI controls, futuristic structures, or high-rise buildings.

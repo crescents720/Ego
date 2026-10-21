@@ -1,0 +1,11 @@
+.godot/
+*.tmp
+*.log
+builds/
+*.blend1
+*.blend2
+artifacts/dorm_reference_audit.png
+.test_userdata/
+
+
+*.apk

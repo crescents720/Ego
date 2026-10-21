@@ -1,0 +1,54 @@
+{
+  "hero_hurt_0": {
+    "source": "https://amitaro.net/download/voice/202_hidan/ita_01.wav",
+    "sha256": "64ff5fcbb53776031a81cd416994667e1e7503874de2469acaa5f70baef421c0"
+  },
+  "hero_hurt_1": {
+    "source": "https://amitaro.net/download/voice/202_hidan/uu_01.wav",
+    "sha256": "6e4c9c7228389c41fa2c4fc303be48aedddb2f3a7190c5e5f4470c75a9d2683e"
+  },
+  "hero_hurt_2": {
+    "source": "https://amitaro.net/download/voice/202_hidan/aah_01.wav",
+    "sha256": "314ff817ec3e39e891f0c74536c412802e825ad4cc2fb6f55d97f32ce11a95cc"
+  },
+  "hero_death": {
+    "source": "https://amitaro.net/download/voice/202_hidan/aaaa_02.wav",
+    "sha256": "321713566597afc449579bb714fbffae3d216a719baf29257022942eaff6ee8c"
+  },
+  "pain_medium_0": {
+    "source": "https://amitaro.net/download/voice/195_serifu_others/haa_09.wav",
+    "sha256": "d1774cb1164466fa1a5e6f5213d9e78911c9e811c6c3ce42bc84eee71df09974"
+  },
+  "pain_medium_1": {
+    "source": "https://amitaro.net/download/voice/195_serifu_others/haa_15.wav",
+    "sha256": "f1e5616a765e5e4b607e371098db26e20b3e86e5e53c5e055e883a60a0948795"
+  },
+  "pain_medium_2": {
+    "source": "https://amitaro.net/download/voice/195_serifu_others/haa_16.wav",
+    "sha256": "637ffe07dfee84ce33c0cbbd4b650bd45feee7b9b66b58cebe7812c309802242"
+  },
+  "pain_heavy_0": {
+    "source": "https://amitaro.net/download/voice/195_serifu_others/zeihaa_01.wav",
+    "sha256": "386738a8500136f3e6856978e449701f27d50fde8c56753d27e69840273102a6"
+  },
+  "pain_heavy_1": {
+    "source": "https://amitaro.net/download/voice/202_hidan/uu_06.wav",
+    "sha256": "936ad8286ee1a36fb2eafd30069169531a506ef3c8a978f23946a1f0db81ee56",
+    "breath_source": "https://amitaro.net/download/voice/195_serifu_others/zeihaa_01.wav",
+    "breath_source_sha256": "386738a8500136f3e6856978e449701f27d50fde8c56753d27e69840273102a6",
+    "breath_excerpt_seconds": [
+      0.69,
+      1.67
+    ]
+  },
+  "pain_heavy_2": {
+    "source": "https://amitaro.net/download/voice/202_hidan/uu_11.wav",
+    "sha256": "a2821bdcfc211f6d1c2bae365e6d8c646ccc8f0190413a61ed7e9272591f674c",
+    "breath_source": "https://amitaro.net/download/voice/195_serifu_others/zeihaa_01.wav",
+    "breath_source_sha256": "386738a8500136f3e6856978e449701f27d50fde8c56753d27e69840273102a6",
+    "breath_excerpt_seconds": [
+      1.9,
+      3.75
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+CCity Building Set 1
+Author: Neberkenezer (https://sketchfab.com/neberkenezer)
+Source: https://sketchfab.com/3d-models/ccity-building-set-1-a2d5c7bfcc2148fb8994864c43dfcc97
+License: Creative Commons Attribution 4.0 (CC BY 4.0)
+License URL: http://creativecommons.org/licenses/by/4.0/
+
+Source and attribution were read from the supplied USDZ's customLayerData.
+Changes for Ego: selected building groups extracted; world transforms baked;
+origins centered at ground level; uniform scale adjusted; components merged
+by material; base-color textures resized to 1024 maximum and exported as GLB.
+No endorsement by the original author is implied.

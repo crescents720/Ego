@@ -1,0 +1,20 @@
+{
+  "source": "CCity_Building_Set_1.usdz",
+  "original_triangles": 592,
+  "triangles": 592,
+  "materials": 1,
+  "textures": 1,
+  "bytes": 364856,
+  "bounds_min": [
+    -4.004487640473116,
+    0.0,
+    -4.401890315620442
+  ],
+  "bounds_max": [
+    4.004487640473116,
+    6.738438389200466,
+    4.401890315620442
+  ],
+  "bones": 0,
+  "animations": 0
+}

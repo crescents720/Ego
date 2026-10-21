@@ -1,0 +1,60 @@
+Audio revision 2 — source and license record — 2026-10-18
+
+All sources below are CC0 unless explicitly noted.
+CC0: https://creativecommons.org/publicdomain/zero/1.0/
+Official source pages are archived in source/audio/revision2/*.html.
+Original files, hashes and runtime edit mapping are retained in that excluded folder.
+
+AuraVoice / Nocturnal_Vanguard:
+Female Hurt Grunts & Groans
+https://opengameart.org/content/female-hurt-grunts-groans
+Female Scream 1
+https://opengameart.org/content/female-scream-1
+Recorded adult female performance, cropped into nonverbal hurt takes; scream
+used for defeat. Excerpts layered with breathing for injury feedback.
+
+artisticdude:
+Swishes Sound Pack
+https://opengameart.org/content/swishes-sound-pack
+Zombies Sound Pack
+https://opengameart.org/content/zombies-sound-pack
+Cropped and normalized. Separate zombie hurt, death and attack cues.
+
+Independent.nu (submitted by qubodup):
+37 hits/punches
+https://opengameart.org/content/37-hitspunches
+Cropped, filtered and layered for body impacts, bat strikes and vehicle/flesh impacts.
+
+GboxMikeFozzy:
+Footsteps
+https://opengameart.org/content/footsteps-0
+Filtered, cropped to single steps and reduced gain.
+
+Fantozzi (submitted by qubodup):
+Fantozzi's Footsteps (Grass/Sand & Stone)
+https://opengameart.org/content/fantozzis-footsteps-grasssand-stone
+Filtered and cropped sand footfalls used on grass.
+
+looneybits:
+Car engine Start Up 02
+https://opengameart.org/content/car-engine-start-up-02
+Engine ignition recording, cropped and normalized.
+
+Joseph SARDIN / BigSoundBank:
+Breathless Woman (sound 1345)
+https://bigsoundbank.com/breathless-woman-s1345.html
+CC0, free commercial use and adaptation permitted on the source page.
+Recorded breathing after exercise. Cropped, filtered and mixed with AuraVoice
+nonverbal pain takes for moderate and severe injury cues.
+
+Engine recording used under CC BY 3.0 (not the alternative GPL):
+Car Engine Loop 96kHz, 4s by qubodup
+https://opengameart.org/content/car-engine-loop-96khz-4s
+https://creativecommons.org/licenses/by/3.0/
+Changes: mono 44.1kHz PCM conversion, normalization, loop seam crossfade,
+runtime pitch/volume changes with driving speed; fade excerpt for engine stop.
+The game Sound/Credits panel names the author, source and license.
+
+Other existing sounds retain their previous licenses.
+Rebuild: build_game_sfx.py -> prepare_kenney_sfx.py -> prepare_audio_revision2.py.
+The last command applies the revised recorded assets.

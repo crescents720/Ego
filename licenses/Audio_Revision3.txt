@@ -1,0 +1,35 @@
+Hotaru Japanese voice replacement — 2026-10-18
+
+Voice: Amitaro's Voice Material Studio / あみたろの声素材工房
+https://amitaro.net/
+Source library: https://amitaro.net/voice/voice_dl/
+Terms: https://amitaro.net/voice/voice_rule/
+
+Free commercial game embedding with attribution under the author's terms;
+NOT CC0. Attribution is displayed in the game's Sound settings.
+Keep this credit with distributed builds. The terms prohibit age-restricted,
+erotic/grotesque uses, standalone asset redistribution and other listed uses.
+The current stylized prototype has no explicit gore or dismemberment; revisit
+the license if future content changes its rating or becomes graphically gory.
+
+Runtime mapping:
+hero_hurt_0.wav <- 202_hidan/ita_01.wav
+hero_hurt_1.wav <- 202_hidan/uu_01.wav
+hero_hurt_2.wav <- 202_hidan/aah_01.wav
+hero_death.wav  <- 202_hidan/aaaa_02.wav
+pain_medium_0.wav <- 195_serifu_others/haa_09.wav
+pain_medium_1.wav <- 195_serifu_others/haa_15.wav
+pain_medium_2.wav <- 195_serifu_others/haa_16.wav
+pain_heavy_0.wav  <- 195_serifu_others/zeihaa_01.wav
+pain_heavy_1.wav  <- 202_hidan/uu_06.wav + zeihaa_01.wav (0.69–1.67s)
+pain_heavy_2.wav  <- 202_hidan/uu_11.wav + zeihaa_01.wav (1.90–3.75s)
+
+All ten runtime clips use recordings by the same Japanese performer. Edits: silence
+trimming, excerpt concatenation for two red-health takes, loudness normalization,
+mono 44.1kHz PCM conversion. No voice cloning
+or artificial pitch shift. Rebuild: tools/prepare_japanese_voice.py.
+Downloaded originals, dated terms snapshot, source URLs and SHA256 hashes:
+source/audio/japanese_voice/ (excluded from Godot import/export).
+
+This supersedes the AuraVoice hero voice and BigSoundBank heroine breathing
+mapping in Audio_Revision2.txt. Other revision-2 effects keep their licenses.

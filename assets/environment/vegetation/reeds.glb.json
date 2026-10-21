@@ -1,0 +1,20 @@
+{
+  "source": "grass.usdz",
+  "original_triangles": 150,
+  "triangles": 150,
+  "materials": 1,
+  "textures": 1,
+  "bytes": 198944,
+  "bounds_min": [
+    -1.1961100086974026,
+    0.0,
+    -1.1151871752483968
+  ],
+  "bounds_max": [
+    1.1961100086974026,
+    1.357135849659088,
+    1.1151871752483973
+  ],
+  "bones": 0,
+  "animations": 0
+}

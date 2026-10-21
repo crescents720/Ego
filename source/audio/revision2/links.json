@@ -1,0 +1,28 @@
+{
+  "female": [
+    "https://opengameart.org/sites/default/files/female_hurt_grunts_groans_1.ogg"
+  ],
+  "scream": [
+    "https://opengameart.org/sites/default/files/female_scream_1.ogg"
+  ],
+  "swish": [
+    "https://opengameart.org/sites/default/files/swishes.zip"
+  ],
+  "zombies": [
+    "https://opengameart.org/sites/default/files/zombies.zip"
+  ],
+  "start": [
+    "https://opengameart.org/sites/default/files/engine_start_up_01.wav"
+  ],
+  "steps": [
+    "https://opengameart.org/sites/default/files/01-footstep_0.ogg",
+    "https://opengameart.org/sites/default/files/02-footstep.ogg",
+    "https://opengameart.org/sites/default/files/03-footstep.ogg",
+    "https://opengameart.org/sites/default/files/04-footstep.ogg",
+    "https://opengameart.org/sites/default/files/05-footstep.ogg",
+    "https://opengameart.org/sites/default/files/06-footstep.ogg"
+  ],
+  "punches": [
+    "https://opengameart.org/sites/default/files/independent_nu_ljudbank-hits_and_punches.7z"
+  ]
+}

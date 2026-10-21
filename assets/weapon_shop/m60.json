@@ -1,0 +1,32 @@
+{
+  "source": "C:\\Users\\ding5\\Downloads\\M60_Machine_Gun_-_Vietnam_War.usdz",
+  "triangles": 40864,
+  "bytes": 2411580,
+  "dimensions": [
+    1.4,
+    0.4922741396306107,
+    1.2897003998863878
+  ],
+  "parts": [
+    "polySurface156_bits_m_0",
+    "polySurface239_body_m_0",
+    "polySurface245_body_m_0",
+    "polySurface261_bulletsandcasings_0",
+    "polySurface261_links_0",
+    "polySurface261_bits_m_0",
+    "polySurface261_lambert1_0",
+    "polySurface284_bits_m_0",
+    "polySurface285_bits_m_0",
+    "polySurface285_body_m_0",
+    "polySurface248_bits_m_0",
+    "polySurface237_body_m_0",
+    "polySurface315_bits_m_0",
+    "polySurface319_bits_m_0",
+    "polySurface321_bits_m_0",
+    "polySurface320_bits_m_0",
+    "polySurface320_body_m_0",
+    "polySurface346_lambert1_0",
+    "polySurface346_bulletsandcasings_0",
+    "polySurface346_links_0"
+  ]
+}

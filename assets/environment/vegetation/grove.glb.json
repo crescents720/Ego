@@ -1,0 +1,20 @@
+{
+  "source": "Tree_Animate.usdz",
+  "original_triangles": 18671,
+  "triangles": 16269,
+  "materials": 3,
+  "textures": 3,
+  "bytes": 2452028,
+  "bounds_min": [
+    -5.762469562757651,
+    0.0,
+    -2.321508123310858
+  ],
+  "bounds_max": [
+    5.762469562757651,
+    4.049999977445263,
+    2.321508123310858
+  ],
+  "bones": 0,
+  "animations": 0
+}

@@ -1,0 +1,33 @@
+{
+  "clips": {
+    "SwordIdle": {
+      "torso_core_min": 2.0469202579338486,
+      "head_core_min": 6.006068160402056
+    },
+    "SwordWalk": {
+      "torso_core_min": 2.0469202579338486,
+      "head_core_min": 6.006068160402056
+    },
+    "SwordCombo1": {
+      "torso_core_min": 1.122911316053326,
+      "head_core_min": 2.2605123856549554
+    },
+    "SwordCombo2": {
+      "torso_core_min": 1.0425745656267493,
+      "head_core_min": 2.2605123856549554
+    },
+    "SwordCombo3": {
+      "torso_core_min": 1.0425745656267493,
+      "head_core_min": 2.2605123856549554
+    },
+    "SwordCombo4": {
+      "torso_core_min": 1.0425745656267493,
+      "head_core_min": 2.2605123856549554
+    },
+    "SwordCombo5": {
+      "torso_core_min": 1.0407126469467107,
+      "head_core_min": 2.0429973501938696
+    }
+  },
+  "failures": []
+}

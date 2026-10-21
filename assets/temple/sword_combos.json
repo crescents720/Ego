@@ -1,0 +1,67 @@
+{
+  "1": {
+    "duration": 1.0,
+    "contacts": [
+      0.432
+    ],
+    "directions": [
+      "right_down"
+    ]
+  },
+  "2": {
+    "duration": 1.49,
+    "contacts": [
+      0.432,
+      0.945
+    ],
+    "directions": [
+      "right_down",
+      "left_up"
+    ]
+  },
+  "3": {
+    "duration": 2.03,
+    "contacts": [
+      0.432,
+      0.945,
+      1.468
+    ],
+    "directions": [
+      "right_down",
+      "left_up",
+      "horizontal"
+    ]
+  },
+  "4": {
+    "duration": 2.66,
+    "contacts": [
+      0.432,
+      0.945,
+      1.468,
+      2.072
+    ],
+    "directions": [
+      "right_down",
+      "left_up",
+      "horizontal",
+      "overhead"
+    ]
+  },
+  "5": {
+    "duration": 3.56,
+    "contacts": [
+      0.432,
+      0.945,
+      1.468,
+      2.072,
+      2.796
+    ],
+    "directions": [
+      "right_down",
+      "left_up",
+      "horizontal",
+      "overhead",
+      "finisher"
+    ]
+  }
+}

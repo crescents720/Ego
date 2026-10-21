@@ -1,0 +1,77 @@
+[
+  {
+    "file": "01-footstep_0.ogg",
+    "bytes": 9715,
+    "sha256": "33c9bef5e8aeb1069455699a34a0c5e1ef1787fd3f61594b0859d7e6bb9f9dec"
+  },
+  {
+    "file": "02-footstep.ogg",
+    "bytes": 10531,
+    "sha256": "f05396c807eb8eaecffb2a1ead611ec971c5a7914d1d081c91d7796e852692a2"
+  },
+  {
+    "file": "03-footstep.ogg",
+    "bytes": 14136,
+    "sha256": "9817cc93897ed1de5da87675b26be4196bfda3daa6f1de9dc4398a68d250cdb9"
+  },
+  {
+    "file": "04-footstep.ogg",
+    "bytes": 13771,
+    "sha256": "b373ff981e44d6f7ba2291225a4803078771029615ed81606136fdb9599906d5"
+  },
+  {
+    "file": "05-footstep.ogg",
+    "bytes": 13595,
+    "sha256": "f1b4893dd3cebe23438567a0dcaf047848a52b594e7eb03e5c212d99e83d2298"
+  },
+  {
+    "file": "06-footstep.ogg",
+    "bytes": 11329,
+    "sha256": "39147cc1b98abb4b5378ad07b15d50d18f2aa0f0fd2f5514f078c1e574d14773"
+  },
+  {
+    "file": "breath.ogg",
+    "bytes": 2243996,
+    "sha256": "7f9bb05fdf34141aae0a74782e7fa70e8a53f3f0617778f48398d4fb751d743f"
+  },
+  {
+    "file": "engine-loop.7z",
+    "bytes": 2679125,
+    "sha256": "06b14b760fde613b357d043517f604dfde024318e764dff209a179ea39c566d6"
+  },
+  {
+    "file": "engine_start_up_01.wav",
+    "bytes": 634438,
+    "sha256": "026311134479a4bb21f7f9a4a64c2b47791373c6e3613d36045387eee0fa0b23"
+  },
+  {
+    "file": "Fantozzi-footsteps.7z",
+    "bytes": 476363,
+    "sha256": "415d360e0911c1c1c5355ee94023b772e6f4044f59b9b580610e7dbffd1840fd"
+  },
+  {
+    "file": "female_hurt_grunts_groans_1.ogg",
+    "bytes": 188830,
+    "sha256": "80a9fb09203bb8feb065ba15197609b118cbe167c9a2264670a31ee22c384adb"
+  },
+  {
+    "file": "female_scream_1.ogg",
+    "bytes": 33339,
+    "sha256": "87b1a695b0106f9af6ca83b1f9f362b0d201663878aff231d634af69cd8ab516"
+  },
+  {
+    "file": "independent_nu_ljudbank-hits_and_punches.7z",
+    "bytes": 1684480,
+    "sha256": "641c65d2e1a00002171c23e2c6fa14e925ae4c12db09d3f79d130a4538916032"
+  },
+  {
+    "file": "swishes.zip",
+    "bytes": 385150,
+    "sha256": "7980215241b739a787dcf26f660ce510bb237900968789395a86911619795693"
+  },
+  {
+    "file": "zombies.zip",
+    "bytes": 4667201,
+    "sha256": "8096ceeb4dac35d9eef9bfe0cc6649778d1eebf141b208d394ac338b9e5be314"
+  }
+]

@@ -1,0 +1,8 @@
+Light Machine Gun — KuraiWolf
+Source: https://opengameart.org/content/light-machine-gun
+License: Creative Commons Attribution 4.0 International
+https://creativecommons.org/licenses/by/4.0/
+Original: lmg_fire01.mp3
+Game derivative: assets/audio/sfx/m60_shot.wav
+Changes: leading silence removed, mono 44.1kHz conversion, short fade-out.
+Used as the game M60 firing effect; original source does not identify an exact weapon model.

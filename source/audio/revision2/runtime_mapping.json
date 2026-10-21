@@ -1,0 +1,329 @@
+[
+  {
+    "output": "step_hard_0.wav",
+    "sources": "01-footstep_0.ogg",
+    "duration": 0.15392290249433108,
+    "peak": 0.5
+  },
+  {
+    "output": "step_grass_0.wav",
+    "sources": "Fantozzi-footsteps/flac/Fantozzi-SandL1.flac",
+    "duration": 0.42,
+    "peak": 0.5
+  },
+  {
+    "output": "step_inside_0.wav",
+    "sources": "04-footstep.ogg",
+    "duration": 0.33301587301587304,
+    "peak": 0.45
+  },
+  {
+    "output": "step_hard_1.wav",
+    "sources": "02-footstep.ogg",
+    "duration": 0.16873015873015873,
+    "peak": 0.5
+  },
+  {
+    "output": "step_grass_1.wav",
+    "sources": "Fantozzi-footsteps/flac/Fantozzi-SandL2.flac",
+    "duration": 0.31718820861678004,
+    "peak": 0.5
+  },
+  {
+    "output": "step_inside_1.wav",
+    "sources": "05-footstep.ogg",
+    "duration": 0.3137641723356009,
+    "peak": 0.45
+  },
+  {
+    "output": "step_hard_2.wav",
+    "sources": "03-footstep.ogg",
+    "duration": 0.3167120181405896,
+    "peak": 0.5
+  },
+  {
+    "output": "step_grass_2.wav",
+    "sources": "Fantozzi-footsteps/flac/Fantozzi-SandL3.flac",
+    "duration": 0.2995238095238095,
+    "peak": 0.5
+  },
+  {
+    "output": "step_inside_2.wav",
+    "sources": "06-footstep.ogg",
+    "duration": 0.24566893424036282,
+    "peak": 0.45
+  },
+  {
+    "output": "bat_swing_0.wav",
+    "sources": "swishes/swishes/swish-5.wav",
+    "duration": 0.1099546485260771,
+    "peak": 0.65
+  },
+  {
+    "output": "swing_0.wav",
+    "sources": "swishes/swishes/swish-1.wav",
+    "duration": 0.10659863945578231,
+    "peak": 0.55
+  },
+  {
+    "output": "punch_0.wav",
+    "sources": "hits/hit02.mp3.flac",
+    "duration": 0.48,
+    "peak": 0.78
+  },
+  {
+    "output": "bat_hit_0.wav",
+    "sources": [
+      "hits/hit02.mp3.flac",
+      "hits/hit12.mp3.flac"
+    ],
+    "duration": 0.48,
+    "peak": 0.86
+  },
+  {
+    "output": "ram_flesh_0.wav",
+    "sources": [
+      "hits/hit24.mp3.flac",
+      "hits/hit02.mp3.flac",
+      "hits/hit12.mp3.flac"
+    ],
+    "duration": 0.5149886621315193,
+    "peak": 0.9
+  },
+  {
+    "output": "body_0.wav",
+    "sources": "hits/hit24.mp3.flac",
+    "duration": 0.4926757369614512,
+    "peak": 0.7
+  },
+  {
+    "output": "zombie_0.wav",
+    "sources": "zombies/zombies/zombie-19.wav",
+    "duration": 0.9203854875283447,
+    "peak": 0.78
+  },
+  {
+    "output": "zombie_hurt_0.wav",
+    "sources": "zombies/zombies/zombie-3.wav",
+    "duration": 0.5483446712018141,
+    "peak": 0.78
+  },
+  {
+    "output": "zombie_die_0.wav",
+    "sources": "zombies/zombies/zombie-16.wav",
+    "duration": 1.3953061224489796,
+    "peak": 0.78
+  },
+  {
+    "output": "bite_0.wav",
+    "sources": "zombies/zombies/zombie-2.wav",
+    "duration": 0.672562358276644,
+    "peak": 0.78
+  },
+  {
+    "output": "bat_swing_1.wav",
+    "sources": "swishes/swishes/swish-6.wav",
+    "duration": 0.1170748299319728,
+    "peak": 0.65
+  },
+  {
+    "output": "swing_1.wav",
+    "sources": "swishes/swishes/swish-2.wav",
+    "duration": 0.07954648526077097,
+    "peak": 0.55
+  },
+  {
+    "output": "punch_1.wav",
+    "sources": "hits/hit07.mp3.flac",
+    "duration": 0.48,
+    "peak": 0.78
+  },
+  {
+    "output": "bat_hit_1.wav",
+    "sources": [
+      "hits/hit07.mp3.flac",
+      "hits/hit18.mp3.flac"
+    ],
+    "duration": 0.48,
+    "peak": 0.86
+  },
+  {
+    "output": "ram_flesh_1.wav",
+    "sources": [
+      "hits/hit33.mp3.flac",
+      "hits/hit07.mp3.flac",
+      "hits/hit18.mp3.flac"
+    ],
+    "duration": 0.5149886621315193,
+    "peak": 0.9
+  },
+  {
+    "output": "body_1.wav",
+    "sources": "hits/hit33.mp3.flac",
+    "duration": 0.463718820861678,
+    "peak": 0.7
+  },
+  {
+    "output": "zombie_1.wav",
+    "sources": "zombies/zombies/zombie-20.wav",
+    "duration": 0.9160090702947846,
+    "peak": 0.78
+  },
+  {
+    "output": "zombie_hurt_1.wav",
+    "sources": "zombies/zombies/zombie-5.wav",
+    "duration": 0.46634920634920635,
+    "peak": 0.78
+  },
+  {
+    "output": "zombie_die_1.wav",
+    "sources": "zombies/zombies/zombie-17.wav",
+    "duration": 1.5305668934240362,
+    "peak": 0.78
+  },
+  {
+    "output": "bite_1.wav",
+    "sources": "zombies/zombies/zombie-4.wav",
+    "duration": 0.7114285714285714,
+    "peak": 0.78
+  },
+  {
+    "output": "bat_swing_2.wav",
+    "sources": "swishes/swishes/swish-7.wav",
+    "duration": 0.1361904761904762,
+    "peak": 0.65
+  },
+  {
+    "output": "swing_2.wav",
+    "sources": "swishes/swishes/swish-3.wav",
+    "duration": 0.11913832199546485,
+    "peak": 0.55
+  },
+  {
+    "output": "punch_2.wav",
+    "sources": "hits/hit20.mp3.flac",
+    "duration": 0.48,
+    "peak": 0.78
+  },
+  {
+    "output": "bat_hit_2.wav",
+    "sources": [
+      "hits/hit20.mp3.flac",
+      "hits/hit32.mp3.flac"
+    ],
+    "duration": 0.48,
+    "peak": 0.86
+  },
+  {
+    "output": "ram_flesh_2.wav",
+    "sources": [
+      "hits/hit35.mp3.flac",
+      "hits/hit20.mp3.flac",
+      "hits/hit32.mp3.flac"
+    ],
+    "duration": 0.5716553287981859,
+    "peak": 0.9
+  },
+  {
+    "output": "body_2.wav",
+    "sources": "hits/hit35.mp3.flac",
+    "duration": 0.5716553287981859,
+    "peak": 0.7
+  },
+  {
+    "output": "zombie_2.wav",
+    "sources": "zombies/zombies/zombie-21.wav",
+    "duration": 1.0564172335600908,
+    "peak": 0.78
+  },
+  {
+    "output": "zombie_hurt_2.wav",
+    "sources": "zombies/zombies/zombie-11.wav",
+    "duration": 0.4847392290249433,
+    "peak": 0.78
+  },
+  {
+    "output": "zombie_die_2.wav",
+    "sources": "zombies/zombies/zombie-18.wav",
+    "duration": 1.0687301587301588,
+    "peak": 0.78
+  },
+  {
+    "output": "bite_2.wav",
+    "sources": "zombies/zombies/zombie-6.wav",
+    "duration": 0.47585034013605443,
+    "peak": 0.78
+  },
+  {
+    "output": "hero_hurt_0.wav",
+    "sources": {
+      "file": "female_hurt_grunts_groans_1.ogg",
+      "start": 2.07,
+      "duration": 0.78
+    },
+    "duration": 0.628843537414966,
+    "peak": 0.77
+  },
+  {
+    "output": "hero_hurt_1.wav",
+    "sources": {
+      "file": "female_hurt_grunts_groans_1.ogg",
+      "start": 3.68,
+      "duration": 0.58
+    },
+    "duration": 0.41718820861678,
+    "peak": 0.77
+  },
+  {
+    "output": "hero_hurt_2.wav",
+    "sources": {
+      "file": "female_hurt_grunts_groans_1.ogg",
+      "start": 7.3,
+      "duration": 0.94
+    },
+    "duration": 0.7855555555555556,
+    "peak": 0.77
+  },
+  {
+    "output": "hero_death.wav",
+    "sources": "female_scream_1.ogg",
+    "duration": 0.9417913832199547,
+    "peak": 0.82
+  },
+  {
+    "output": "pain_medium.wav",
+    "sources": [
+      "breath.ogg 35–42s",
+      "female_hurt_grunts_groans_1.ogg 11.66–12.64s"
+    ],
+    "duration": 7.0,
+    "peak": 0.58
+  },
+  {
+    "output": "pain_heavy.wav",
+    "sources": [
+      "breath.ogg 3–8s",
+      "female_hurt_grunts_groans_1.ogg 4.88–6.23s / .30–1.24s"
+    ],
+    "duration": 5.0,
+    "peak": 0.66
+  },
+  {
+    "output": "start.wav",
+    "sources": "engine_start_up_01.wav",
+    "duration": 1.7973242630385489,
+    "peak": 0.88
+  },
+  {
+    "output": "engine.wav",
+    "sources": "engine-loop\\engine-loop-1-normalized.wav",
+    "duration": 3.980045351473923,
+    "peak": 0.66
+  },
+  {
+    "output": "stop.wav",
+    "sources": "engine-loop\\engine-loop-1-normalized.wav",
+    "duration": 0.5,
+    "peak": 0.45
+  }
+]

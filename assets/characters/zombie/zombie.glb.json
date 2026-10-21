@@ -1,0 +1,20 @@
+{
+  "source": "Zombie.usdz",
+  "original_triangles": 3948,
+  "triangles": 3948,
+  "materials": 5,
+  "textures": 5,
+  "bytes": 854268,
+  "bounds_min": [
+    -0.3240099996328354,
+    0.0,
+    -0.4807220995426178
+  ],
+  "bounds_max": [
+    0.3240099996328354,
+    1.6085796817496885,
+    0.6425070464611057
+  ],
+  "bones": 0,
+  "animations": 0
+}

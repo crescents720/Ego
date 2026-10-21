@@ -1,0 +1,14 @@
+{
+  "source": "C:\\Users\\ding5\\Downloads\\Platform_Trolley.usdz",
+  "triangles": 3104,
+  "bytes": 1516212,
+  "dimensions": [
+    0.7305461449894034,
+    0.9072957745770166,
+    1.2
+  ],
+  "parts": [
+    "Platform_Truck_lambert1_0",
+    "Platform_Truck_lambert2_0"
+  ]
+}

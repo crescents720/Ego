@@ -1,0 +1,20 @@
+{
+  "source": "Bedroom.usdz",
+  "original_triangles": 2148935,
+  "triangles": 228040,
+  "materials": 68,
+  "textures": 37,
+  "bytes": 23535436,
+  "bounds_min": [
+    -7.158340160491535,
+    0.0,
+    -4.171941587504916
+  ],
+  "bounds_max": [
+    7.158340160491535,
+    2.9999999114740543,
+    4.171941587504916
+  ],
+  "bones": 0,
+  "animations": 0
+}

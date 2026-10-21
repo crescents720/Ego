@@ -1,0 +1,22 @@
+{
+  "source": "Supermarket.usdz",
+  "triangles": 143152,
+  "meshes": 120,
+  "materials": 98,
+  "textures": 72,
+  "bytes": 14736388,
+  "meters_per_unit": 0.01,
+  "bounds_meters": [
+    [
+      -4.06,
+      0,
+      -3.78
+    ],
+    [
+      4.06,
+      3,
+      3.78
+    ]
+  ],
+  "original_faces": 1351876
+}

@@ -1,0 +1,20 @@
+{
+  "source": "Survival_Kit__Part_1__Baseball_Stick.usdz",
+  "original_triangles": 1632,
+  "triangles": 1632,
+  "materials": 1,
+  "textures": 1,
+  "bytes": 385688,
+  "bounds_min": [
+    -0.06163449153812571,
+    0.0,
+    -0.05695561239546541
+  ],
+  "bounds_max": [
+    0.06163449153812571,
+    1.23380762470038,
+    0.05695561239546541
+  ],
+  "bones": 0,
+  "animations": 0
+}

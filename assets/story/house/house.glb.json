@@ -1,0 +1,20 @@
+{
+  "source": "American_House.usdz",
+  "original_triangles": 17613,
+  "triangles": 17613,
+  "materials": 2,
+  "textures": 2,
+  "bytes": 1897696,
+  "bounds_min": [
+    -2.944050742117111,
+    0.0,
+    -2.101501129500243
+  ],
+  "bounds_max": [
+    2.9440507421171116,
+    2.9999991698209905,
+    2.101501129500243
+  ],
+  "bones": 0,
+  "animations": 0
+}

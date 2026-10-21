@@ -1,0 +1,7 @@
+Weapon shop feature assets, supplied by the project owner:
+Gun_shop_-_Schneiders_gun_shop.usdz
+Masked_Character_in_Suit.usdz
+M60_Machine_Gun_-_Vietnam_War.usdz
+Platform_Trolley.usdz
+Originals remain in the owner's Downloads folder. Converted game assets reside in assets/weapon_shop. No new third-party license is asserted for these supplied models.
+The interior background was generated with the built-in OpenAI image generation tool for this project on 2026-10-19. Prompt and workflow recorded in docs/cash_weapon_trolley.md.

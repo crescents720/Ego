@@ -1,0 +1,2 @@
+# Keep editable DCC source files in the repository without asking Godot to
+# import them. The corresponding runtime GLB lives under assets/models/.

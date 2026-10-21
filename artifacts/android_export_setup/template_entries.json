@@ -1,0 +1,282 @@
+[
+  {
+    "name": "templates/android_debug.apk",
+    "method": 8,
+    "crc": 382750264,
+    "compressed": 123101058,
+    "size": 124546428,
+    "offset": 0
+  },
+  {
+    "name": "templates/android_release.apk",
+    "method": 8,
+    "crc": 2390007522,
+    "compressed": 101991111,
+    "size": 102855501,
+    "offset": 123101143
+  },
+  {
+    "name": "templates/android_source.zip",
+    "method": 8,
+    "crc": 241746083,
+    "compressed": 210063193,
+    "size": 210059811,
+    "offset": 225092341
+  },
+  {
+    "name": "templates/icudt_godot.dat",
+    "method": 8,
+    "crc": 2797484069,
+    "compressed": 2822340,
+    "size": 4797072,
+    "offset": 435155620
+  },
+  {
+    "name": "templates/ios.zip",
+    "method": 8,
+    "crc": 959844406,
+    "compressed": 197728623,
+    "size": 202389716,
+    "offset": 437978043
+  },
+  {
+    "name": "templates/linux_debug.arm32",
+    "method": 8,
+    "crc": 1622733849,
+    "compressed": 24398257,
+    "size": 65517260,
+    "offset": 635706741
+  },
+  {
+    "name": "templates/linux_debug.arm64",
+    "method": 8,
+    "crc": 2028081033,
+    "compressed": 26144107,
+    "size": 66667624,
+    "offset": 660105083
+  },
+  {
+    "name": "templates/linux_debug.x86_32",
+    "method": 8,
+    "crc": 755494205,
+    "compressed": 26653226,
+    "size": 73175992,
+    "offset": 686249275
+  },
+  {
+    "name": "templates/linux_debug.x86_64",
+    "method": 8,
+    "crc": 156759422,
+    "compressed": 26756503,
+    "size": 72189976,
+    "offset": 712902587
+  },
+  {
+    "name": "templates/linux_release.arm32",
+    "method": 8,
+    "crc": 420309456,
+    "compressed": 24905379,
+    "size": 63534788,
+    "offset": 739659176
+  },
+  {
+    "name": "templates/linux_release.arm64",
+    "method": 8,
+    "crc": 1101254321,
+    "compressed": 26439289,
+    "size": 64783480,
+    "offset": 764564642
+  },
+  {
+    "name": "templates/linux_release.x86_32",
+    "method": 8,
+    "crc": 232115425,
+    "compressed": 27558159,
+    "size": 72799096,
+    "offset": 791004018
+  },
+  {
+    "name": "templates/linux_release.x86_64",
+    "method": 8,
+    "crc": 1116684536,
+    "compressed": 27151358,
+    "size": 71075864,
+    "offset": 818562265
+  },
+  {
+    "name": "templates/macos.zip",
+    "method": 8,
+    "crc": 2935962808,
+    "compressed": 126204660,
+    "size": 127052403,
+    "offset": 845713711
+  },
+  {
+    "name": "templates/version.txt",
+    "method": 0,
+    "crc": 2455983934,
+    "compressed": 13,
+    "size": 13,
+    "offset": 971918448
+  },
+  {
+    "name": "templates/web_debug.zip",
+    "method": 8,
+    "crc": 912909493,
+    "compressed": 10175635,
+    "size": 10194723,
+    "offset": 971918540
+  },
+  {
+    "name": "templates/web_dlink_debug.zip",
+    "method": 8,
+    "crc": 2007547058,
+    "compressed": 11392808,
+    "size": 11496268,
+    "offset": 982094256
+  },
+  {
+    "name": "templates/web_dlink_nothreads_debug.zip",
+    "method": 8,
+    "crc": 2425634034,
+    "compressed": 11316575,
+    "size": 11421692,
+    "offset": 993487151
+  },
+  {
+    "name": "templates/web_dlink_nothreads_release.zip",
+    "method": 8,
+    "crc": 2283688531,
+    "compressed": 11098312,
+    "size": 11191550,
+    "offset": 1004803823
+  },
+  {
+    "name": "templates/web_dlink_release.zip",
+    "method": 8,
+    "crc": 4179756763,
+    "compressed": 11099287,
+    "size": 11191519,
+    "offset": 1015902234
+  },
+  {
+    "name": "templates/web_nothreads_debug.zip",
+    "method": 8,
+    "crc": 4216305112,
+    "compressed": 10101853,
+    "size": 10120053,
+    "offset": 1027001610
+  },
+  {
+    "name": "templates/web_nothreads_release.zip",
+    "method": 8,
+    "crc": 340484631,
+    "compressed": 9548031,
+    "size": 9574223,
+    "offset": 1037103554
+  },
+  {
+    "name": "templates/web_release.zip",
+    "method": 8,
+    "crc": 2666616524,
+    "compressed": 9542747,
+    "size": 9567847,
+    "offset": 1046651678
+  },
+  {
+    "name": "templates/windows_debug_arm64_console.exe",
+    "method": 8,
+    "crc": 2671086974,
+    "compressed": 61026,
+    "size": 159232,
+    "offset": 1056194508
+  },
+  {
+    "name": "templates/windows_debug_arm64.exe",
+    "method": 8,
+    "crc": 2057492894,
+    "compressed": 29754664,
+    "size": 95427584,
+    "offset": 1056255633
+  },
+  {
+    "name": "templates/windows_debug_x86_32_console.exe",
+    "method": 8,
+    "crc": 3893607404,
+    "compressed": 77894,
+    "size": 192000,
+    "offset": 1086010388
+  },
+  {
+    "name": "templates/windows_debug_x86_32.exe",
+    "method": 8,
+    "crc": 1157542904,
+    "compressed": 34787301,
+    "size": 111409664,
+    "offset": 1086088382
+  },
+  {
+    "name": "templates/windows_debug_x86_64_console.exe",
+    "method": 8,
+    "crc": 1981225890,
+    "compressed": 76432,
+    "size": 188928,
+    "offset": 1120875775
+  },
+  {
+    "name": "templates/windows_debug_x86_64.exe",
+    "method": 8,
+    "crc": 3865303195,
+    "compressed": 33379759,
+    "size": 100787712,
+    "offset": 1120952307
+  },
+  {
+    "name": "templates/windows_release_arm64_console.exe",
+    "method": 8,
+    "crc": 1945099141,
+    "compressed": 61026,
+    "size": 159232,
+    "offset": 1154332158
+  },
+  {
+    "name": "templates/windows_release_arm64.exe",
+    "method": 8,
+    "crc": 914996005,
+    "compressed": 27970299,
+    "size": 86918656,
+    "offset": 1154393285
+  },
+  {
+    "name": "templates/windows_release_x86_32_console.exe",
+    "method": 8,
+    "crc": 3706801635,
+    "compressed": 77895,
+    "size": 192000,
+    "offset": 1182363677
+  },
+  {
+    "name": "templates/windows_release_x86_32.exe",
+    "method": 8,
+    "crc": 4053937012,
+    "compressed": 37479998,
+    "size": 117430784,
+    "offset": 1182441674
+  },
+  {
+    "name": "templates/windows_release_x86_64_console.exe",
+    "method": 8,
+    "crc": 2835741599,
+    "compressed": 76432,
+    "size": 188928,
+    "offset": 1219921766
+  },
+  {
+    "name": "templates/windows_release_x86_64.exe",
+    "method": 8,
+    "crc": 2610372866,
+    "compressed": 35916343,
+    "size": 104659456,
+    "offset": 1219998300
+  }
+]

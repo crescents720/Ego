@@ -1,0 +1,197 @@
+[
+  {
+    "output": "step_hard_0.wav",
+    "archive": "kenney_impact.zip",
+    "original": "Audio/footstep_concrete_000.ogg"
+  },
+  {
+    "output": "step_hard_1.wav",
+    "archive": "kenney_impact.zip",
+    "original": "Audio/footstep_concrete_001.ogg"
+  },
+  {
+    "output": "step_hard_2.wav",
+    "archive": "kenney_impact.zip",
+    "original": "Audio/footstep_concrete_002.ogg"
+  },
+  {
+    "output": "step_grass_0.wav",
+    "archive": "kenney_impact.zip",
+    "original": "Audio/footstep_grass_000.ogg"
+  },
+  {
+    "output": "step_grass_1.wav",
+    "archive": "kenney_impact.zip",
+    "original": "Audio/footstep_grass_001.ogg"
+  },
+  {
+    "output": "step_grass_2.wav",
+    "archive": "kenney_impact.zip",
+    "original": "Audio/footstep_grass_002.ogg"
+  },
+  {
+    "output": "step_inside_0.wav",
+    "archive": "kenney_impact.zip",
+    "original": "Audio/footstep_wood_000.ogg"
+  },
+  {
+    "output": "step_inside_1.wav",
+    "archive": "kenney_impact.zip",
+    "original": "Audio/footstep_wood_001.ogg"
+  },
+  {
+    "output": "step_inside_2.wav",
+    "archive": "kenney_impact.zip",
+    "original": "Audio/footstep_wood_002.ogg"
+  },
+  {
+    "output": "punch_0.wav",
+    "archive": "kenney_impact.zip",
+    "original": "Audio/impactPunch_medium_000.ogg"
+  },
+  {
+    "output": "punch_1.wav",
+    "archive": "kenney_impact.zip",
+    "original": "Audio/impactPunch_medium_001.ogg"
+  },
+  {
+    "output": "punch_2.wav",
+    "archive": "kenney_impact.zip",
+    "original": "Audio/impactPunch_medium_002.ogg"
+  },
+  {
+    "output": "bat_hit_0.wav",
+    "archive": "kenney_impact.zip",
+    "original": "Audio/impactPunch_heavy_000.ogg"
+  },
+  {
+    "output": "bat_hit_1.wav",
+    "archive": "kenney_impact.zip",
+    "original": "Audio/impactPunch_heavy_001.ogg"
+  },
+  {
+    "output": "bat_hit_2.wav",
+    "archive": "kenney_impact.zip",
+    "original": "Audio/impactPunch_heavy_002.ogg"
+  },
+  {
+    "output": "body_0.wav",
+    "archive": "kenney_impact.zip",
+    "original": "Audio/impactSoft_heavy_000.ogg"
+  },
+  {
+    "output": "body_1.wav",
+    "archive": "kenney_impact.zip",
+    "original": "Audio/impactSoft_heavy_001.ogg"
+  },
+  {
+    "output": "body_2.wav",
+    "archive": "kenney_impact.zip",
+    "original": "Audio/impactSoft_heavy_002.ogg"
+  },
+  {
+    "output": "metal_0.wav",
+    "archive": "kenney_impact.zip",
+    "original": "Audio/impactPlate_heavy_000.ogg"
+  },
+  {
+    "output": "metal_1.wav",
+    "archive": "kenney_impact.zip",
+    "original": "Audio/impactPlate_heavy_001.ogg"
+  },
+  {
+    "output": "metal_2.wav",
+    "archive": "kenney_impact.zip",
+    "original": "Audio/impactPlate_heavy_002.ogg"
+  },
+  {
+    "output": "crash_0.wav",
+    "archive": "kenney_impact.zip",
+    "original": "Audio/impactMetal_heavy_000.ogg"
+  },
+  {
+    "output": "crash_1.wav",
+    "archive": "kenney_impact.zip",
+    "original": "Audio/impactMetal_heavy_001.ogg"
+  },
+  {
+    "output": "crash_2.wav",
+    "archive": "kenney_impact.zip",
+    "original": "Audio/impactMetal_heavy_002.ogg"
+  },
+  {
+    "output": "pickup_0.wav",
+    "archive": "kenney_interface.zip",
+    "original": "Audio/select_001.ogg"
+  },
+  {
+    "output": "pickup_1.wav",
+    "archive": "kenney_interface.zip",
+    "original": "Audio/select_002.ogg"
+  },
+  {
+    "output": "pickup_2.wav",
+    "archive": "kenney_interface.zip",
+    "original": "Audio/select_003.ogg"
+  },
+  {
+    "output": "equip_0.wav",
+    "archive": "kenney_interface.zip",
+    "original": "Audio/click_001.ogg"
+  },
+  {
+    "output": "equip_1.wav",
+    "archive": "kenney_interface.zip",
+    "original": "Audio/click_002.ogg"
+  },
+  {
+    "output": "equip_2.wav",
+    "archive": "kenney_interface.zip",
+    "original": "Audio/click_003.ogg"
+  },
+  {
+    "output": "transfer_0.wav",
+    "archive": "kenney_interface.zip",
+    "original": "Audio/drop_001.ogg"
+  },
+  {
+    "output": "transfer_1.wav",
+    "archive": "kenney_interface.zip",
+    "original": "Audio/drop_002.ogg"
+  },
+  {
+    "output": "transfer_2.wav",
+    "archive": "kenney_interface.zip",
+    "original": "Audio/drop_003.ogg"
+  },
+  {
+    "output": "trash_0.wav",
+    "archive": "kenney_interface.zip",
+    "original": "Audio/drop_001.ogg"
+  },
+  {
+    "output": "trash_1.wav",
+    "archive": "kenney_interface.zip",
+    "original": "Audio/drop_002.ogg"
+  },
+  {
+    "output": "trash_2.wav",
+    "archive": "kenney_interface.zip",
+    "original": "Audio/drop_003.ogg"
+  },
+  {
+    "output": "ui.wav",
+    "archive": "kenney_interface.zip",
+    "original": "Audio/click_001.ogg"
+  },
+  {
+    "output": "reject.wav",
+    "archive": "kenney_interface.zip",
+    "original": "Audio/error_004.ogg"
+  },
+  {
+    "output": "complete.wav",
+    "archive": "kenney_interface.zip",
+    "original": "Audio/confirmation_001.ogg"
+  }
+]

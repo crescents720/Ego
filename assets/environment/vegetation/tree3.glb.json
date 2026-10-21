@@ -1,0 +1,20 @@
+{
+  "source": "Trees.usdz",
+  "original_triangles": 3328,
+  "triangles": 3328,
+  "materials": 2,
+  "textures": 2,
+  "bytes": 765792,
+  "bounds_min": [
+    -1.7101498277938791,
+    0.0,
+    -1.2986327963161552
+  ],
+  "bounds_max": [
+    1.7101498277938791,
+    4.327497751324586,
+    1.2986327963161552
+  ],
+  "bones": 0,
+  "animations": 0
+}
