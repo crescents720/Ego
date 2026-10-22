@@ -1440,7 +1440,7 @@ func _update_hud() -> void:
 	if temple.nearby():
 		interact_button.show()
 		interact_button.text="拾取大太刀"
-		hint_label.text="寺庙刀架：拾取后双手持刀；背包中可切换棒球棍"
+		hint_label.text="寺庙刀架：拾取后双手持刀并可施展四段连击；背包中可切换棒球棍"
 	elif factory.nearby():
 		interact_button.show()
 		interact_button.text="进入工厂"

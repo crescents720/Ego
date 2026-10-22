@@ -44,4 +44,4 @@ func interact() -> void:
  GameState.odachi_taken=true
  GameState.equip_item("odachi","right_hand")
  refresh()
- main.rest_notice("获得大太刀，已双手持握。当前可使用单段斜斩。")
+ main.rest_notice("获得大太刀，已双手持握。当前可使用四段连击。")

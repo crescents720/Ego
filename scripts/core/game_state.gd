@@ -48,7 +48,7 @@ const ITEMS := {
  "lathe":{"name":"小型车床","grams":24000,"slots":[],"description":"24kg小型车床，需推车运输。运进房车后在基础维修台交互安装。"},
  "m60":{"name":"M60 机枪","grams":23000,"slots":[],"description":"沉重的 M60，23 kg。只能在房车射击窗架设使用；拆卸后可用推车运输，不能随身携带。"},
  "m60_ammo":{"name":"M60 弹药","grams":4,"slots":[],"description":"M60 配套弹药。500 发合计搬运重量 2 kg。"},
- "odachi":{"name":"寺庙大太刀","grams":2200,"slots":["right_hand"],"description":"双手持握的大太刀，攻击力4，攻击距离2.4米。当前为单段斜斩；后续训练将开放连击。"},
+ "odachi":{"name":"寺庙大太刀","grams":2200,"slots":["right_hand"],"description":"双手持握的大太刀，攻击力4，攻击距离2.4米。当前可施展四段连击。"},
  "bat":{"name":"哥哥的棒球棍","grams":900,"slots":["left_hand","right_hand"],"description":"哥哥一直放在衣柜里的木制棒球棍。攻击力 2；普通丧尸需命中 5 次。"},
  "food":{"name":"面包与口粮","grams":500,"slots":[],"description":"密封面包，每包 0.5 kg。每天需要 1 kg；断粮后约五天从满血降至零。"},
  "water":{"name":"桶装饮水","grams":5000,"slots":[],"description":"5 L 桶装饮水，整桶 5 kg。每天需要 5 L；断水后约三天从满血降至零。"},

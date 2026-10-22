@@ -11,6 +11,10 @@ const ATTACK_RANGE := 1.60
 const ATTACK_COOLDOWN_MS := 650
 const PUNCH_CONTACT := 0.24
 const PUNCH_LENGTH := 0.62
+const SWORD_COMBO_ACTION := "SwordCombo4"
+const SWORD_COMBO_CONTACTS := [0.432, 0.945, 1.468, 2.072]
+const SWORD_COMBO_SWING_LEAD := 0.072
+const SWORD_COMBO_LENGTH := 2.66
 const ANIMATED_CHARACTER_MODEL_PATH := "res://assets/characters/anime-girl/hotaru_sword.glb"
 const STATIC_CHARACTER_MODEL_PATH := "res://assets/characters/anime-girl/girl.glb"
 
@@ -38,6 +42,8 @@ var _combat_action := ""
 var _combat_elapsed := 0.0
 var _punch_contact_done := false
 var _swing_sound_done := false
+var _sword_contact_index := 0
+var _sword_swing_index := 0
 var _step_last_position := Vector3.ZERO
 var _punch_target: Node3D
 var _hit_tween: Tween
@@ -116,6 +122,7 @@ func _physics_process(delta: float) -> void:
 		_update_visual_motion(Vector3.ZERO, delta)
 		return
 
+	var sword_combo_active := _combat_action.begins_with("SwordCombo")
 	_tick_combat(delta)
 	var input_vector := (Input.get_vector("move_left", "move_right", "move_backward", "move_forward")+touch_move).limit_length(1)
 	var direction := Vector3(input_vector.x, 0.0, input_vector.y)
@@ -130,11 +137,11 @@ func _physics_process(delta: float) -> void:
 	if direction.length_squared() > 1.0:
 		direction = direction.normalized()
 
-	var action_speed := .48 if pushing_cart else (0.25 if not _combat_action.is_empty() else 1.0)
+	var action_speed := .48 if pushing_cart else (0.0 if sword_combo_active else (0.25 if not _combat_action.is_empty() else 1.0))
 	velocity.x = direction.x * MOVE_SPEED * action_speed
 	velocity.z = direction.z * MOVE_SPEED * action_speed
 	velocity.y = 0.0
-	if direction.length_squared() > 0.01 and _combat_action.is_empty():
+	if direction.length_squared() > 0.01 and _combat_action.is_empty() and not sword_combo_active:
 		rotation.y = lerp_angle(rotation.y, atan2(direction.x, direction.z), minf(1.0, delta * 12.0))
 	_step_last_position=global_position
 	move_and_slide()
@@ -216,10 +223,12 @@ func attack() -> void:
 	if is_instance_valid(_punch_target):
 		var offset:=_punch_target.global_position-global_position
 		rotation.y=atan2(offset.x,offset.z)
-	_combat_action="SwordCombo1" if _attack_damage==4 else ("BatAttack"+_weapon_hand if _attack_damage==2 else "Punch")
+	_combat_action=SWORD_COMBO_ACTION if _attack_damage==4 else ("BatAttack"+_weapon_hand if _attack_damage==2 else "Punch")
 	_combat_elapsed=0
 	_punch_contact_done=false
 	_swing_sound_done=false
+	_sword_contact_index=0
+	_sword_swing_index=0
 	_play_character_animation(_combat_action,true)
 
 
@@ -232,13 +241,27 @@ func _can_reach(victim: Node3D) -> bool:
 func _tick_combat(delta: float) -> void:
 	if _combat_action.is_empty():return
 	_combat_elapsed+=delta
-	if _combat_action=="Punch" or _combat_action.begins_with("BatAttack") or _combat_action=="SwordCombo1":
+	if _combat_action==SWORD_COMBO_ACTION:
+		# Resolve each cut in timeline order, even when one slow frame crosses
+		# several swing and contact timestamps.
+		while _sword_contact_index<SWORD_COMBO_CONTACTS.size():
+			var contact_time: float=float(SWORD_COMBO_CONTACTS[_sword_contact_index])
+			if _sword_swing_index==_sword_contact_index and _combat_elapsed>=contact_time-SWORD_COMBO_SWING_LEAD:
+				AudioDirector.sound("swing",global_position,-16)
+				_sword_swing_index+=1
+			if _combat_elapsed<contact_time:
+				break
+			_resolve_sword_contact()
+			_sword_contact_index+=1
+		if _combat_elapsed>=SWORD_COMBO_LENGTH:
+			_combat_action=""
+			_punch_target=null
+	elif _combat_action=="Punch" or _combat_action.begins_with("BatAttack"):
 		var bat_attack:=_combat_action.begins_with("BatAttack")
-		var sword_attack:=_combat_action=="SwordCombo1"
-		if not _swing_sound_done and _combat_elapsed>=(0.36 if sword_attack else (0.30 if bat_attack else 0.12)):
+		if not _swing_sound_done and _combat_elapsed>=(0.30 if bat_attack else 0.12):
 			_swing_sound_done=true
-			AudioDirector.sound("swing" if sword_attack else ("bat_swing" if bat_attack else "swing"),global_position,-16)
-		if not _punch_contact_done and _combat_elapsed>=(0.432 if sword_attack else (0.40 if bat_attack else PUNCH_CONTACT)):
+			AudioDirector.sound("bat_swing" if bat_attack else "swing",global_position,-16)
+		if not _punch_contact_done and _combat_elapsed>=(0.40 if bat_attack else PUNCH_CONTACT):
 			_punch_contact_done=true
 			var hit:=false
 			if is_instance_valid(_punch_target) and not _punch_target._dying:
@@ -246,14 +269,51 @@ func _tick_combat(delta: float) -> void:
 				offset.y=0
 				if offset.length()<=_attack_range and transform.basis.z.dot(offset.normalized())>0.45 and _can_reach(_punch_target):
 					_punch_target.take_damage(_attack_damage)
-					AudioDirector.sound("bat_hit" if bat_attack or sword_attack else "punch",_punch_target.global_position)
+					AudioDirector.sound("bat_hit" if bat_attack else "punch",_punch_target.global_position)
 					hit=true
 			attacked.emit(hit)
-		if _combat_elapsed>=(1.0 if sword_attack else (0.86 if bat_attack else PUNCH_LENGTH)):
+		if _combat_elapsed>=(0.86 if bat_attack else PUNCH_LENGTH):
 			_combat_action=""
 			_punch_target=null
 	elif _combat_elapsed>=0.44:
 		_combat_action=""
+
+
+func _resolve_sword_contact() -> void:
+	if not _can_hit_current_target():
+		_punch_target=_find_sword_target()
+	var hit:=false
+	if _can_hit_current_target():
+		var victim:=_punch_target
+		victim.take_damage(_attack_damage)
+		AudioDirector.sound("bat_hit",victim.global_position)
+		hit=true
+		if victim._dying:_punch_target=null
+	attacked.emit(hit)
+
+
+func _find_sword_target() -> Node3D:
+	var nearest: Node3D
+	var nearest_distance:=_attack_range
+	for zombie in get_tree().get_nodes_in_group("zombies"):
+		if not is_instance_valid(zombie) or zombie._dying:
+			continue
+		var offset: Vector3=zombie.global_position-global_position
+		offset.y=0
+		var distance:=offset.length()
+		if distance<=nearest_distance and distance>0.001 and transform.basis.z.dot(offset/distance)>0.45 and _can_reach(zombie):
+			nearest=zombie
+			nearest_distance=distance
+	return nearest
+
+
+func _can_hit_current_target() -> bool:
+	if not is_instance_valid(_punch_target) or _punch_target._dying:
+		return false
+	var offset: Vector3=_punch_target.global_position-global_position
+	offset.y=0
+	var distance:=offset.length()
+	return distance>0.001 and distance<=_attack_range and transform.basis.z.dot(offset/distance)>0.45 and _can_reach(_punch_target)
 
 
 func take_damage(amount: int, source: Node3D = null) -> void:

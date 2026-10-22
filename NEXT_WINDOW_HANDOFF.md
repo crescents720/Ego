@@ -1,6 +1,6 @@
 # 《末日与黎明》新窗口接手文档
 
-更新：2026-10-21。这是当前状态的入口；聊天附件与历史文档仅作背景，不要把旧需求重新全部执行一遍。
+更新：2026-10-22。这是当前状态的入口；聊天附件与历史文档仅作背景，不要把旧需求重新全部执行一遍。
 
 ## 如何继续
 
@@ -13,11 +13,17 @@ Python：`C:/Users/ding5/AppData/Local/Python/pythoncore-3.14-64/python.exe`。�
 
 优先阅读本文件及 `docs/rest_save_repair.md`、`docs/day_cargo_revision.md`。README 中较早的过程记录有过时数值，以本文件和最新实现为准。`docs/home_handoff.md` 是之前搬家时的旧交接。
 
-## 2026-10-21 大太刀动作第二版（当前）
+## 2026-10-22 大太刀四连击实装（当前）
+
+用户确认视觉上可辨认的四刀版本先进入游戏。寺庙取得大太刀后，普通攻击现固定播放`SwordCombo4`：斜斩→反向上挑→横斩→举刀下劈，总时长2.66秒，四个独立命中点为.432/.945/1.468/2.072；每刀伤害4、距离2.4m，逐刀复核正面夹角、距离和墙体遮挡。四连期间锁定角色位移，完整收势后才能重新攻击；原目标死亡或离开范围后，后续刀可寻找正面最近目标。`SwordCombo5`技术上确有第五刀，但因视觉近似收势，留待后续太刀术训练。未新增存档字段。
+
+`verify_sword.gd`已改为验证SwordCombo4、四个独立窗口、防重复命中、完整收势与四刀墙体阻挡。拾取提示、物品说明、README及`docs/odachi_temple.md`已同步。仍未导出APK。
+
+## 2026-10-21 大太刀动作第二版
 
 用户否定第一版：手臂穿模、挥剑逻辑及美感不足。已重做，优先读docs/odachi_temple.md顶部。核心是修复蒙皮，不只是IK：tools/repair_hotaru_arm_skin.py识别真实独立臂/手组件，修正肩肘腕位置、逆绑定和原动画平移，去掉前臂绑躯干/躯干绑手臂的错误；鞋底整体随本脚防踏步拉三角。build_sword_animations.py在workshop来源上先repair再追加新Sword动画，hotaru_sword仍入口。其他原件不动。
 
-手掌空间握刀而非腕骨直接放在刀柄上；R前L后11.5cm，hotaru附件增加掌心偏移+轴向转换。步伐/重心/转髋/收势重做，握点跟随躯干平移，横斩刀刃随切面转动。当前1/2/3/4/5段时长1.0/1.49/2.03/2.66/3.56，命中元数据.432/.945/1.468/2.072/2.796；玩法仍仅单段，挥动声.36接触.432结束1.0。120fps导入保留。
+手掌空间握刀而非腕骨直接放在刀柄上；R前L后11.5cm，hotaru附件增加掌心偏移+轴向转换。步伐/重心/转髋/收势重做，握点跟随躯干平移，横斩刀刃随切面转动。当前1/2/3/4/5段时长1.0/1.49/2.03/2.66/3.56，命中元数据.432/.945/1.468/2.072/2.796。120fps导入保留。
 
 新验证verify_sword_surfaces.py对实际蒙皮后的前臂/手部逐帧测试胸腹头部核心体积（并非任意衣服褶皱精确碰撞）；另双角度检查渲染，verify_sword手掌握持/伤害/保存通过，equipment/manual_fabrication/trolley_doors通过，棒球棍画面核对。新动图artifacts/sword_v2_combo1～5.gif，生成器preview_sword_v2.gd/build_sword_v2_previews.py。旧sword_combo*.gif是被否定版本，勿展示为最新。未打APK。
 
@@ -25,9 +31,9 @@ Python：`C:/Users/ding5/AppData/Local/Python/pythoncore-3.14-64/python.exe`。�
 
 见docs/odachi_temple.md。新增Shinobi_Temple原模型到(-94,345)，北横路z300转支路，小地图“寺庙”；前殿入口地面刀架E取唯一大太刀，需2.2kg背包，自动右手栏双手握持，清左手装备但保留物品。odachi_taken进economy_defaults兼容旧档，新游戏复原。大太刀拆除素材独立刀鞘，减到29k三角/1.1MB，原USDZ不动。
 
-当前攻击SwordCombo1，4伤害/2.4m/0.73秒，0.32秒单次接触，保留朝向距离墙体检查；普通10HP丧尸3刀。SwordCombo2～5已独立制作但未在玩法解锁，未来训练用；斜斩→上挑→横斩→下劈→斜斩收势，时长0.73/1.19/1.65/2.11/2.57秒。双手IK和膝部/躯干变化，无根位移。人物入口hotaru_sword.glb，保留旧动画并新增SwordIdle/Walk/Combo1～5；build_sword_animations.py在workshop后生成，**GLB.import fps120必须保留**，低采样手会离柄。刀和棍同附件容器，服务/推车/坐下/死亡隐藏逻辑保留。刀音效暂复用挥动/肉击。
+当前攻击SwordCombo4，四刀各4伤害、2.4m，总时长2.66秒，命中点.432/.945/1.468/2.072，保留朝向、距离与墙体检查；普通10HP丧尸在第三刀倒下。SwordCombo1～3和5继续作为独立动作资源，未来训练可复用；斜斩→上挑→横斩→下劈→斜斩收势，时长1.0/1.49/2.03/2.66/3.56秒。双手IK和膝部/躯干变化，无根位移。人物入口hotaru_sword.glb，保留旧动画并新增SwordIdle/Walk/Combo1～5；build_sword_animations.py在workshop后生成，**GLB.import fps120必须保留**，低采样手会离柄。刀和棍同附件容器，服务/推车/坐下/死亡隐藏逻辑保留。刀音效暂复用挥动/肉击。
 
-verify_sword实际按钮/唯一拾取/满包/双手/握点/单段命中/墙/收招/推车/坐下/隔离保存加载/新局/道路无树草通过，equipment/factory/gunnery/mobile_driving回归通过。artifacts/sword_combo1～5.gif和sword_combo_designs.png为实际骨架动图/姿势，temple_in_game.png实际游戏。当前刀在前院刀架获取，未做独立寺庙内场景。训练后续再做。用户不要求本轮APK，仍未导出。
+verify_sword覆盖实际按钮/唯一拾取/满包/双手/握点/四段命中窗口/墙/完整收招/推车/坐下/隔离保存加载/新局/道路无树草。artifacts/sword_v2_combo1～5.gif为当前实际骨架双视角动图，旧sword_combo*.gif不要作为新版展示。当前刀在前院刀架获取，未做独立寺庙内场景。训练后续再做。用户不要求本轮APK，仍未导出。
 
 ## 2026-10-20 手机驾驶拆分（源码最新，未导出）
 

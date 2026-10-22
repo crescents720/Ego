@@ -55,24 +55,52 @@ func run():
  h.pushing_cart=true;h._combat_action="";h._last_attack_ms=-10000;h.attack()
  check(h._combat_action.is_empty(),"Sword can attack while pushing cart")
  h.pushing_cart=false
- # Test single-attack damage/contact once, recovery, and wall occlusion.
+ # Test all four independent damage windows, recovery, and wall occlusion.
  h._combat_action="";h.set_active(true);h._last_attack_ms=-10000
  h.position=t.RACK+Vector3(5,0,-4)
  var z=load("res://scripts/actors/zombie.gd").new();m.world_root.add_child(z)
  z.position=h.position+Vector3(0,0,1.8);z.set_physics_process(false)
+ z.health=30
  await physics_frame
  h.attack()
- check(h._combat_action=="SwordCombo1","Normal play unlocked multi combo")
- h._tick_combat(.43);check(z.health==10,"Early hit before blade")
- h._tick_combat(.01);check(z.health==6,"Sword damage/contact failed")
- h._tick_combat(.1);check(z.health==6,"Repeated damage in same cut")
- h._tick_combat(.5);check(h._combat_action.is_empty(),"Sword recovery stuck")
+ check(h._combat_action=="SwordCombo4","Temple sword did not start four-hit combo")
+ var expected_health:=30
+ for index in range(h.SWORD_COMBO_CONTACTS.size()):
+  var contact: float=float(h.SWORD_COMBO_CONTACTS[index])
+  var before_contact: float=contact-h._combat_elapsed-.001
+  if before_contact>0:h._tick_combat(before_contact)
+  check(z.health==expected_health,"Sword hit early at window %d"%(index+1))
+  h._tick_combat(.002);expected_health-=4
+  check(z.health==expected_health,"Sword contact %d damage failed"%(index+1))
+  h._tick_combat(.05)
+  check(z.health==expected_health,"Sword contact %d repeated damage"%(index+1))
+ check(h._sword_contact_index==4,"Four-hit combo skipped a contact window")
+ h._tick_combat(h.SWORD_COMBO_LENGTH-h._combat_elapsed+.01)
+ check(h._combat_action.is_empty(),"Sword recovery stuck")
  var wall:=StaticBody3D.new();var col:=CollisionShape3D.new();var box:=BoxShape3D.new()
  box.size=Vector3(2,3,.1);col.shape=box;wall.add_child(col);wall.position=h.position+Vector3(0,0,.9);m.world_root.add_child(wall)
  await physics_frame
- h._last_attack_ms=-10000;h.attack();h._tick_combat(.44)
- check(z.health==6,"Sword hits through walls")
- h._tick_combat(1);wall.queue_free();z.queue_free()
+ h._last_attack_ms=-10000;h.attack();h._tick_combat(h.SWORD_COMBO_LENGTH+.01)
+ check(z.health==14,"Sword hits through walls")
+ wall.queue_free();z.queue_free()
+ await physics_frame
+ # A single low-FPS tick must catch every contact and retarget after the first zombie falls.
+ var lead=load("res://scripts/actors/zombie.gd").new();m.world_root.add_child(lead)
+ var reserve=load("res://scripts/actors/zombie.gd").new();m.world_root.add_child(reserve)
+ lead.position=h.position+Vector3(0,0,1.7);lead.health=10;lead.set_physics_process(false)
+ reserve.position=h.position+Vector3(0,0,2.2);reserve.health=10;reserve.set_physics_process(false)
+ await physics_frame
+ h._last_attack_ms=-10000;h.attack();h._tick_combat(h.SWORD_COMBO_LENGTH+.01)
+ check(lead._dying,"Four-hit combo did not defeat the first zombie in three hits")
+ check(reserve.health==6,"Fourth contact did not retarget the next zombie")
+ lead.queue_free();reserve.queue_free()
+ # Crossing the recovery timestamp must remain movement-locked for that whole physics frame.
+ h._combat_action=h.SWORD_COMBO_ACTION;h._combat_elapsed=h.SWORD_COMBO_LENGTH-.01
+ h.touch_move=Vector2(1,0)
+ var locked_position:=Vector2(h.global_position.x,h.global_position.z)
+ h._physics_process(.05)
+ check(Vector2(h.global_position.x,h.global_position.z).distance_to(locked_position)<.001,"Sword recovery frame allowed movement")
+ h.touch_move=Vector2.ZERO
  check(s.equip_item("bat","left_hand") and s.weapon_id()=="bat" and s.equipment.right_hand=="","Bat swap leaves two-handed weapon")
  check(not h._sword_model.visible and h._bat_models.L.visible,"Sword remains visible after swapping")
  s.equip_item("odachi","right_hand")
