@@ -166,7 +166,7 @@ func _ready() -> void:
 	add_child(factory)
 	factory.build(self)
 	temple=load("res://scripts/environment/temple.gd").new()
-	world_root.add_child(temple)
+	add_child(temple)
 	temple.build(self)
 	fabrication=load("res://scripts/ui/vehicle_fabrication.gd").new()
 	add_child(fabrication)
@@ -220,7 +220,7 @@ func _process(delta: float) -> void:
 	GameState.vehicle_yaw=rv.rotation.y
 	rv.occupied=(inside_rv or in_vehicle) and phase!=Phase.GAME_OVER and not rv.wrecked
 	_update_camera(delta)
-	town_occlusion.update(camera, rv if in_vehicle or (is_instance_valid(shooting) and shooting.active) else hotaru, (not inside_rv or (is_instance_valid(shooting) and shooting.active)) and not inside_store and not factory.active)
+	town_occlusion.update(camera, rv if in_vehicle or (is_instance_valid(shooting) and shooting.active) else hotaru, (not inside_rv or (is_instance_valid(shooting) and shooting.active)) and not inside_store and not factory.active and not temple.active)
 	_update_phase_checks()
 	_update_hud()
 	if is_instance_valid(fabrication):fabrication.apply_hud()
@@ -401,7 +401,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if is_instance_valid(shooting) and shooting.active:return
 	if inside_rv and _handle_interior_camera_input(event):
 		return
-	if not factory.active and is_instance_valid(outdoor_zoom) and outdoor_zoom.handle_world_input(event):
+	if not factory.active and not temple.active and is_instance_valid(outdoor_zoom) and outdoor_zoom.handle_world_input(event):
 		get_viewport().set_input_as_handled()
 		return
 	if event.is_action_pressed("toggle_vehicle"):
@@ -782,6 +782,7 @@ func _begin_story() -> void:
 func _start_new_game() -> void:
 	if is_instance_valid(fabrication):fabrication.stop_work("");fabrication.close()
 	if is_instance_valid(factory):factory.reset()
+	if is_instance_valid(temple):temple.reset()
 	if is_instance_valid(shooting):shooting.stop(false)
 	if is_instance_valid(title_screen):title_screen.hide()
 	get_node("HUD").show()
@@ -825,6 +826,7 @@ func _start_new_game() -> void:
 func _load_completed_save(path: String=GameState.SAVE_PATH) -> void:
 	if is_instance_valid(fabrication):fabrication.stop_work("");fabrication.close()
 	if is_instance_valid(factory):factory.reset()
+	if is_instance_valid(temple):temple.reset()
 	if is_instance_valid(shooting):shooting.stop(false)
 	if not GameState.load_completed_save(path):
 		return
@@ -900,7 +902,7 @@ func _set_phase(value: Phase) -> void:
 
 
 func _update_phase_checks() -> void:
-	if not controls_enabled or inside_rv or inside_store:
+	if not controls_enabled or inside_rv or inside_store or (is_instance_valid(temple) and temple.active):
 		return
 	if phase == Phase.CLEAR_ZOMBIES and _alive_zombie_count() == 0:
 		_set_phase(Phase.SCAVENGE)
@@ -912,6 +914,7 @@ func _update_phase_checks() -> void:
 
 func _toggle_vehicle() -> void:
 	if is_instance_valid(factory) and (factory.active or factory.transitioning):return
+	if is_instance_valid(temple) and temple.active:return
 	if rv.wrecked:return
 	if inside_store or not controls_enabled or phase in [Phase.TITLE, Phase.GAME_OVER, Phase.COMPLETE]:
 		return
@@ -939,6 +942,9 @@ func _toggle_vehicle() -> void:
 func _interact() -> void:
 	if is_instance_valid(factory) and factory.active:
 		if controls_enabled:factory.interact()
+		return
+	if is_instance_valid(temple) and temple.active:
+		if controls_enabled:temple.interact()
 		return
 	if not controls_enabled or in_vehicle:
 		return
@@ -978,7 +984,6 @@ func _interact() -> void:
 		else:
 			hint_label.text = "靠近带青色轮廓的家具后再交互"
 		return
-	if temple.nearby():temple.interact();return
 	if factory.nearby():factory.enter();return
 	if weapon_shop.nearby():weapon_shop.enter();return
 	if _is_near_store_door():_enter_store();return
@@ -1353,6 +1358,9 @@ func _update_hud() -> void:
 	if is_instance_valid(factory) and factory.active:
 		factory.update_hud()
 		return
+	if is_instance_valid(temple) and temple.active:
+		temple.update_hud()
+		return
 	if is_instance_valid(shooting) and shooting.active:
 		shooting.update_hud()
 		return
@@ -1437,11 +1445,7 @@ func _update_hud() -> void:
 	else:
 		hint_label.text = "拖动左下摇杆移动" if OS.has_feature("android") else "WASD/方向按钮移动"
 
-	if temple.nearby():
-		interact_button.show()
-		interact_button.text="拾取大太刀"
-		hint_label.text="寺庙刀架：拾取后双手持刀并可施展四段连击；背包中可切换棒球棍"
-	elif factory.nearby():
+	if factory.nearby():
 		interact_button.show()
 		interact_button.text="进入工厂"
 		hint_label.text="工厂正门：交互进入；右侧上车按钮进入房车"
@@ -1473,6 +1477,9 @@ func _update_camera(delta: float) -> void:
 		return
 	if is_instance_valid(factory) and factory.active:
 		factory.update_camera(delta)
+		return
+	if is_instance_valid(temple) and temple.active:
+		temple.update_camera(delta)
 		return
 	if inside_store:
 		_set_town_projection()
@@ -1620,6 +1627,7 @@ func is_under_attack() -> bool:
 func can_save_safely() -> bool:
 	if is_instance_valid(fabrication) and fabrication.active:return false
 	if is_instance_valid(factory) and (factory.active or factory.transitioning):return false
+	if is_instance_valid(temple) and temple.active:return false
 	if is_instance_valid(shooting) and shooting.active:return false
 	if is_instance_valid(trolley) and trolley.loading:return false
 	if is_instance_valid(weapon_shop) and weapon_shop.active:return false

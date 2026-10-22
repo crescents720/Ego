@@ -68,7 +68,30 @@ func run() -> void:
  await send_mouse(Vector2(72,72),false)
  if not check(ui.panel.visible and paused,"avatar click opens personal panel outdoors"):return
  if not check(ui.panel.find_children("*cargo*","",true,false).is_empty(),"no RV cargo UI"):return
- ui.close()
+ # The portrait panel exposes the temporary five-level weapon-skill selector.
+ var skill_entry: Button
+ for child in ui.panel.get_children():
+  if child is Button and child.text=="技能升级":skill_entry=child
+ if not check(is_instance_valid(skill_entry),"skill upgrade entry missing from portrait panel"):return
+ await send_mouse(skill_entry.get_global_rect().get_center(),true)
+ await send_mouse(skill_entry.get_global_rect().get_center(),false)
+ if not check(ui.skill_panel.visible and ui.skill_level_buttons.size()==5,"skill subpanel or five level buttons missing"):return
+ if not check(state.odachi_skill_level==1 and ui.skill_level_label.text.contains("第1层"),"new game skill panel does not start at level 1"):return
+ for level in range(1,6):
+  var level_button: Button=ui.skill_level_buttons[level-1]
+  await send_mouse(level_button.get_global_rect().get_center(),true)
+  await send_mouse(level_button.get_global_rect().get_center(),false)
+  if not check(state.odachi_skill_level==level,"skill level button %d did not update state"%level):return
+  if not check(level_button.text.begins_with("✓") and ui.skill_level_label.text.contains("第%d层"%level),"skill level %d did not refresh selected styling"%level):return
+ if not check(ui.skill_description.text.contains("最终奥义"),"level 5 description missing"):return
+ var cancel:=InputEventAction.new()
+ cancel.action="ui_cancel"
+ cancel.pressed=true
+ ui._input(cancel)
+ if not check(ui.panel.visible and not ui.skill_panel.visible and paused,"first Esc did not return from skill subpanel"):return
+ ui._input(cancel)
+ if not check(not ui.panel.visible and not paused,"second Esc did not close portrait panel and resume game"):return
+ state.set_odachi_skill_level(1)
  main.hotaru.global_position=main.rv.get_disembark_position()
  main._enter_rv_interior()
  await create_timer(.6).timeout
@@ -108,8 +131,8 @@ func run() -> void:
  main._interact()
  if not check(not ui.panel.visible,"furniture is not equipment entry"):return
  main._close_dialog_and_resume()
- if not check(state.try_add_items({"water":18}) and state.carried_grams()==9900 and not state.try_add_items({"water":1}),"personal 10kg limit remains enforced"):return
- print("PERSONAL_UI_PASS: actual outdoor avatar click; HP faces; no cargo/clothes; pickup picture; bag first; native mouse and phone drag; invalid drop; icon descriptions; no furniture entry; weight")
+ if not check(state.try_add_items({"food":18}) and state.carried_grams()==9900 and not state.try_add_items({"food":1}),"personal 10kg limit remains enforced"):return
+ print("PERSONAL_UI_PASS: avatar; HP faces; five-level skill subpanel and Esc return; no cargo/clothes; pickup picture; bag first; native mouse and phone drag; invalid drop; icon descriptions; no furniture entry; weight")
  quit()
 
 

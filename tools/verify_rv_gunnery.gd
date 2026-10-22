@@ -34,6 +34,9 @@ func run() -> void:
  s.cargo={"m60":1,"m60_ammo":500}
  m._interact()
  check(g.active and m.inside_rv and m.rv.occupied and s.m60_window=="right","Window interaction did not mount gun")
+ check(g.gun.is_visible_in_tree(),"Active firing proxy gun is hidden")
+ for mounted_side in [-1,1]:
+  check(not g.mounted[mounted_side].is_visible_in_tree() and not g.exterior_mounted[mounted_side].is_visible_in_tree(),"Mounted M60 has overlapping cabin/exterior duplicate in firing view")
  for angle in [-.7,0.0,.7]:
   g.yaw=angle;g.update_camera(0)
   check(m.camera.unproject_position(g.proxy.global_position+Vector3.UP*1.52).x<300,"Shoulder camera blocks crosshair")
@@ -101,7 +104,8 @@ func run() -> void:
  check(not g.fire_round(),"Empty gun fired")
  g.stop()
  g._process(0)
- check(g.exterior_mounted[1].visible and not g.exterior_mounted[-1].visible,"Exterior gun does not match mounted side")
+ check(g.mounted[1].is_visible_in_tree() and not g.mounted[-1].is_visible_in_tree(),"Cabin gun does not match mounted side")
+ check(not g.gun.is_visible_in_tree() and not g.exterior_mounted[1].is_visible_in_tree(),"Cabin view renders a second overlapping M60")
  m.rv_dashboard.open()
  m.rv_dashboard.status.text=s.ITEMS.m60.description
  for i in range(4):await process_frame

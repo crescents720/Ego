@@ -4,5 +4,7 @@
   "materials": 25,
   "textures": 24,
   "product_cases": 198,
-  "bytes": 2948456
+  "bytes": 2948452,
+  "shelf_x_scale": 0.54,
+  "usable_aisle_m": 1.29
 }

@@ -1,0 +1,13 @@
+{
+  "source": "Attack_slashes.usdz",
+  "variant": "slash",
+  "vertices": 288,
+  "triangles": 144,
+  "dimensions_m": [
+    2.1500000953674316,
+    1.8351399898529053,
+    0.5359640121459961
+  ],
+  "bytes": 208440,
+  "source_unchanged": true
+}

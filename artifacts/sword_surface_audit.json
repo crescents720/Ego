@@ -9,24 +9,24 @@
       "head_core_min": 6.006068160402056
     },
     "SwordCombo1": {
-      "torso_core_min": 1.122911316053326,
-      "head_core_min": 2.2605123856549554
+      "torso_core_min": 1.3035991183670461,
+      "head_core_min": 2.6047323562952363
     },
     "SwordCombo2": {
-      "torso_core_min": 1.0425745656267493,
-      "head_core_min": 2.2605123856549554
+      "torso_core_min": 1.2962413794584657,
+      "head_core_min": 2.064946877815145
     },
     "SwordCombo3": {
-      "torso_core_min": 1.0425745656267493,
-      "head_core_min": 2.2605123856549554
+      "torso_core_min": 1.2962413794584657,
+      "head_core_min": 2.064946877815145
     },
     "SwordCombo4": {
-      "torso_core_min": 1.0425745656267493,
-      "head_core_min": 2.2605123856549554
+      "torso_core_min": 1.2962413794584657,
+      "head_core_min": 2.064946877815145
     },
     "SwordCombo5": {
-      "torso_core_min": 1.0407126469467107,
-      "head_core_min": 2.0429973501938696
+      "torso_core_min": 1.2874108668266895,
+      "head_core_min": 1.056679299836299
     }
   },
   "failures": []

@@ -3,6 +3,8 @@ extends Node3D
 const MODEL_PATH := "res://assets/third_party/supermarket/supermarket_mobile.glb"
 const ENTRY := Vector3(0.0, 1.08, 2.68)
 const EXIT_AISLE:=Rect2(-3.5,2.15,7.0,1.45)
+const SHELF_X := [-2.625,-0.875,0.875,2.625]
+const SHELF_COLLISION_WIDTH := 0.46
 const STATIONS := {
 	"food": {"name": "密封面包 · 0.5 kg/包", "anchor": Vector3(-2.625, 0.95, 0.3), "color": Color("e8bb69")},
 	"water": {"name": "桶装饮水 · 5 L/桶", "anchor": Vector3(-0.875, 0.95, 0.3), "color": Color("6acbd5")},
@@ -63,8 +65,12 @@ func _build_collision() -> void:
 		_add_collision_box(Vector3(0.12, 2.8, 7.4), Vector3(x, 1.4, 0))
 	for z in [-3.68, 3.55]:
 		_add_collision_box(Vector3(7.8, 2.8, 0.12), Vector3(0, 1.4, z))
-	for x in [-2.625, -0.875, 0.875, 2.625]:
-		_add_collision_box(Vector3(0.85, 1.45, 3.4), Vector3(x, 0.725, 0))
+	# The original 0.85 m boxes left only 0.90 m between shelves. A 0.72 m
+	# trolley could pass only when perfectly straight and jammed during even a
+	# small steering correction. The visible racks stay intact while the coarse
+	# mobile collider follows their inset feet, leaving 1.29 m usable aisles.
+	for x in SHELF_X:
+		_add_collision_box(Vector3(SHELF_COLLISION_WIDTH, 1.45, 3.4), Vector3(x, 0.725, 0))
 	_add_collision_box(Vector3(6.5, 1.9, 0.6), Vector3(0, 0.95, -2.75))
 	_add_collision_box(Vector3(0.9, 1.1, 0.55), Vector3(-3.32, 0.55, 2.9))
 

@@ -1,6 +1,7 @@
 extends Node
 signal inventory_changed
 signal survival_changed
+signal skills_changed
 const CARGO_CAPACITY_G := 1000000
 const FUEL_CAPACITY_L := 60.0
 const DAY_SECONDS := 360.0
@@ -48,7 +49,7 @@ const ITEMS := {
  "lathe":{"name":"小型车床","grams":24000,"slots":[],"description":"24kg小型车床，需推车运输。运进房车后在基础维修台交互安装。"},
  "m60":{"name":"M60 机枪","grams":23000,"slots":[],"description":"沉重的 M60，23 kg。只能在房车射击窗架设使用；拆卸后可用推车运输，不能随身携带。"},
  "m60_ammo":{"name":"M60 弹药","grams":4,"slots":[],"description":"M60 配套弹药。500 发合计搬运重量 2 kg。"},
- "odachi":{"name":"寺庙大太刀","grams":2200,"slots":["right_hand"],"description":"双手持握的大太刀，攻击力4，攻击距离2.4米。当前可施展四段连击。"},
+ "odachi":{"name":"寺庙大太刀","grams":2200,"slots":["right_hand"],"description":"双手持握的大太刀，攻击力 4，攻击距离 2.55 米。连击段数随太刀术等级提升。"},
  "bat":{"name":"哥哥的棒球棍","grams":900,"slots":["left_hand","right_hand"],"description":"哥哥一直放在衣柜里的木制棒球棍。攻击力 2；普通丧尸需命中 5 次。"},
  "food":{"name":"面包与口粮","grams":500,"slots":[],"description":"密封面包，每包 0.5 kg。每天需要 1 kg；断粮后约五天从满血降至零。"},
  "water":{"name":"桶装饮水","grams":5000,"slots":[],"description":"5 L 桶装饮水，整桶 5 kg。每天需要 5 L；断水后约三天从满血降至零。"},
@@ -60,6 +61,7 @@ var items: Dictionary={}
 var equipment: Dictionary={"head":"","left_hand":"","right_hand":"","upper":"","lower":"","feet":""}
 var cargo: Dictionary={}
 var odachi_taken:=false
+var odachi_skill_level:=1
 var bat_taken := false
 var rv_health_ratio:=1.0
 
@@ -116,6 +118,7 @@ func start_new_run() -> void:
  tutorial_food=false
  bat_taken=false
  odachi_taken=false
+ odachi_skill_level=1
  rv_health_ratio=1.0
  scrap = 0
  food = 0
@@ -128,6 +131,13 @@ func start_new_run() -> void:
  _sync_resources()
  inventory_changed.emit()
  survival_changed.emit()
+ skills_changed.emit()
+
+func set_odachi_skill_level(value: int) -> void:
+ var level:=clampi(value,1,5)
+ if odachi_skill_level==level:return
+ odachi_skill_level=level
+ skills_changed.emit()
 
 func carried_grams() -> int:
  var result:=0
@@ -243,7 +253,7 @@ func save_game(path: String=SAVE_PATH) -> Error:
   hero_health_ratio=float(session.hotaru.health)/session.hotaru.max_health
  DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(path.get_base_dir()))
  var config := ConfigFile.new()
- config.set_value("meta","schema",5)
+ config.set_value("meta","schema",6)
  for key in economy_defaults():config.set_value("economy",key,get(key))
  config.set_value("meta","saved_unix",Time.get_unix_time_from_system())
  config.set_value("survivor","health_ratio",hero_health_ratio)
@@ -256,6 +266,7 @@ func save_game(path: String=SAVE_PATH) -> Error:
  config.set_value("progress", "rv_upgrade_level", rv_upgrade_level)
  config.set_value("progress", "demo_completed", demo_completed)
  config.set_value("progress","rv_health_ratio",rv_health_ratio)
+ config.set_value("progress","odachi_skill_level",odachi_skill_level)
  config.set_value("inventory","items",items)
  config.set_value("inventory","equipment",equipment)
  config.set_value("inventory","cargo",cargo)
@@ -301,6 +312,7 @@ func load_completed_save(path: String=SAVE_PATH) -> bool:
  rv_upgrade_level = int(config.get_value("progress", "rv_upgrade_level", 0))
  demo_completed = bool(config.get_value("progress", "demo_completed", false))
  rv_health_ratio=clampf(float(config.get_value("progress","rv_health_ratio",1.0)),0.0,1.0)
+ odachi_skill_level=clampi(int(config.get_value("progress","odachi_skill_level",1)),1,5)
  items=config.get_value("inventory","items",{"scrap":scrap,"food":food,"water":water,"medicine":medicine})
  equipment=config.get_value("inventory","equipment",{"head":"","left_hand":"","right_hand":"","upper":"","lower":"","feet":""})
  cargo=config.get_value("inventory","cargo",{})
@@ -327,6 +339,7 @@ func load_completed_save(path: String=SAVE_PATH) -> bool:
  _sync_resources()
  inventory_changed.emit()
  survival_changed.emit()
+ skills_changed.emit()
  return demo_completed or int(config.get_value("meta","schema",0))>=2
 
 

@@ -33,6 +33,7 @@ var _animation_state := ""
 var _bite_elapsed := -1.0
 var _bite_contact_done := false
 var _recoil_elapsed := 0.0
+var _stagger_elapsed := 0.0
 var _wander_rng := RandomNumberGenerator.new()
 var _wander_origin := Vector3.ZERO
 var _wander_goal := Vector3.ZERO
@@ -73,6 +74,13 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
  if _dying:
+  return
+ if _stagger_elapsed>0:
+  _stagger_elapsed=maxf(0,_stagger_elapsed-delta)
+  _recoil_elapsed=maxf(0,_recoil_elapsed-delta)
+  velocity=Vector3.ZERO
+  _play_animation("Hit")
+  global_position.y=ground_height
   return
  var victim:=_choose_target()
  if not is_instance_valid(victim):
@@ -215,13 +223,22 @@ func _target_point(victim: Node3D) -> Vector3:
  if victim.is_in_group("rv"):return victim.closest_hull_point(global_position)
  return victim.global_position
 
-func take_damage(amount: int) -> void:
+func take_damage(amount: int,stagger_seconds: float=0.0) -> void:
  if _dying:
   return
  AudioDirector.sound("zombie_die" if health<=amount else "zombie_hurt",global_position,-12)
  health -= amount
+ if stagger_seconds>0:
+  _stagger_elapsed=maxf(_stagger_elapsed,minf(stagger_seconds,.95))
+  _bite_elapsed=-1
+  _bite_victim=null
+  _bite_contact_done=false
+  velocity=Vector3.ZERO
+  # A recovered zombie may immediately begin a fresh windup; the stagger itself,
+  # not a hidden cooldown reset, is what protects Hotaru.
+  _last_attack_ms=Time.get_ticks_msec()-ATTACK_COOLDOWN_MS
  if _bite_elapsed<0:
-  _recoil_elapsed=0.30
+  _recoil_elapsed=maxf(.30,_stagger_elapsed)
   _play_animation("Hit",true)
  if is_instance_valid(_hit_tween):
   _hit_tween.kill()

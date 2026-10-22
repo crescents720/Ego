@@ -22,6 +22,18 @@ var _touch_origin := Vector2.ZERO
 var _touch_data: Dictionary={}
 var _touch_preview: TextureRect
 var _portraits: Dictionary={}
+var skill_panel: Control
+var skill_level_label: Label
+var skill_description: Label
+var skill_level_buttons: Array[Button]=[]
+
+const ODACHI_SKILL_DESCRIPTIONS := {
+ 1:"生疏挥击 · 一段\n像挥舞球棒一样使用大太刀。单次短硬直，丧尸仍会继续逼近。",
+ 2:"基础二连 · 两段\n斜斩接反向上挑。连续硬直可显著限制普通丧尸靠近。",
+ 3:"熟练连斩 · 三段\n追加横斩，扩大连续压制时间。",
+ 4:"精通连斩 · 四段\n追加举刀下劈，形成稳定的完整连段。",
+ 5:"最终奥义 · 五段\n以终结斜斩收尾，并释放明亮剑气。",
+}
 
 class ItemTile extends Button:
  var screen
@@ -140,6 +152,7 @@ void fragment(){vec4 c=texture(TEXTURE,UV);float a=1.0-smoothstep(0.475,0.5,leng
  panel.add_child(background)
  _label(panel,"小萤 · 装备与背包",Vector2(28,36),Vector2(570,60),32)
  _button(panel,"×",Vector2(625,32),Vector2(64,64),close)
+ _button(panel,"技能升级",Vector2(430,90),Vector2(180,48),open_skills)
  _rect(Vector2(16,145),Vector2(390,1080),Color("202e36"))
  bag_drop=BagDrop.new()
  bag_drop.screen=self
@@ -192,6 +205,8 @@ void fragment(){vec4 c=texture(TEXTURE,UV);float a=1.0-smoothstep(0.475,0.5,leng
  actions.size=Vector2(254,80)
  panel.add_child(actions)
  GameState.inventory_changed.connect(refresh)
+ GameState.skills_changed.connect(refresh_skills)
+ _build_skill_panel()
  panel.hide()
  refresh()
  update_health()
@@ -282,6 +297,58 @@ func _button(parent: Node,text: String,point: Vector2,size_value: Vector2,callba
  parent.add_child(button)
  return button
 
+func _build_skill_panel() -> void:
+ skill_panel=Control.new()
+ skill_panel.name="WeaponSkills"
+ skill_panel.size=Vector2(720,1280)
+ panel.add_child(skill_panel)
+ var veil:=ColorRect.new()
+ veil.size=skill_panel.size
+ veil.color=Color("101a21")
+ skill_panel.add_child(veil)
+ var card:=ColorRect.new()
+ card.position=Vector2(42,150)
+ card.size=Vector2(636,850)
+ card.color=Color("22313a")
+ skill_panel.add_child(card)
+ _label(skill_panel,"小萤 · 武器技术",Vector2(65,178),Vector2(480,60),34)
+ _label(skill_panel,"当前为开发阶段，可自由调整技能等级。",Vector2(66,244),Vector2(580,44),20)
+ _button(skill_panel,"返回",Vector2(535,174),Vector2(112,58),close_skills)
+ _label(skill_panel,"太刀术",Vector2(76,326),Vector2(230,52),30)
+ skill_level_label=_label(skill_panel,"",Vector2(350,326),Vector2(270,52),27)
+ for level in range(1,6):
+  var chosen_level:=level
+  var button:=_button(skill_panel,str(level),Vector2(76+(level-1)*114,404),Vector2(96,96),func():
+   GameState.set_odachi_skill_level(chosen_level)
+  )
+  button.name="OdachiLevel%d"%level
+  button.tooltip_text="将太刀术调整到第%d层"%level
+  skill_level_buttons.append(button)
+ skill_description=_label(skill_panel,"",Vector2(76,552),Vector2(568,260),25)
+ skill_description.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+ _label(skill_panel,"等级决定下一次拔刀时使用的连段。\n已经开始的攻击不会被面板中途改变。",Vector2(76,838),Vector2(568,110),21)
+ skill_panel.hide()
+ refresh_skills()
+
+func open_skills() -> void:
+ if not panel.visible:return
+ _clear_touch()
+ refresh_skills()
+ skill_panel.show()
+
+func close_skills() -> void:
+ if is_instance_valid(skill_panel):skill_panel.hide()
+
+func refresh_skills() -> void:
+ if not is_instance_valid(skill_panel):return
+ var current:=clampi(GameState.odachi_skill_level,1,5)
+ skill_level_label.text="当前：第%d层 / 五层"%current
+ skill_description.text=str(ODACHI_SKILL_DESCRIPTIONS[current])
+ for index in range(skill_level_buttons.size()):
+  var selected:=index+1==current
+  main._style_button(skill_level_buttons[index],Color("9b7440") if selected else Color("35474e"))
+  skill_level_buttons[index].text=("✓ " if selected else "")+str(index+1)
+
 func open() -> void:
  if panel.visible:return
  if main.phase==main.Phase.TITLE or main.phase==main.Phase.GAME_OVER or main.dialog_panel.visible:return
@@ -289,12 +356,14 @@ func open() -> void:
  for action in ["move_forward","move_backward","move_left","move_right"]:Input.action_release(action)
  _was_paused=get_tree().paused
  panel.show()
+ close_skills()
  refresh()
  get_tree().paused=true
 
 func close() -> void:
  if not panel.visible:return
  panel.hide()
+ close_skills()
  _clear_touch()
  get_tree().paused=_was_paused
 
@@ -318,8 +387,11 @@ func return_to_bag(data: Dictionary) -> void:
 func _input(event: InputEvent) -> void:
  if not panel.visible:return
  if event.is_action_pressed("ui_cancel"):
-  close()
+  if is_instance_valid(skill_panel) and skill_panel.visible:close_skills()
+  else:close()
   get_viewport().set_input_as_handled()
+  return
+ if is_instance_valid(skill_panel) and skill_panel.visible:return
  if event is InputEventScreenTouch and event.index==0:
   if event.pressed:
    _touch_origin=event.position

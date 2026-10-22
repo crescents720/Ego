@@ -119,6 +119,7 @@ func build(owner_main) -> void:
  for b in [fire_button,leave_button,unmount_button]:
   if main.mobile_joystick.mobile:b.mouse_filter=Control.MOUSE_FILTER_IGNORE
  screen.hide()
+ _refresh_mounted_models()
 func _button(text_value: String,p: Vector2,dimensions: Vector2) -> Button:
  var b:=Button.new()
  b.text=text_value
@@ -159,6 +160,7 @@ func start(window_side: int) -> bool:
  main.world_root.show()
  main.rv.show()
  proxy.show()
+ _refresh_mounted_models()
  screen.show()
  _play("GunHold")
  for z in get_tree().get_nodes_in_group("zombies"):
@@ -173,6 +175,7 @@ func stop(restore: bool=true) -> void:
  clear_input()
  screen.hide()
  proxy.hide()
+ _refresh_mounted_models()
  if animations:animations.stop()
  main.mobile_joystick.reset()
  if restore and main.inside_rv and not main.rv.wrecked:
@@ -191,9 +194,7 @@ func clear_input() -> void:
  touches.clear()
 func _process(delta: float) -> void:
  if not is_instance_valid(main):return
- for s in mounted:
-  mounted[s].visible=int(GameState.cargo.get("m60",0))>0 and GameState.m60_window==("left" if s<0 else "right")
-  exterior_mounted[s].visible=mounted[s].visible and not active
+ _refresh_mounted_models()
  if not active:return
  if get_tree().paused:clear_input();return
  if main.rv.wrecked or main.hotaru.health<=0 or not main.inside_rv:stop(false);return
@@ -205,6 +206,17 @@ func _process(delta: float) -> void:
  if firing and cooldown<=0:fire_round()
  if cooldown<=0 and is_instance_valid(animations) and clips.has("GunHold") and animations.current_animation!=clips.GunHold:_play("GunHold")
  screen.queue_redraw()
+
+func _refresh_mounted_models() -> void:
+ if not is_instance_valid(main):return
+ var has_weapon:=int(GameState.cargo.get("m60",0))>0
+ for mounted_side in mounted:
+  var matches:=has_weapon and GameState.m60_window==("left" if mounted_side<0 else "right")
+  # Exactly one representation is allowed in each view: cabin display while
+  # walking inside, exterior display in town, proxy gun while actively aiming.
+  mounted[mounted_side].visible=matches and not active
+  exterior_mounted[mounted_side].visible=matches and not active and not main.inside_rv
+ if is_instance_valid(gun):gun.visible=active
 func update_camera(_delta: float) -> void:
  var angle: float=main.rv.rotation.y+side*PI/2+yaw
  var direction:=Vector3(sin(angle)*cos(pitch),sin(pitch),cos(angle)*cos(pitch))

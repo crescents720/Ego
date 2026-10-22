@@ -17,6 +17,9 @@ from pygltflib import GLTF2
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'assets/third_party/supermarket'
+SHELF_CENTERS = np.asarray([-2.625, -0.875, 0.875, 2.625], dtype=np.float32)
+SHELF_HALF_WIDTH = 0.55
+SHELF_X_SCALE = 0.54
 source = GLTF2().load(str(OUT / 'supermarket.glb'))
 source_blob = source.binary_blob()
 blob = bytearray()
@@ -49,6 +52,19 @@ def read(index, width):
     v = source.bufferViews[a.bufferView]
     return np.frombuffer(source_blob, dtype='<f4', count=a.count * width,
                          offset=(v.byteOffset or 0) + (a.byteOffset or 0)).reshape(-1, width).copy()
+
+
+def widen_fixture_aisles(positions):
+    """Slim only the four freestanding shelf rows, preserving walls/counter."""
+    positions = np.asarray(positions, dtype=np.float32).copy()
+    nearest_index = np.abs(positions[:, 0, None] - SHELF_CENTERS[None, :]).argmin(axis=1)
+    centers = SHELF_CENTERS[nearest_index]
+    offsets = positions[:, 0] - centers
+    mask = ((np.abs(offsets) <= SHELF_HALF_WIDTH) &
+            (np.abs(positions[:, 2]) <= 1.78) &
+            (positions[:, 1] >= 0.08))
+    positions[mask, 0] = centers[mask] + offsets[mask] * SHELF_X_SCALE
+    return positions
 
 
 def image_bytes(index):
@@ -95,7 +111,7 @@ for mesh in source.meshes:
                                              baseColorTexture=dict(index=textures[old_texture]))))
             material = materials[primitive.material]
             color = [1, 1, 1, 1]
-        pos = read(primitive.attributes.POSITION, 3)
+        pos = widen_fixture_aisles(read(primitive.attributes.POSITION, 3)) if category == 'Contents' else read(primitive.attributes.POSITION, 3)
         dest = groups[(category, material)]
         dest[0].extend(pos)
         dest[1].extend(read(primitive.attributes.NORMAL, 3))
@@ -125,9 +141,10 @@ g['materials'].append(dict(name='ProductCaseAtlas', pbrMetallicRoughness=dict(
 def box(center, size, photo):
     cx, cy, cz = center
     hx, hy, hz = (v / 2 for v in size)
-    corners = [(cx + x * hx, cy + y * hy, cz + z * hz)
-               for x, y, z in [(-1,-1,-1),(1,-1,-1),(1,1,-1),(-1,1,-1),
-                              (-1,-1,1),(1,-1,1),(1,1,1),(-1,1,1)]]
+    corners = np.asarray([(cx + x * hx, cy + y * hy, cz + z * hz)
+                          for x, y, z in [(-1,-1,-1),(1,-1,-1),(1,1,-1),(-1,1,-1),
+                                          (-1,-1,1),(1,-1,1),(1,1,1),(-1,1,1)]], dtype=np.float32)
+    corners = widen_fixture_aisles(corners).tolist()
     tx, ty = (photo % 8) * 128, (photo // 8) * 128
     uv = [((tx+4)/1024, (ty+124)/1024), ((tx+124)/1024, (ty+124)/1024),
           ((tx+124)/1024, (ty+4)/1024), ((tx+4)/1024, (ty+4)/1024)]
@@ -173,6 +190,7 @@ result += struct.pack('<I4s', len(encoded), b'JSON') + encoded
 result += struct.pack('<I4s', len(blob), b'BIN\0') + blob
 (OUT / 'supermarket_mobile.glb').write_bytes(result)
 report = dict(triangles=triangles, meshes=len(g['meshes']), materials=len(g['materials']),
-              textures=len(g['textures']), product_cases=cases, bytes=len(result))
+              textures=len(g['textures']), product_cases=cases, bytes=len(result),
+              shelf_x_scale=SHELF_X_SCALE, usable_aisle_m=1.29)
 (OUT / 'mobile_conversion.json').write_text(json.dumps(report, indent=2), encoding='utf-8')
 print(json.dumps(report, indent=2))

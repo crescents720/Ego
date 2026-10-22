@@ -52,6 +52,22 @@ func run() -> void:
    push_error("STORE_NAV_FAIL: no walkable route to " + id)
    quit(1)
    return
+ # The real pushed trolley box must clear every shelf aisle with a small
+ # steering correction; checking only Hotaru's capsule missed the old jam.
+ var cart_query:=PhysicsShapeQueryParameters3D.new()
+ var cart_box:=BoxShape3D.new()
+ cart_box.size=Vector3(.72,.65,1.08)
+ cart_query.shape=cart_box
+ cart_query.collision_mask=1
+ cart_query.exclude=[main.hotaru.get_rid()]
+ var aisle_centres: Array[float]=[-1.75,0.0,1.75]
+ for aisle_x in aisle_centres:
+  for z_step in range(-6,7):
+   cart_query.transform=Transform3D(Basis(Vector3.UP,deg_to_rad(10.0)),main.STORE_ORIGIN+Vector3(aisle_x,.61,z_step*.25))
+   if not space.intersect_shape(cart_query,1).is_empty():
+    push_error("STORE_NAV_FAIL: trolley cannot clear shelf aisle x=%.2f z=%.2f"%[aisle_x,z_step*.25])
+    quit(1)
+    return
  main.hotaru.global_position = main.store_interior.get_entry_position()
  main.hotaru.set_active(true)
  main._update_camera(1.0)
@@ -65,7 +81,7 @@ func run() -> void:
   push_error("STORE_NAV_FAIL: W does not move toward screen top")
   quit(1)
   return
- print("STORE_NAV_PASS: capsule clearance from entrance to all four loot stations; ", visited.size(), " connected cells")
+ print("STORE_NAV_PASS: capsule reaches all loot; trolley clears three widened shelf aisles; ", visited.size(), " connected cells")
  quit()
 
 

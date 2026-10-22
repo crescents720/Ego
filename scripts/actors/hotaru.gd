@@ -7,14 +7,28 @@ signal attacked(hit_something: bool)
 const CRITICAL_HEALTH_RATIO := 0.25
 var touch_move:=Vector2.ZERO
 const MOVE_SPEED := 5.2
-const ATTACK_RANGE := 1.60
+const ATTACK_RANGE := 1.75
 const ATTACK_COOLDOWN_MS := 650
 const PUNCH_CONTACT := 0.24
 const PUNCH_LENGTH := 0.62
-const SWORD_COMBO_ACTION := "SwordCombo4"
-const SWORD_COMBO_CONTACTS := [0.432, 0.945, 1.468, 2.072]
 const SWORD_COMBO_SWING_LEAD := 0.072
-const SWORD_COMBO_LENGTH := 2.66
+const SWORD_COMBO_DATA_PATH := "res://assets/temple/sword_combos.json"
+const SWORD_SLASH_EFFECT_PATH := "res://assets/temple/blue_slash.glb"
+const MELEE_CONE_DOT := 0.258819
+const MELEE_INITIAL_TURN := 25.0
+const MELEE_CONTACT_TURN := 10.0
+const SWORD_STAGE_ENDS := [0.570,1.260,1.800,2.430,3.340]
+const SWORD_SHEATHE_DISTANCE := 4.2
+const SWORD_ALERT_RANGE := 6.0
+const SWORD_FALLBACK_DATA := {
+	1:{"duration":1.00,"contacts":[0.432]},
+	2:{"duration":1.69,"contacts":[0.432,1.038]},
+	3:{"duration":2.23,"contacts":[0.432,1.038,1.668]},
+	4:{"duration":2.86,"contacts":[0.432,1.038,1.668,2.272]},
+	5:{"duration":4.06,"contacts":[0.432,1.038,1.668,2.272,3.052]},
+}
+const SWORD_STAGGER := {1:0.18,2:0.38,3:0.42,4:0.46,5:0.50}
+const SWORD_FINISHER_STAGGER := {1:0.18,2:0.70,3:0.72,4:0.76,5:0.95}
 const ANIMATED_CHARACTER_MODEL_PATH := "res://assets/characters/anime-girl/hotaru_sword.glb"
 const STATIC_CHARACTER_MODEL_PATH := "res://assets/characters/anime-girl/girl.glb"
 
@@ -55,8 +69,20 @@ var _weapon_hand := ""
 var _bat_attachments: Dictionary={}
 var _bat_models: Dictionary={}
 var _sword_model: Node3D
+var _sword_sheath_root: Node3D
+var _slash_effect_scene: PackedScene
+var _equipped_weapon_id := ""
 var _attack_damage := 1
 var _attack_range := ATTACK_RANGE
+var _sword_combo_data: Dictionary={}
+var _sword_level:=1
+var _sword_contacts: Array[float]=[]
+var _sword_stage_lengths: Array[float]=[]
+var _sword_combo_length:=1.0
+var _sword_requested_stage:=1
+var _sword_chain_closed:=false
+var _sword_sheathed:=false
+var _sword_safe_move_distance:=0.0
 
 
 func _ready() -> void:
@@ -64,14 +90,48 @@ func _ready() -> void:
 	collision_layer = 1
 	collision_mask = 3
 	add_to_group("hotaru")
+	_load_sword_combo_data()
+	if ResourceLoader.exists(SWORD_SLASH_EFFECT_PATH):
+		_slash_effect_scene=load(SWORD_SLASH_EFFECT_PATH)
 	_build_visual()
 	_build_held_bats()
 	GameState.inventory_changed.connect(sync_equipment)
 	sync_equipment()
 
+func _load_sword_combo_data() -> void:
+	_sword_combo_data.clear()
+	for level in range(1,6):
+		var fallback: Dictionary=SWORD_FALLBACK_DATA[level]
+		_sword_combo_data[level]={"duration":float(fallback.duration),"contacts":fallback.contacts.duplicate()}
+	if not FileAccess.file_exists(SWORD_COMBO_DATA_PATH):return
+	var file:=FileAccess.open(SWORD_COMBO_DATA_PATH,FileAccess.READ)
+	if not file:return
+	var parsed=JSON.parse_string(file.get_as_text())
+	if not parsed is Dictionary:return
+	for level in range(1,6):
+		var source: Dictionary=parsed.get(str(level),{})
+		if source.is_empty():continue
+		var contacts: Array[float]=[]
+		for value in source.get("contacts",[]):contacts.append(float(value))
+		if contacts.size()!=level:continue
+		_sword_combo_data[level]={"duration":float(source.get("duration",SWORD_FALLBACK_DATA[level].duration)),"contacts":contacts}
+
+func _prepare_sword_combo(level: int) -> void:
+	_sword_level=clampi(level,1,5)
+	var data: Dictionary=_sword_combo_data.get(_sword_level,SWORD_FALLBACK_DATA[_sword_level])
+	_sword_contacts.clear()
+	for value in data.contacts:_sword_contacts.append(float(value))
+	_sword_stage_lengths.clear()
+	for stage in range(1,_sword_level+1):
+		var stage_data: Dictionary=_sword_combo_data.get(stage,SWORD_FALLBACK_DATA[stage])
+		_sword_stage_lengths.append(float(stage_data.duration))
+	_sword_combo_length=_sword_stage_lengths[-1]
+	_sword_requested_stage=1
+	_sword_chain_closed=false
+
 func _build_held_bats() -> void:
 	if not is_instance_valid(_character_model):return
-	var skeletons:=_character_model.find_children("*","Skeleton3D",true,false)
+	var skeletons: Array[Node]=_character_model.find_children("*","Skeleton3D",true,false)
 	if skeletons.is_empty():return
 	var skeleton: Skeleton3D=skeletons[0]
 	for side in ["L","R"]:
@@ -92,15 +152,80 @@ func _build_held_bats() -> void:
 			_sword_model.basis=skeleton.get_bone_global_rest(bone).basis.inverse()*Basis(Vector3.FORWARD,PI/2)
 			_sword_model.position=skeleton.get_bone_global_rest(bone).basis.inverse()*Vector3(0,-.035,-.012)
 			_sword_model.hide()
+	_build_sword_sheath(skeleton)
+
+
+func _build_sword_sheath(skeleton: Skeleton3D) -> void:
+	var pelvis_bone:=skeleton.find_bone("Pelvis")
+	if pelvis_bone<0:return
+	var attachment:=BoneAttachment3D.new()
+	attachment.name="OdachiSheathAttachment"
+	attachment.bone_name="Pelvis"
+	skeleton.add_child(attachment)
+	_sword_sheath_root=Node3D.new()
+	_sword_sheath_root.name="OdachiSheathed"
+	attachment.add_child(_sword_sheath_root)
+	# Carry the long blade diagonally across the back: hilt above the right
+	# shoulder, scabbard running down toward the left hip. A horizontal hip carry
+	# made the odachi project a full metre through Hotaru and nearby walls.
+	var blade_direction:=Vector3(-0.48,-0.86,-0.16).normalized()
+	var desired_basis:=Basis(Quaternion(Vector3.UP,blade_direction))
+	var desired_transform:=Transform3D(desired_basis,Vector3(0.22,1.53,-0.22))
+	_sword_sheath_root.transform=skeleton.get_bone_global_rest(pelvis_bone).affine_inverse()*desired_transform
+	var sheathed_sword: Node3D=load("res://assets/temple/odachi.glb").instantiate()
+	sheathed_sword.name="SheathedOdachi"
+	_sword_sheath_root.add_child(sheathed_sword)
+	var scabbard:=MeshInstance3D.new()
+	scabbard.name="OdachiScabbard"
+	var scabbard_mesh:=CylinderMesh.new()
+	scabbard_mesh.height=0.98
+	scabbard_mesh.top_radius=0.058
+	scabbard_mesh.bottom_radius=0.049
+	scabbard_mesh.radial_segments=12
+	scabbard.mesh=scabbard_mesh
+	scabbard.position.y=0.70
+	var lacquer:=StandardMaterial3D.new()
+	lacquer.albedo_color=Color("171b20")
+	lacquer.metallic=0.35
+	lacquer.roughness=0.32
+	scabbard.material_override=lacquer
+	_sword_sheath_root.add_child(scabbard)
+	_sword_sheath_root.hide()
+
+
+func _refresh_sword_visibility() -> void:
+	var carrying_sword:=_equipped_weapon_id=="odachi" and not _seated and not servicing and not pushing_cart and not dead
+	if is_instance_valid(_sword_model):
+		_sword_model.visible=carrying_sword and not _sword_sheathed
+	if is_instance_valid(_sword_sheath_root):
+		_sword_sheath_root.visible=carrying_sword and _sword_sheathed
+
+
+func _set_sword_sheathed(value: bool) -> void:
+	if _equipped_weapon_id!="odachi":value=false
+	if _sword_sheathed==value:
+		_refresh_sword_visibility()
+		return
+	_sword_sheathed=value
+	_sword_safe_move_distance=0.0
+	_refresh_sword_visibility()
+	if _combat_action.is_empty():
+		_current_animation_state=""
+		_update_visual_motion(Vector3.ZERO,0.0)
 
 func sync_equipment() -> void:
 	if dead:return
+	var next_weapon_id:=GameState.weapon_id()
+	if next_weapon_id!=_equipped_weapon_id:
+		_sword_sheathed=false
+		_sword_safe_move_distance=0.0
+	_equipped_weapon_id=next_weapon_id
 	_weapon_hand=GameState.weapon_hand()
-	for side in _bat_models:_bat_models[side].visible=GameState.weapon_id()=="bat"
-	if is_instance_valid(_sword_model):_sword_model.visible=GameState.weapon_id()=="odachi"
+	for side in _bat_models:_bat_models[side].visible=_equipped_weapon_id=="bat"
 	_combat_action=""
 	_punch_target=null
 	for side in _bat_attachments:_bat_attachments[side].visible=side==_weapon_hand and not _seated and not servicing and not pushing_cart
+	_refresh_sword_visibility()
 	_update_visual_motion(Vector3.ZERO,0)
 
 
@@ -143,10 +268,32 @@ func _physics_process(delta: float) -> void:
 	velocity.y = 0.0
 	if direction.length_squared() > 0.01 and _combat_action.is_empty() and not sword_combo_active:
 		rotation.y = lerp_angle(rotation.y, atan2(direction.x, direction.z), minf(1.0, delta * 12.0))
+	var movement_start:=global_position
 	_step_last_position=global_position
 	move_and_slide()
 	global_position.y = _ground_height
+	_update_sword_carry_state(global_position.distance_to(movement_start),direction.length_squared()>0.01)
 	_update_visual_motion(direction, delta)
+
+
+func _update_sword_carry_state(distance_moved: float,walking: bool) -> void:
+	if _equipped_weapon_id!="odachi":return
+	if not _combat_action.is_empty():
+		_sword_safe_move_distance=0.0
+		return
+	var enemy_nearby:=false
+	for zombie in get_tree().get_nodes_in_group("zombies"):
+		if is_instance_valid(zombie) and not zombie._dying and global_position.distance_to(zombie.global_position)<=SWORD_ALERT_RANGE:
+			enemy_nearby=true
+			break
+	if enemy_nearby:
+		_sword_safe_move_distance=0.0
+		if _sword_sheathed:_set_sword_sheathed(false)
+		return
+	if walking and not _sword_sheathed:
+		_sword_safe_move_distance+=distance_moved
+		if _sword_safe_move_distance>=SWORD_SHEATHE_DISTANCE:
+			_set_sword_sheathed(true)
 
 
 func set_active(value: bool) -> void:
@@ -175,6 +322,7 @@ func set_seated(value: bool) -> void:
 		set_active(false)
 	else:
 		_update_visual_motion(Vector3.ZERO, 0.0)
+	_refresh_sword_visibility()
 
 
 func get_animation_state() -> String:
@@ -199,37 +347,64 @@ func cancel_boarding_step() -> void:
 
 
 func _armed_motion(state: String) -> String:
-	if GameState.weapon_id()=="odachi":return "Sword"+state
+	if _equipped_weapon_id=="odachi":return state if _sword_sheathed else "Sword"+state
 	return state if _weapon_hand.is_empty() else "Bat"+state+_weapon_hand
 
 func attack() -> void:
-	if pushing_cart or not active or _seated or not _combat_action.is_empty():
+	if pushing_cart or not active or _seated:
 		return
+	if _equipped_weapon_id=="odachi" and _combat_action.begins_with("SwordCombo"):
+		_queue_sword_followup()
+		return
+	if not _combat_action.is_empty():return
 	var now := Time.get_ticks_msec()
 	if now - _last_attack_ms < ATTACK_COOLDOWN_MS:
 		return
 	_last_attack_ms = now
-	_attack_damage=4 if GameState.weapon_id()=="odachi" else (2 if not _weapon_hand.is_empty() else 1)
-	_attack_range=2.4 if _attack_damage==4 else (2.05 if _attack_damage==2 else ATTACK_RANGE)
-	_punch_target=null
-	var nearest:=_attack_range
-	for zombie in get_tree().get_nodes_in_group("zombies"):
-		if not is_instance_valid(zombie) or zombie._dying:
-			continue
-		var distance: float=global_position.distance_to(zombie.global_position)
-		if distance<=nearest and _can_reach(zombie):
-			nearest=distance
-			_punch_target=zombie
+	var sword_attack:=GameState.weapon_id()=="odachi"
+	_attack_damage=4 if sword_attack else (2 if not _weapon_hand.is_empty() else 1)
+	_attack_range=2.55 if sword_attack else (2.20 if _attack_damage==2 else ATTACK_RANGE)
+	_punch_target=_find_melee_target(_attack_range,MELEE_CONE_DOT)
 	if is_instance_valid(_punch_target):
-		var offset:=_punch_target.global_position-global_position
-		rotation.y=atan2(offset.x,offset.z)
-	_combat_action=SWORD_COMBO_ACTION if _attack_damage==4 else ("BatAttack"+_weapon_hand if _attack_damage==2 else "Punch")
+		_turn_toward_melee_target(_punch_target,MELEE_INITIAL_TURN)
+	if sword_attack:
+		_set_sword_sheathed(false)
+		_sword_safe_move_distance=0.0
+		_prepare_sword_combo(GameState.odachi_skill_level)
+		_combat_action="SwordCombo%d"%_sword_level
+	else:
+		_combat_action="BatAttack"+_weapon_hand if _attack_damage==2 else "Punch"
 	_combat_elapsed=0
 	_punch_contact_done=false
 	_swing_sound_done=false
 	_sword_contact_index=0
 	_sword_swing_index=0
 	_play_character_animation(_combat_action,true)
+
+
+func _queue_sword_followup() -> void:
+	if _sword_chain_closed or _sword_requested_stage>=_sword_level:return
+	# Only one future cut may be buffered. Repeated tapping before the current
+	# blade contact cannot pre-load the rest of the whole combo.
+	if _sword_requested_stage>_sword_contact_index+1:return
+	var branch_time: float=float(SWORD_STAGE_ENDS[_sword_requested_stage-1])
+	if _combat_elapsed>=branch_time:return
+	_sword_requested_stage+=1
+
+
+func _close_sword_chain() -> void:
+	if _sword_chain_closed:return
+	_sword_chain_closed=true
+	var performed:=clampi(_sword_requested_stage,1,_sword_level)
+	_sword_combo_length=_sword_stage_lengths[performed-1]
+	if performed>=_sword_level:return
+	# Combo clips are authored as strict prefixes. At each branch pose we can
+	# swap to the shorter clip at the same timestamp and obtain its natural
+	# recovery without replaying an earlier strike or snapping the skeleton.
+	_combat_action="SwordCombo%d"%performed
+	_play_character_animation(_combat_action,true)
+	if is_instance_valid(_animation_player):
+		_animation_player.seek(minf(_combat_elapsed,_sword_combo_length),true)
 
 
 func _can_reach(victim: Node3D) -> bool:
@@ -241,11 +416,11 @@ func _can_reach(victim: Node3D) -> bool:
 func _tick_combat(delta: float) -> void:
 	if _combat_action.is_empty():return
 	_combat_elapsed+=delta
-	if _combat_action==SWORD_COMBO_ACTION:
-		# Resolve each cut in timeline order, even when one slow frame crosses
-		# several swing and contact timestamps.
-		while _sword_contact_index<SWORD_COMBO_CONTACTS.size():
-			var contact_time: float=float(SWORD_COMBO_CONTACTS[_sword_contact_index])
+	if _combat_action.begins_with("SwordCombo"):
+		# Only cuts explicitly requested by separate button presses may resolve.
+		# The one-stage buffer still catches contacts correctly on a slow frame.
+		while _sword_contact_index<mini(_sword_requested_stage,_sword_contacts.size()):
+			var contact_time: float=_sword_contacts[_sword_contact_index]
 			if _sword_swing_index==_sword_contact_index and _combat_elapsed>=contact_time-SWORD_COMBO_SWING_LEAD:
 				AudioDirector.sound("swing",global_position,-16)
 				_sword_swing_index+=1
@@ -253,7 +428,11 @@ func _tick_combat(delta: float) -> void:
 				break
 			_resolve_sword_contact()
 			_sword_contact_index+=1
-		if _combat_elapsed>=SWORD_COMBO_LENGTH:
+		if not _sword_chain_closed:
+			var branch_time: float=float(SWORD_STAGE_ENDS[_sword_requested_stage-1])
+			if _combat_elapsed>=branch_time and (_sword_requested_stage<_sword_level or _sword_requested_stage==_sword_contacts.size()):
+				_close_sword_chain()
+		if _combat_elapsed>=_sword_combo_length:
 			_combat_action=""
 			_punch_target=null
 	elif _combat_action=="Punch" or _combat_action.begins_with("BatAttack"):
@@ -264,13 +443,14 @@ func _tick_combat(delta: float) -> void:
 		if not _punch_contact_done and _combat_elapsed>=(0.40 if bat_attack else PUNCH_CONTACT):
 			_punch_contact_done=true
 			var hit:=false
-			if is_instance_valid(_punch_target) and not _punch_target._dying:
-				var offset: Vector3=_punch_target.global_position-global_position
-				offset.y=0
-				if offset.length()<=_attack_range and transform.basis.z.dot(offset.normalized())>0.45 and _can_reach(_punch_target):
-					_punch_target.take_damage(_attack_damage)
-					AudioDirector.sound("bat_hit" if bat_attack else "punch",_punch_target.global_position)
-					hit=true
+			if not _can_hit_melee_target(_punch_target):
+				_punch_target=_find_melee_target(_attack_range,MELEE_CONE_DOT)
+			if is_instance_valid(_punch_target):
+				_turn_toward_melee_target(_punch_target,MELEE_CONTACT_TURN)
+			if _can_hit_melee_target(_punch_target):
+				_punch_target.take_damage(_attack_damage,0.24 if bat_attack else 0.10)
+				AudioDirector.sound("bat_hit" if bat_attack else "punch",_punch_target.global_position)
+				hit=true
 			attacked.emit(hit)
 		if _combat_elapsed>=(0.86 if bat_attack else PUNCH_LENGTH):
 			_combat_action=""
@@ -280,40 +460,109 @@ func _tick_combat(delta: float) -> void:
 
 
 func _resolve_sword_contact() -> void:
-	if not _can_hit_current_target():
-		_punch_target=_find_sword_target()
+	if not _can_hit_melee_target(_punch_target):
+		_punch_target=_find_melee_target(_attack_range,MELEE_CONE_DOT)
+	if is_instance_valid(_punch_target):
+		_turn_toward_melee_target(_punch_target,MELEE_CONTACT_TURN)
 	var hit:=false
-	if _can_hit_current_target():
+	var is_finisher:=_sword_contact_index==_sword_contacts.size()-1
+	if _can_hit_melee_target(_punch_target):
 		var victim:=_punch_target
-		victim.take_damage(_attack_damage)
+		var stagger: float=float(SWORD_FINISHER_STAGGER[_sword_level] if is_finisher else SWORD_STAGGER[_sword_level])
+		victim.take_damage(_attack_damage,stagger)
 		AudioDirector.sound("bat_hit",victim.global_position)
 		hit=true
 		if victim._dying:_punch_target=null
+	if _sword_level==5:
+		_spawn_sword_effect(_sword_contact_index,is_finisher)
 	attacked.emit(hit)
 
 
-func _find_sword_target() -> Node3D:
-	var nearest: Node3D
-	var nearest_distance:=_attack_range
+func _find_melee_target(max_range: float, min_dot: float) -> Node3D:
+	var nearest: Node3D=null
+	var best_score:=INF
 	for zombie in get_tree().get_nodes_in_group("zombies"):
 		if not is_instance_valid(zombie) or zombie._dying:
 			continue
 		var offset: Vector3=zombie.global_position-global_position
 		offset.y=0
 		var distance:=offset.length()
-		if distance<=nearest_distance and distance>0.001 and transform.basis.z.dot(offset/distance)>0.45 and _can_reach(zombie):
+		if distance<=0.001 or distance>max_range:
+			continue
+		var facing_dot:=transform.basis.z.dot(offset/distance)
+		if facing_dot<min_dot or not _can_reach(zombie):
+			continue
+		# Prefer the closest target, with a modest bias toward what is already
+		# nearest the centre of the player's forward cone.
+		var score:=distance+(1.0-facing_dot)*0.8
+		if score<best_score:
 			nearest=zombie
-			nearest_distance=distance
+			best_score=score
 	return nearest
 
 
-func _can_hit_current_target() -> bool:
-	if not is_instance_valid(_punch_target) or _punch_target._dying:
+func _turn_toward_melee_target(target: Node3D, max_degrees: float) -> void:
+	if not is_instance_valid(target):return
+	var offset:=target.global_position-global_position
+	offset.y=0
+	if offset.length_squared()<=0.000001:return
+	var desired_yaw:=atan2(offset.x,offset.z)
+	rotation.y=rotate_toward(rotation.y,desired_yaw,deg_to_rad(max_degrees))
+
+
+func _can_hit_melee_target(target: Node3D, min_dot: float=MELEE_CONE_DOT) -> bool:
+	if not is_instance_valid(target) or target._dying:
 		return false
-	var offset: Vector3=_punch_target.global_position-global_position
+	var offset: Vector3=target.global_position-global_position
 	offset.y=0
 	var distance:=offset.length()
-	return distance>0.001 and distance<=_attack_range and transform.basis.z.dot(offset/distance)>0.45 and _can_reach(_punch_target)
+	return distance>0.001 and distance<=_attack_range and transform.basis.z.dot(offset/distance)>=min_dot and _can_reach(target)
+
+
+func _spawn_sword_effect(contact_index: int, finisher: bool) -> void:
+	if not is_instance_valid(_sword_model) or not is_instance_valid(_slash_effect_scene):return
+	var effect:=Node3D.new()
+	effect.name="SwordSlashFX%d"%(contact_index+1)
+	get_parent().add_child(effect)
+	# Anchor the imported curved trail to the actual blade midpoint at contact.
+	# This remains accurate in close third-person cameras instead of hovering at
+	# a fixed point in front of Hotaru.
+	var blade_transform:=_sword_model.global_transform
+	var blade_axis:=blade_transform.basis.y.normalized()
+	var effect_basis:=Basis(global_basis.x.normalized(),Vector3.UP,global_basis.z.normalized()).orthonormalized()
+	var forward_offset:=global_basis.z.normalized()*0.24
+	effect.global_transform=Transform3D(effect_basis,blade_transform.origin+blade_axis*(0.44 if not finisher else 0.51)+forward_offset)
+	# Rotate the imported crescent within Hotaru's cutting plane. Each angle is
+	# paired with its authored slash, including the second hit's upward path.
+	effect.rotate_object_local(Vector3.FORWARD,[0.24,0.82,0.08,-1.30,-0.42][clampi(contact_index,0,4)])
+	var slash: Node3D=_slash_effect_scene.instantiate()
+	slash.name="BlueBladeTrail"
+	effect.add_child(slash)
+	if finisher:
+		var crossing: Node3D=_slash_effect_scene.instantiate()
+		crossing.name="FinisherCrossTrail"
+		crossing.rotation.z=1.28
+		crossing.scale=Vector3.ONE*0.74
+		effect.add_child(crossing)
+		var flash:=OmniLight3D.new()
+		flash.light_color=Color("9ffaff")
+		flash.light_energy=1.45
+		flash.omni_range=3.0
+		effect.add_child(flash)
+		var light_tween:=effect.create_tween()
+		light_tween.tween_property(flash,"light_energy",0.0,0.28)
+	effect.scale=Vector3.ONE*(0.40 if not finisher else 0.54)
+	var tween:=effect.create_tween().set_parallel(true)
+	tween.tween_property(effect,"scale",Vector3.ONE*(0.58 if not finisher else 0.76),0.22 if not finisher else 0.32).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
+	for mesh in effect.find_children("*","MeshInstance3D",true,false):
+		mesh.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		tween.tween_property(mesh,"transparency",1.0,0.20 if not finisher else 0.30).set_delay(0.03)
+	# A parallel Tween's chain() callback can execute immediately when its branch
+	# is shorter than sibling tracks. Keep lifetime on a separate serial tween so
+	# the trail survives long enough to be seen at the actual contact frame.
+	var cleanup:=effect.create_tween()
+	cleanup.tween_interval(0.25 if not finisher else 0.37)
+	cleanup.tween_callback(effect.queue_free)
 
 
 func take_damage(amount: int, source: Node3D = null) -> void:
@@ -362,6 +611,7 @@ func play_death() -> void:
 	_punch_target=null
 	collision_layer=0
 	for side in _bat_attachments:_bat_attachments[side].hide()
+	if is_instance_valid(_sword_sheath_root):_sword_sheath_root.hide()
 	if is_instance_valid(death_source):
 		var direction: Vector3=death_source.global_position-global_position
 		direction.y=0
@@ -478,6 +728,7 @@ func _update_visual_motion(direction: Vector3, delta: float) -> void:
 		if pushing_cart:desired_animation="PushWalk" if direction.length_squared()>.01 and active else "PushIdle"
 		if not pushing_cart and not _weapon_hand.is_empty() and not _seated:desired_animation=_armed_motion(desired_animation)
 		for side in _bat_attachments:_bat_attachments[side].visible=side==_weapon_hand and not _seated and not servicing and not pushing_cart
+		_refresh_sword_visibility()
 		if not _combat_action.is_empty() and not _seated:desired_animation=_combat_action
 		_play_character_animation(desired_animation)
 		_visual_root.position.y = 0.0

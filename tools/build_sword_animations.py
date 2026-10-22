@@ -1,4 +1,10 @@
-"""Odachi v2: palm-space grips, planted-foot IK and connected full-body cuts."""
+"""Odachi v3: readable cut silhouettes, palm-space grips and planted-foot IK.
+
+Each combo is a strict prefix of the five-cut sequence.  Every cut owns a
+wind-up, an explicit contact pose and a finish pose so a hit cannot disappear
+inside a generic transition.  In particular, cut two is a deliberately broad
+left-low to right-high rising cut rather than a small recovery motion.
+"""
 from build_combat_rigs import Builder,from_to,qmul,qinv,qmat,matq,euler
 from pathlib import Path
 import numpy as np, math,json
@@ -10,26 +16,45 @@ I=np.array([0.,0,0,1.]);PALM=np.array([0.,-.035,-.012]);GAP=.115
 # center of right palm, blade unit direction, torso yaw, body lean, weight shift.
 def key(grip,axis,yaw=0,lean=0,shift=0):return [np.array(grip,float),np.array(axis,float)/np.linalg.norm(axis),yaw,lean,shift,np.array([-1.,0,0])]
 ready=key([0,1.075,.275],[0,.62,.785],-8,0,-.015)
-# The sword travels on the front/right of the head during the high preparation.
-winds=[key([.095,1.35,.205],[.52,.84,-.13],-30,-3,-.035),
- key([-.055,1.005,.285],[-.55,-.12,.83],22,4,.025),
+# The sword travels on the front/right of the head during high preparations.
+winds=[
+ # Level one is intentionally untrained: Hotaru loads the whole sword beside
+ # her right shoulder and swings it like a heavy baseball bat, with too much
+ # torso rotation and no refined edge-leading diagonal guard.
+ key([.12,1.21,.35],[.80,.22,.56],-30,-2,-.045),
+ # Cut two begins below the left hip.  The low blade tip and reverse hip load
+ # make the rising cut visually separate from cut one's low finish.
+ key([.00,.91,.40],[-.58,-.66,.48],38,8,.07),
  key([.07,1.17,.265],[.91,.12,.40],-34,-1,-.02),
  key([.025,1.39,.22],[.18,.98,-.03],-7,-4,-.035),
- key([.085,1.37,.21],[.5,.86,-.08],-36,-5,-.04)]
-ends=[key([-.035,1.005,.29],[-.48,-.27,.83],24,7,.045),
- key([.055,1.25,.27],[.55,.67,.50],-25,2,.02),
+ key([.14,1.45,.16],[.48,.87,-.10],-48,-7,-.06)]
+# Contact silhouettes are authored explicitly.  Besides making the intended
+# edge line readable in previews, these poses give runtime hit times an exact
+# matching keyframe instead of an arbitrary point in an interpolation.
+contacts=[key([.015,1.13,.42],[-.04,.04,.998],0,4,.015),
+ key([.04,1.16,.38],[.10,.62,.78],-6,1,.01),
+ key([-.005,1.13,.31],[-.12,.06,.99],2,2,.01),
+ key([.005,1.18,.31],[.02,-.10,.995],4,3,.015),
+ key([-.015,1.15,.34],[-.13,-.08,.988],5,4,.025)]
+ends=[key([-.08,1.06,.38],[-.80,.08,.595],32,9,.065),
+ # Finish over the right shoulder with the hips fully reversed.  The large
+ # vertical and lateral displacement is what makes attack two read as a cut.
+ key([.13,1.36,.34],[.64,.74,.21],-38,-4,-.035),
  key([-.045,1.11,.285],[-.88,.02,.47],32,5,.04),
  key([.005,1.005,.30],[.04,-.43,.90],6,9,.055),
- key([-.045,.995,.285],[-.55,-.31,.78],24,5,.065)]
+ # A deep opposite-side finish and long hold sell the fifth hit as an ending
+ # technique; the luminous trail itself is added by the runtime combat VFX.
+ key([.01,.90,.43],[-.66,-.55,.51],42,10,.09)]
 # Align the blade plane with each cut, including edge-first horizontal cuts.
 previous_normal=ready[5]
-for wind,finish in zip(winds,ends):
+for wind,contact,finish in zip(winds,contacts,ends):
  normal=np.cross(wind[1],finish[1]);normal/=np.linalg.norm(normal)
  if np.dot(normal,previous_normal)<0:normal=-normal
- wind[5]=normal;finish[5]=normal;previous_normal=normal
+ wind[5]=normal;contact[5]=normal;finish[5]=normal;previous_normal=normal
 # Vary preparation/strike/recovery rhythm instead of mechanically repeating beats.
-wind_times=[.32,.27,.29,.36,.43];cut_times=[.18,.17,.19,.18,.22]
-holds=[.07,.05,.06,.09,.13]
+wind_times=[.29,.30,.29,.36,.46];cut_times=[.24,.30,.19,.18,.27]
+contact_fractions=[.592,.56,.62,.62,.60]
+holds=[.04,.09,.06,.09,.18]
 max_grip_error=0.;audit=[]
 def pose(k,walk=0,step=0,lift=0):
  global max_grip_error
@@ -99,9 +124,10 @@ for count in range(1,6):
  anchors=[(0,ready)];cursor=0.;hits=[]
  for cut in range(count):
   cursor+=wind_times[cut];anchors.append((cursor,winds[cut]))
-  hits.append(round(cursor+cut_times[cut]*.62,3))
+  contact_time=cursor+cut_times[cut]*contact_fractions[cut]
+  hits.append(round(contact_time,3));anchors.append((contact_time,contacts[cut]))
   cursor+=cut_times[cut];anchors.append((cursor,ends[cut]));cursor+=holds[cut];anchors.append((cursor,ends[cut]))
- end=round(cursor+(.43 if count<5 else .55),4);anchors.append((end,ready))
+ end=round(cursor+(.43 if count<5 else .72),4);anchors.append((end,ready))
  times=sorted(set([round(t,6) for t in np.arange(0,end,1/120)]+[v[0] for v in anchors]));pairs=[]
  for t in times:
   j=next((i for i in range(len(anchors)-1) if anchors[i][0]<=t<=anchors[i+1][0]),len(anchors)-2)
@@ -112,7 +138,7 @@ for count in range(1,6):
   lift=math.sin(advance*math.pi) if advance<1 else math.sin(retreat*math.pi)
   pairs.append(pose(mix(a,c,f),step=step,lift=lift))
  b.clip('SwordCombo'+str(count),times,[v[0] for v in pairs],[v[1] for v in pairs])
- metadata[str(count)]={'duration':end,'contacts':hits,'directions':['right_down','left_up','horizontal','overhead','finisher'][:count]}
+ metadata[str(count)]={'duration':end,'contacts':hits,'directions':['baseball_swing','left_up','horizontal','overhead','finisher'][:count]}
 b.save('assets/characters/anime-girl/hotaru_sword.glb')
 Path('assets/temple/sword_combos.json').write_text(json.dumps(metadata,indent=2))
 print(metadata);print('maximum IK reach error',max_grip_error)

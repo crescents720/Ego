@@ -58,6 +58,7 @@ func run() -> void:
  main.hotaru.cancel_boarding_step()
  main.hotaru.set_physics_process(false)
  main.hotaru.position=Vector3(0,0.95,-10)
+ main.hotaru.rotation.y=0
  main.hotaru.set_active(true)
  var zombie=main.get_tree().get_nodes_in_group("store_zombies")[0]
  zombie.set_physics_process(false)
