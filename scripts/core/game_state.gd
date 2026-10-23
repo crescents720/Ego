@@ -26,6 +26,7 @@ var crane_position:=Vector3(-122.0,0.12,-216.0)
 var crane_yaw:=0.0
 var harbor_container_states: Dictionary={}
 var roof_container_id: String=""
+var roof_container_fixed:=false
 
 const CART_CAPACITY_G := 25000
 var cash: int=0
@@ -113,6 +114,7 @@ func start_new_run() -> void:
  crane_yaw=0.0
  harbor_container_states={}
  roof_container_id=""
+ roof_container_fixed=false
  fuel_l=6.0
  distance_m=0.0
  world_seconds=0.0
@@ -425,7 +427,7 @@ func move_stack(id: String,source: String,destination: String,count: int) -> boo
  return true
 
 func economy_defaults() -> Dictionary:
- return {"odachi_taken":false,"fence_hp":{"front":0,"back":0,"left":0,"right":0},"fence_job":{},"factory_wire":0,"factory_refresh_at":-1.0,"lathe_taken":false,"lathe_installed":false,"cash":0,"cash_drops":[],"cart_owned":false,"cart_deployed":false,"cart_use_on_exit":false,"cart_position":Vector3.ZERO,"cart_exterior_position":Vector3.ZERO,"cart_yaw":0.0,"cart_items":{},"weapon_shop_visited":false,"weapon_bought":false,"m60_window":"","crane_position":Vector3(-122.0,0.12,-216.0),"crane_yaw":0.0,"harbor_container_states":{},"roof_container_id":""}
+ return {"odachi_taken":false,"fence_hp":{"front":0,"back":0,"left":0,"right":0},"fence_job":{},"factory_wire":0,"factory_refresh_at":-1.0,"lathe_taken":false,"lathe_installed":false,"cash":0,"cash_drops":[],"cart_owned":false,"cart_deployed":false,"cart_use_on_exit":false,"cart_position":Vector3.ZERO,"cart_exterior_position":Vector3.ZERO,"cart_yaw":0.0,"cart_items":{},"weapon_shop_visited":false,"weapon_bought":false,"m60_window":"","crane_position":Vector3(-122.0,0.12,-216.0),"crane_yaw":0.0,"harbor_container_states":{},"roof_container_id":"","roof_container_fixed":false}
 
 func buy_m60() -> bool:
  if cash<1000 or weapon_bought or cart_owned:return false

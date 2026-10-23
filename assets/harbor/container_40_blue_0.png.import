@@ -3,9 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://blt5dfhapvysc"
-path="res://.godot/imported/container_40_blue_0.png-474ccc675a0099f05f3a570c121af87e.ctex"
+path.s3tc="res://.godot/imported/container_40_blue_0.png-474ccc675a0099f05f3a570c121af87e.s3tc.ctex"
+path.etc2="res://.godot/imported/container_40_blue_0.png-474ccc675a0099f05f3a570c121af87e.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "fce329d9f3e11e6dc6c78bdcbdbb20c6"
@@ -14,11 +16,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/harbor/container_40_blue_0.png"
-dest_files=["res://.godot/imported/container_40_blue_0.png-474ccc675a0099f05f3a570c121af87e.ctex"]
+dest_files=["res://.godot/imported/container_40_blue_0.png-474ccc675a0099f05f3a570c121af87e.s3tc.ctex", "res://.godot/imported/container_40_blue_0.png-474ccc675a0099f05f3a570c121af87e.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
@@ -34,4 +36,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

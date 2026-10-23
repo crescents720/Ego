@@ -3,26 +3,26 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://1aq4oqpheubo"
-path="res://.godot/imported/supermarket_64.jpg-df2f848e78d9d6e249a649ebbba787f1.ctex"
+path.s3tc="res://.godot/imported/supermarket_64.jpg-df2f848e78d9d6e249a649ebbba787f1.s3tc.ctex"
+path.etc2="res://.godot/imported/supermarket_64.jpg-df2f848e78d9d6e249a649ebbba787f1.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 generator_parameters={
-"md5": "571840fc9c924af32dbff974a5474c93"
+"md5": "5869a9a9889f3ceb44506d4ac8bbf317"
 }
 
 [deps]
 
 source_file="res://assets/third_party/supermarket/supermarket_64.jpg"
-dest_files=["res://.godot/imported/supermarket_64.jpg-df2f848e78d9d6e249a649ebbba787f1.ctex"]
+dest_files=["res://.godot/imported/supermarket_64.jpg-df2f848e78d9d6e249a649ebbba787f1.s3tc.ctex", "res://.godot/imported/supermarket_64.jpg-df2f848e78d9d6e249a649ebbba787f1.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
-compress/uastc_level=0
-compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
@@ -30,14 +30,10 @@ mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
-process/channel_remap/red=0
-process/channel_remap/green=1
-process/channel_remap/blue=2
-process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

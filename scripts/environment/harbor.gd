@@ -1,15 +1,19 @@
 extends Node
 
-# First playable harbor slice: drive the mobile crane, hoist any marked cargo,
-# and temporarily place one 20-foot container on the RV roof.
+# Playable harbor: drive the mobile crane, hoist marked cargo, then turn a
+# 20-foot container into the RV's first explorable upper floor.
 const CRANE_START := Vector3(-122.0, 0.12, -216.0)
-const CRANE_TRAVEL := Rect2(-145.0, -221.0, 270.0, 16.0)
+const CRANE_TRAVEL := Rect2(-145.0, -220.5, 270.0, 16.0)
 const SPREADER_Z := 27.23
 const SPREADER_BOTTOM := 8.72
 const HOIST_MIN := -6.0
 const HOIST_MAX := 0.0
-const ROOF_BOTTOM_LOCAL_Y := 1.58
+const ROOF_BOTTOM_LOCAL_Y := 1.78
 const CRANE_SPEED := 5.2
+const RV_LIFT_BAY := Vector3(-45.0, 0.14, -186.0)
+const ROOF_INTERIOR_ORIGIN := Vector3(4000.0, 0.0, 0.0)
+const RV_LADDER_ANCHOR := Vector3(-0.88, 1.13, -4.02)
+const ROOF_HATCH_ANCHOR := Vector3(-0.53, 0.95, -2.14)
 
 var main
 var active := false
@@ -32,16 +36,41 @@ var grab_button: Button
 var raise_button: Button
 var lower_button: Button
 var exit_button: Button
+var fix_button: Button
+var roof_support: Node3D
+var rv_ladder: Node3D
+var roof_interior: Node3D
+var roof_interior_active := false
+var _ladder_label: Label3D
+var _ladder_material: StandardMaterial3D
 
 var _cargo_specs := [
-	{"id":"C20-A", "model":"container_20_old", "length":6.06, "height":2.766, "position":Vector3(-126,0.16,-188)},
-	{"id":"C20-B", "model":"container_20_blue", "length":6.06, "height":2.766, "position":Vector3(-118.6,0.16,-188)},
-	{"id":"C20-C", "model":"container_20_red", "length":6.06, "height":2.766, "position":Vector3(-118.6,2.926,-188)},
-	{"id":"C20-D", "model":"container_20_blue", "length":6.06, "height":2.766, "position":Vector3(-111.2,0.16,-188)},
-	{"id":"C20-E", "model":"container_20_red", "length":6.06, "height":2.766, "position":Vector3(-126,0.16,-196)},
-	{"id":"C20-F", "model":"container_20_old", "length":6.06, "height":2.766, "position":Vector3(-118.6,0.16,-196)},
-	{"id":"C40-A", "model":"container_40_blue", "length":12.19, "height":2.954, "position":Vector3(-91,0.16,-190)},
-	{"id":"C40-B", "model":"container_40_blue", "length":12.19, "height":2.954, "position":Vector3(-75.5,0.16,-190)},
+	{"id":"C20-A", "model":"container_20_old", "length":6.06, "height":2.766, "position":Vector3(-134,0.16,-188)},
+	{"id":"C20-B", "model":"container_20_blue", "length":6.06, "height":2.766, "position":Vector3(-126.7,0.16,-188)},
+	{"id":"C20-C", "model":"container_20_red", "length":6.06, "height":2.766, "position":Vector3(-119.4,0.16,-188)},
+	{"id":"C20-D", "model":"container_20_green", "length":6.06, "height":2.766, "position":Vector3(-112.1,0.16,-188)},
+	{"id":"C20-E", "model":"container_20_yellow", "length":6.06, "height":2.766, "position":Vector3(-104.8,0.16,-188)},
+	{"id":"C20-F", "model":"container_20_red", "length":6.06, "height":2.766, "position":Vector3(-97.5,0.16,-188)},
+	{"id":"C20-G", "model":"container_20_blue", "length":6.06, "height":2.766, "position":Vector3(-90.2,0.16,-188)},
+	{"id":"C20-H", "model":"container_20_old", "length":6.06, "height":2.766, "position":Vector3(-82.9,0.16,-188)},
+	{"id":"C20-I", "model":"container_20_green", "length":6.06, "height":2.766, "position":Vector3(-75.6,0.16,-188)},
+	{"id":"C20-J", "model":"container_20_yellow", "length":6.06, "height":2.766, "position":Vector3(-68.3,0.16,-188)},
+	{"id":"C20-K", "model":"container_20_blue", "length":6.06, "height":2.766, "position":Vector3(-134,0.16,-196)},
+	{"id":"C20-L", "model":"container_20_red", "length":6.06, "height":2.766, "position":Vector3(-126.7,0.16,-196)},
+	{"id":"C20-M", "model":"container_20_green", "length":6.06, "height":2.766, "position":Vector3(-119.4,0.16,-196)},
+	{"id":"C20-N", "model":"container_20_yellow", "length":6.06, "height":2.766, "position":Vector3(-112.1,0.16,-196)},
+	{"id":"C20-O", "model":"container_20_old", "length":6.06, "height":2.766, "position":Vector3(-126.7,2.926,-196)},
+	{"id":"C20-P", "model":"container_20_blue", "length":6.06, "height":2.766, "position":Vector3(-112.1,2.926,-196)},
+	{"id":"C20-Q", "model":"container_20_red", "length":6.06, "height":2.766, "position":Vector3(-27.0,0.16,-188)},
+	{"id":"C20-R", "model":"container_20_green", "length":6.06, "height":2.766, "position":Vector3(-19.7,0.16,-188)},
+	{"id":"C20-S", "model":"container_20_yellow", "length":6.06, "height":2.766, "position":Vector3(-12.4,0.16,-188)},
+	{"id":"C20-T", "model":"container_20_old", "length":6.06, "height":2.766, "position":Vector3(-19.7,2.926,-188)},
+	{"id":"C40-A", "model":"container_40_blue", "length":12.19, "height":2.954, "position":Vector3(-91.0,0.16,-197)},
+	{"id":"C40-B", "model":"container_40_red", "length":12.19, "height":2.954, "position":Vector3(-75.5,0.16,-197)},
+	{"id":"C40-C", "model":"container_40_white", "length":12.19, "height":2.954, "position":Vector3(-60.0,0.16,-197)},
+	{"id":"C40-D", "model":"container_40_green", "length":12.19, "height":2.954, "position":Vector3(-27.0,0.16,-197)},
+	{"id":"C40-E", "model":"container_40_orange", "length":12.19, "height":2.954, "position":Vector3(-11.5,0.16,-197)},
+	{"id":"C40-F", "model":"container_40_teal", "length":12.19, "height":2.954, "position":Vector3(4.0,0.16,-197)},
 ]
 
 
@@ -55,6 +84,7 @@ func build(owner_main) -> void:
 	_build_crane()
 	_build_cargo()
 	_build_controls()
+	_build_roof_upgrade()
 	reset()
 
 
@@ -90,22 +120,23 @@ void fragment(){vec2 a=world_position.xz*.035+vec2(TIME*.006,TIME*.009);vec2 b=w
 	for x in range(160,316,7):
 		var z := -225.0 + sin(float(x)*0.18)*2.2
 		_box("ShoreRock", Vector3(5.5,1.4,4.5), Vector3(x,-0.45,z), Color("777368"), true, load("res://assets/harbor/shore_rock.jpg"), Vector3(0,sin(float(x)*0.37)*0.24,0))
-	# Painted cargo lanes and an RV alignment bay below the crane's fixed boom.
-	for z in [-204.0,-196.0,-188.0,-180.0,-172.0]:
-		_box("CargoLane",Vector3(292,0.018,0.16),Vector3(0,0.125,z),Color("c5bb82"))
-	for x in range(-140,141,10):
-		_box("QuayEdgeMark",Vector3(5.5,0.025,0.55),Vector3(x,0.13,-223.5),Color("e2c74d"))
+	# Keep only a restrained quay edge marker.  The old full-width yellow
+	# parking stripes made the apron noisy and had no gameplay meaning.
+	for x in range(-140,141,14):
+		_box("QuayEdgeMark",Vector3(7.0,0.025,0.18),Vector3(x,0.13,-223.7),Color("aab8b2"))
 	for line in [
-		[Vector3(68,0.14,-192),Vector3(14,0.025,0.22)],
-		[Vector3(68,0.14,-180),Vector3(14,0.025,0.22)],
-		[Vector3(61,0.14,-186),Vector3(0.22,0.025,12)],
-		[Vector3(75,0.14,-186),Vector3(0.22,0.025,12)],
+		[RV_LIFT_BAY+Vector3(0,0,-6),Vector3(14,0.025,0.22)],
+		[RV_LIFT_BAY+Vector3(0,0,6),Vector3(14,0.025,0.22)],
+		[RV_LIFT_BAY+Vector3(-7,0,0),Vector3(0.22,0.025,12)],
+		[RV_LIFT_BAY+Vector3(7,0,0),Vector3(0.22,0.025,12)],
 	]:
 		_box("RVLiftBayLine",line[1],line[0],Color("78d6cf"))
-	main._add_label("房车吊装位 · 车身横向停入",Vector3(68,0.65,-186),Color("a6fff4"),24).no_depth_test=false
+	main._add_label("房车吊装位 · 车身横向停入",RV_LIFT_BAY+Vector3(0,0.51,0),Color("a6fff4"),24).no_depth_test=false
 	main._add_label("南部集装箱码头",Vector3(0,4.0,-219),Color("ffe6a1"),34).no_depth_test=false
 	for x in range(-145,151,18):
-		var bollard := _cylinder("MooringBollard",0.34,0.65,Vector3(x,0.43,-222.5),Color("30383a"),true)
+		# Visual only: the crane's wide invisible body used to snag these while
+		# travelling laterally along the quay.
+		var bollard := _cylinder("MooringBollard",0.34,0.65,Vector3(x,0.43,-224.2),Color("30383a"),false)
 		bollard.rotation_degrees.z = 0
 
 
@@ -130,9 +161,12 @@ func _build_crane() -> void:
 	cable_root = Node3D.new()
 	cable_root.name = "HoistCables"
 	crane.add_child(cable_root)
-	for x in [-2.7,2.7]:
-		for z in [26.75,27.75]:
-			_box_to(cable_root,"HoistCable",Vector3(0.045,1,0.045),Vector3(x,18,z),Color("202526"))
+	# Four genuinely continuous, phone-readable steel ropes.  The previous
+	# 4.5 cm boxes became sub-pixel dotted lines after distant antialiasing.
+	for x in [-2.62,2.62]:
+		for z in [26.82,27.64]:
+			_cylinder_to(cable_root,"HoistCable",0.12,1.0,Vector3(x,18,z),Color("263238"),true)
+	_box_to(cable_root,"UpperCableBeam",Vector3(5.55,0.22,1.10),Vector3(0,25.0,27.23),Color("313b3e"))
 	cab_label = Label3D.new()
 	cab_label.name = "CraneCabPrompt"
 	cab_label.text = "港口吊车 · E 驾驶"
@@ -187,6 +221,108 @@ func _build_controls() -> void:
 	lower_button.button_down.connect(func():_lower_held=true)
 	lower_button.button_up.connect(func():_lower_held=false)
 	controls.hide()
+	fix_button = Button.new()
+	fix_button.name = "FixRoofContainerButton"
+	fix_button.text = "固定承重结构"
+	fix_button.position = Vector2(520,905)
+	fix_button.size = Vector2(170,82)
+	fix_button.focus_mode = Control.FOCUS_NONE
+	fix_button.mouse_filter = Control.MOUSE_FILTER_IGNORE if main.mobile_joystick.mobile else Control.MOUSE_FILTER_STOP
+	main._style_button(fix_button,Color("49623e"))
+	fix_button.pressed.connect(fix_roof_container)
+	main.get_node("HUD").add_child(fix_button)
+	fix_button.hide()
+
+
+func _build_roof_upgrade() -> void:
+	# Exterior rack and load-distribution frame, parented to the moving RV.
+	roof_support = Node3D.new()
+	roof_support.name = "RoofContainerSupportFrame"
+	main.rv.add_child(roof_support)
+	var steel := Color("34464a")
+	for x in [-1.08,1.08]:
+		_box_to(roof_support,"LongitudinalRail",Vector3(0.16,0.16,6.35),Vector3(x,1.61,0.15),steel)
+	for z in [-2.72,-0.90,0.90,2.72]:
+		_box_to(roof_support,"CrossBeam",Vector3(2.34,0.14,0.18),Vector3(0,1.66,z+0.15),steel)
+	for x in [-1.08,1.08]:
+		for z in [-2.72,2.72]:
+			_box_to(roof_support,"LoadFoot",Vector3(0.24,0.30,0.24),Vector3(x,1.48,z+0.15),Color("657276"))
+
+	# Cab-side ladder.  It follows the interior scene rather than the exterior
+	# vehicle, because the detailed cabin is rendered at its own remote origin.
+	rv_ladder = Node3D.new()
+	rv_ladder.name = "PassengerRoofLadder"
+	main.rv_interior.add_child(rv_ladder)
+	_ladder_material = StandardMaterial3D.new()
+	_ladder_material.albedo_color = Color("6d7c7a")
+	_ladder_material.metallic = 0.72
+	_ladder_material.roughness = 0.26
+	_ladder_material.emission_enabled = true
+	_ladder_material.emission = Color("2fd9cd")
+	_ladder_material.emission_energy_multiplier = 0.0
+	for z in [-0.24,0.24]:
+		_box_with_material(rv_ladder,"LadderRail",Vector3(0.075,2.20,0.075),Vector3(-1.20,1.20,-4.02+z),_ladder_material)
+	for y in range(4,23,3):
+		_box_with_material(rv_ladder,"LadderRung",Vector3(0.08,0.075,0.54),Vector3(-1.16,float(y)/10.0,-4.02),_ladder_material)
+	var hatch_mat := StandardMaterial3D.new()
+	hatch_mat.albedo_color = Color("10191b")
+	hatch_mat.roughness = 0.82
+	_box_with_material(rv_ladder,"CabRoofHatch",Vector3(0.72,0.035,0.82),Vector3(-0.95,2.30,-4.02),hatch_mat)
+	_ladder_label = Label3D.new()
+	_ladder_label.text = "上层集装箱"
+	_ladder_label.position = Vector3(-1.05,1.78,-4.02)
+	_ladder_label.rotation_degrees.y = 90
+	_ladder_label.font_size = 20
+	_ladder_label.outline_size = 6
+	_ladder_label.modulate = Color("a8fff4")
+	rv_ladder.add_child(_ladder_label)
+
+	# Separate walkable interior.  Four floor pieces leave a real physical
+	# opening over the ladder instead of painting a fake dark square.
+	roof_interior = Node3D.new()
+	roof_interior.name = "ExplorableRoofContainer"
+	roof_interior.position = ROOF_INTERIOR_ORIGIN
+	main.add_child(roof_interior)
+	var floor_color := Color("465052")
+	var wall_color := Color("647176")
+	_box_to(roof_interior,"FloorRear",Vector3(2.12,0.12,4.58),Vector3(0,-0.06,0.585),floor_color,true)
+	_box_to(roof_interior,"FloorNose",Vector3(2.12,0.12,0.25),Vector3(0,-0.06,-2.75),floor_color,true)
+	_box_to(roof_interior,"FloorHatchLeft",Vector3(0.15,0.12,0.95),Vector3(-0.985,-0.06,-2.15),floor_color,true)
+	_box_to(roof_interior,"FloorHatchRight",Vector3(1.18,0.12,0.95),Vector3(0.48,-0.06,-2.15),floor_color,true)
+	_box_to(roof_interior,"LeftWall",Vector3(0.10,2.58,5.80),Vector3(-1.11,1.29,0),wall_color,true)
+	_box_to(roof_interior,"RightWall",Vector3(0.10,2.58,5.80),Vector3(1.11,1.29,0),wall_color,true)
+	_box_to(roof_interior,"FrontWall",Vector3(2.12,2.58,0.10),Vector3(0,1.29,-2.90),wall_color,true)
+	_box_to(roof_interior,"RearWall",Vector3(2.12,2.58,0.10),Vector3(0,1.29,2.90),wall_color,true)
+	_box_to(roof_interior,"Ceiling",Vector3(2.12,0.08,5.80),Vector3(0,2.62,0),Color("596568"),true)
+	# Corrugation ribs make the empty first-stage room read as a container.
+	for z in [-2.55,-2.05,-1.55,-1.05,-0.55,-0.05,0.45,0.95,1.45,1.95,2.45]:
+		_box_to(roof_interior,"WallRibL",Vector3(0.06,2.40,0.055),Vector3(-1.045,1.27,z),Color("839093"))
+		_box_to(roof_interior,"WallRibR",Vector3(0.06,2.40,0.055),Vector3(1.045,1.27,z),Color("839093"))
+	# Hatch lip and a short continuation of the ladder inside the box.
+	for x in [-0.94,-0.12]:
+		_box_to(roof_interior,"HatchLip",Vector3(0.07,0.12,1.02),Vector3(x,0.06,-2.15),Color("a3a9a3"))
+	for z in [-2.60,-1.70]:
+		_box_to(roof_interior,"HatchLip",Vector3(0.89,0.12,0.07),Vector3(-0.53,0.06,z),Color("a3a9a3"))
+	for x in [-0.78,-0.28]:
+		_box_to(roof_interior,"UpperLadderRail",Vector3(0.07,1.10,0.07),Vector3(x,0.45,-2.50),Color("718282"))
+	for y in [0.12,0.38,0.64,0.90]:
+		_box_to(roof_interior,"UpperLadderRung",Vector3(0.56,0.065,0.07),Vector3(-0.53,y,-2.50),Color("718282"))
+	var light := OmniLight3D.new()
+	light.name = "ContainerCeilingLight"
+	light.position = Vector3(0,2.35,0.45)
+	light.light_color = Color("d8f6ee")
+	light.light_energy = 1.35
+	light.omni_range = 5.2
+	light.shadow_enabled = false
+	roof_interior.add_child(light)
+	var room_label := Label3D.new()
+	room_label.text = "房车上层 · 20 尺扩展舱"
+	room_label.position = Vector3(0,1.75,2.82)
+	room_label.font_size = 22
+	room_label.outline_size = 7
+	room_label.modulate = Color("d4fff8")
+	roof_interior.add_child(room_label)
+	roof_interior.hide()
 
 
 func _action_button(text_value: String, point: Vector2, callback: Callable) -> Button:
@@ -203,6 +339,8 @@ func _action_button(text_value: String, point: Vector2, callback: Callable) -> B
 
 
 func reset() -> void:
+	if roof_interior_active:
+		exit_roof_interior(true)
 	if active:
 		exit_crane(true)
 	held = {}
@@ -222,8 +360,12 @@ func reset() -> void:
 		else:
 			node.global_position = saved.get("position",cargo.position)
 			node.global_rotation = Vector3(0,float(saved.get("yaw",0.0)),0)
+	if GameState.roof_container_id.is_empty():
+		GameState.roof_container_fixed=false
+	_sync_roof_upgrade()
 	_update_spreader()
 	controls.hide()
+	fix_button.hide()
 	cab_label.show()
 
 
@@ -308,6 +450,7 @@ func _update_spreader() -> void:
 	var spreader_top := 11.98+hoist_offset
 	var cable_height := maxf(0.2,top_y-spreader_top)
 	for cable in cable_root.get_children():
+		if not str(cable.name).begins_with("HoistCable"):continue
 		cable.scale.y = cable_height
 		cable.position.y = spreader_top+cable_height*0.5
 
@@ -330,6 +473,10 @@ func toggle_cargo() -> void:
 		return
 	held = candidate
 	if bool(held.on_rv):
+		if GameState.roof_container_fixed:
+			held={}
+			_notice_message("集装箱已经与承重结构锁定，不能直接起吊。")
+			return
 		held.on_rv=false
 		GameState.roof_container_id=""
 	_set_collision(held,false)
@@ -344,6 +491,7 @@ func _nearest_cargo() -> Dictionary:
 	var best_score := 999.0
 	for cargo in cargoes:
 		if cargo==held:continue
+		if bool(cargo.on_rv) and GameState.roof_container_fixed:continue
 		var node: Node3D = cargo.node
 		var top := node.to_global(Vector3(0,float(cargo.height),0))
 		var horizontal := Vector2(top.x,top.z).distance_to(Vector2(hook.x,hook.z))
@@ -402,7 +550,96 @@ func _attach_to_rv(cargo: Dictionary,announce: bool) -> void:
 	_set_collision(cargo,false)
 	GameState.roof_container_id=str(cargo.id)
 	if announce:
-		_notice_message("20 尺集装箱已临时落在车顶！尚未获得五金件，当前为试装状态。")
+		GameState.roof_container_fixed=false
+	_sync_roof_upgrade()
+	if announce:
+		_notice_message("20 尺集装箱已经落位。点击“固定承重结构”即可完成第一层扩建。")
+
+
+func fix_roof_container() -> void:
+	if GameState.roof_container_id.is_empty() or GameState.roof_container_fixed:return
+	GameState.roof_container_fixed=true
+	_sync_roof_upgrade()
+	_record_state()
+	_notice_message("承重框架已锁定！副驾驶侧梯子和箱底检修口已经打通。")
+	AudioDirector.ui("confirm")
+
+
+func _sync_roof_upgrade() -> void:
+	var ready := not GameState.roof_container_id.is_empty() and GameState.roof_container_fixed
+	if is_instance_valid(roof_support):roof_support.visible=ready
+	if is_instance_valid(rv_ladder):rv_ladder.visible=ready
+	if is_instance_valid(roof_interior) and not roof_interior_active:roof_interior.hide()
+
+
+func apply_hud() -> void:
+	if not is_instance_valid(fix_button):return
+	var can_fix := not GameState.roof_container_id.is_empty() and not GameState.roof_container_fixed
+	can_fix = can_fix and main.controls_enabled and not main.dialog_panel.visible and not main.inside_store
+	# It is intentionally available directly from the crane after landing, or
+	# while standing in/near the RV: one click, no temporary hardware grind.
+	var near_rv := main.hotaru.global_position.distance_to(main.rv.global_position)<9.0 if main.hotaru.visible else false
+	fix_button.visible=can_fix and (active or main.inside_rv or near_rv)
+	if is_instance_valid(_ladder_material):
+		_ladder_material.emission_energy_multiplier=0.65 if near_interior_ladder() else 0.0
+
+
+func near_interior_ladder() -> bool:
+	if not GameState.roof_container_fixed or roof_interior_active or not main.inside_rv:return false
+	return main.hotaru.global_position.distance_to(main.rv_interior.to_global(RV_LADDER_ANCHOR))<=1.48
+
+
+func enter_roof_interior() -> void:
+	if roof_interior_active or not near_interior_ladder():return
+	roof_interior_active=true
+	main.rv_interior.clear_interaction_focus()
+	main.rv_interior.set_active(false)
+	roof_interior.show()
+	main.hotaru.set_ground_height(ROOF_INTERIOR_ORIGIN.y+0.95)
+	main.hotaru.global_position=ROOF_INTERIOR_ORIGIN+Vector3(-0.53,0.95,-1.40)
+	main.hotaru.rotation.y=0.0
+	main.hotaru.set_active(true)
+	_notice_message("小萤爬进了刚固定好的上层扩展舱。")
+
+
+func near_roof_hatch() -> bool:
+	return roof_interior_active and main.hotaru.global_position.distance_to(ROOF_INTERIOR_ORIGIN+ROOF_HATCH_ANCHOR)<=1.30
+
+
+func interact_roof_interior() -> void:
+	if not roof_interior_active:return
+	if near_roof_hatch():
+		exit_roof_interior()
+	else:
+		_notice_message("走回前端地板检修口，再从梯子下去。")
+
+
+func exit_roof_interior(force: bool=false) -> void:
+	if not roof_interior_active:return
+	roof_interior_active=false
+	roof_interior.hide()
+	if not force:
+		main.rv_interior.set_active(true)
+		main.hotaru.set_ground_height(main.RV_INTERIOR_ORIGIN.y+1.13)
+		main.hotaru.global_position=main.rv_interior.to_global(Vector3(-0.52,1.13,-3.72))
+		main.hotaru.rotation.y=PI
+		main.hotaru.set_active(true)
+		_notice_message("小萤沿副驾驶侧梯子回到了驾驶舱。")
+
+
+func update_roof_camera(delta: float) -> void:
+	main.camera.projection=Camera3D.PROJECTION_PERSPECTIVE
+	main.camera.keep_aspect=Camera3D.KEEP_HEIGHT
+	main.camera.fov=58.0
+	var target: Vector3=main.hotaru.global_position+Vector3(0,0.55,0)
+	var forward: Vector3=-main.hotaru.global_transform.basis.z
+	var desired:=target-forward*2.25+Vector3(0,1.05,0)
+	# Keep the camera inside the narrow steel shell.
+	desired.x=clampf(desired.x,ROOF_INTERIOR_ORIGIN.x-0.88,ROOF_INTERIOR_ORIGIN.x+0.88)
+	desired.z=clampf(desired.z,ROOF_INTERIOR_ORIGIN.z-2.55,ROOF_INTERIOR_ORIGIN.z+2.55)
+	desired.y=clampf(desired.y,1.20,2.35)
+	main.camera.global_position=main.camera.global_position.lerp(desired,1.0-exp(-delta*8.0))
+	main.camera.look_at(target,Vector3.UP)
 
 
 func _set_collision(cargo: Dictionary,enabled: bool) -> void:
@@ -439,6 +676,7 @@ func update_hud() -> void:
 	for button in get_tree().get_nodes_in_group("movement_controls"):button.show()
 	controls.show()
 	grab_button.text="释放 J" if not held.is_empty() else "抓取 J"
+	apply_hud()
 	if _notice_time>0.0:
 		main.hint_label.text=_notice
 	elif held.is_empty():
@@ -487,6 +725,39 @@ func _box_to(parent: Node,title: String,size: Vector3,point: Vector3,color: Colo
 		collision.shape=shape
 		body.add_child(collision)
 		mesh.add_child(body)
+	return mesh
+
+
+func _box_with_material(parent: Node,title: String,size: Vector3,point: Vector3,material: Material) -> MeshInstance3D:
+	var mesh:=MeshInstance3D.new()
+	mesh.name=title
+	var shape_mesh:=BoxMesh.new()
+	shape_mesh.size=size
+	mesh.mesh=shape_mesh
+	mesh.position=point
+	mesh.material_override=material
+	parent.add_child(mesh)
+	return mesh
+
+
+func _cylinder_to(parent: Node,title: String,radius: float,height: float,point: Vector3,color: Color,unshaded: bool=false) -> MeshInstance3D:
+	var mesh:=MeshInstance3D.new()
+	mesh.name=title
+	var cylinder:=CylinderMesh.new()
+	cylinder.top_radius=radius
+	cylinder.bottom_radius=radius
+	cylinder.height=height
+	cylinder.radial_segments=12
+	mesh.mesh=cylinder
+	var material:=StandardMaterial3D.new()
+	material.albedo_color=color
+	material.metallic=.58
+	material.roughness=.38
+	material.shading_mode=BaseMaterial3D.SHADING_MODE_UNSHADED if unshaded else BaseMaterial3D.SHADING_MODE_PER_PIXEL
+	mesh.material_override=material
+	mesh.position=point
+	mesh.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	parent.add_child(mesh)
 	return mesh
 
 

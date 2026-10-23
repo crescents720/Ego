@@ -1,7 +1,7 @@
 """Build mobile-friendly harbor assets from the three user-supplied USDZ packs.
 
 The source packs stay outside the repository.  This script extracts only the
-water/shore textures, four representative containers, and the harbor crane.
+water/shore textures, representative container colourways, and the harbor crane.
 The crane spreader is exported separately so gameplay can move it vertically.
 """
 
@@ -249,10 +249,17 @@ def export_crane() -> dict:
 
 
 CONTAINERS = {
+    "container_20_yellow": "Object_38",
     "container_20_old": "Object_44",
     "container_20_blue": "Object_45",
     "container_20_red": "Object_46",
+    "container_20_green": "Object_47",
     "container_40_blue": "Object_36",
+    "container_40_red": "Object_37",
+    "container_40_white": "Object_39",
+    "container_40_green": "Object_41",
+    "container_40_orange": "Object_42",
+    "container_40_teal": "Object_43",
 }
 
 

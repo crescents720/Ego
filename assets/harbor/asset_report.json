@@ -39,6 +39,15 @@
   "containers": {
     "source": "C:\\Users\\DingMeng\\Downloads\\Container_Pack.usdz",
     "assets": {
+      "container_20_yellow": {
+        "triangles": 11589,
+        "bytes": 834064,
+        "dimensions": [
+          6.06,
+          2.765714355778143,
+          2.294547838379033
+        ]
+      },
       "container_20_old": {
         "triangles": 11589,
         "bytes": 952944,
@@ -66,9 +75,63 @@
           2.294547838379033
         ]
       },
+      "container_20_green": {
+        "triangles": 11589,
+        "bytes": 982212,
+        "dimensions": [
+          6.06,
+          2.765714355778143,
+          2.294547838379033
+        ]
+      },
       "container_40_blue": {
         "triangles": 12176,
         "bytes": 874140,
+        "dimensions": [
+          12.19,
+          2.954403884823773,
+          2.451084791373027
+        ]
+      },
+      "container_40_red": {
+        "triangles": 12176,
+        "bytes": 901300,
+        "dimensions": [
+          12.19,
+          2.954403884823773,
+          2.451084791373027
+        ]
+      },
+      "container_40_white": {
+        "triangles": 12228,
+        "bytes": 804192,
+        "dimensions": [
+          12.19,
+          2.954403884823773,
+          2.451084791373027
+        ]
+      },
+      "container_40_green": {
+        "triangles": 12176,
+        "bytes": 1034548,
+        "dimensions": [
+          12.19,
+          2.954403884823773,
+          2.451084791373027
+        ]
+      },
+      "container_40_orange": {
+        "triangles": 12176,
+        "bytes": 1006524,
+        "dimensions": [
+          12.19,
+          2.954403884823773,
+          2.451084791373027
+        ]
+      },
+      "container_40_teal": {
+        "triangles": 12176,
+        "bytes": 1001340,
         "dimensions": [
           12.19,
           2.954403884823773,

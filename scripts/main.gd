@@ -227,6 +227,7 @@ func _process(delta: float) -> void:
 	town_occlusion.update(camera, harbor.crane if is_instance_valid(harbor) and harbor.active else (rv if in_vehicle or (is_instance_valid(shooting) and shooting.active) else hotaru), (not inside_rv or (is_instance_valid(shooting) and shooting.active)) and not inside_store and not factory.active and not temple.active and not (is_instance_valid(harbor) and harbor.active))
 	_update_phase_checks()
 	_update_hud()
+	if is_instance_valid(harbor):harbor.apply_hud()
 	if is_instance_valid(fabrication):fabrication.apply_hud()
 	if is_instance_valid(mobile_driving):mobile_driving.update_layout()
 	if is_instance_valid(opening):
@@ -929,6 +930,12 @@ func _toggle_vehicle() -> void:
 	if inside_store or not controls_enabled or phase in [Phase.TITLE, Phase.GAME_OVER, Phase.COMPLETE]:
 		return
 	if inside_rv:
+		if is_instance_valid(harbor) and harbor.roof_interior_active:
+			harbor.interact_roof_interior()
+			return
+		if is_instance_valid(harbor) and harbor.near_interior_ladder():
+			harbor.enter_roof_interior()
+			return
 		if seated_at_driver:
 			_start_driving_from_cockpit()
 		elif rv_interior.is_near_exit(hotaru.global_position):
@@ -1143,6 +1150,9 @@ func _enter_rv_interior(from_driving: bool = false) -> void:
 
 func _exit_rv_interior() -> void:
 	if not inside_rv:
+		return
+	if is_instance_valid(harbor) and harbor.roof_interior_active:
+		harbor.exit_roof_interior()
 		return
 	var exit_position := _find_rv_exit_position()
 	if exit_position == Vector3.INF:
@@ -1384,6 +1394,8 @@ func _update_hud() -> void:
 	status_label.text = "生命%d/%d  料%d  食%d  水%d  药%d" % [hotaru.health, hotaru.max_health, GameState.scrap, GameState.food, GameState.water, GameState.medicine]
 	if inside_store:
 		speed_label.text = "店内"
+	elif inside_rv and is_instance_valid(harbor) and harbor.roof_interior_active:
+		speed_label.text = "上层扩展舱"
 	elif inside_rv:
 		speed_label.text = "驾驶席" if seated_at_driver else "室内"
 	else:
@@ -1432,6 +1444,17 @@ func _update_hud() -> void:
 			hint_label.text = "沿货架间通道搜索 · 彩色圆环标记货架，可重复取货"
 		return
 	if inside_rv:
+		if is_instance_valid(harbor) and harbor.roof_interior_active:
+			rv_interior.clear_interaction_focus()
+			objective_label.text = "房车上层 · 第一层集装箱扩展舱"
+			vehicle_button.hide()
+			if harbor.near_roof_hatch():
+				interact_button.text = "下梯子 E"
+				hint_label.text = "地板检修口：按 E / 交互沿梯子返回驾驶舱"
+			else:
+				interact_button.text = "交互 E"
+				hint_label.text = "这是第一层可扩建空间；走到前端地板检修口可返回"
+			return
 		objective_label.text = "房车内部 · 驾驶 / 睡眠 / 烹饪 / 维修 / 储物"
 		if not GameState.bat_taken and not GameState.odachi_taken:objective_label.text="小萤：不能再空着手了……\n哥哥的棒球棍还在衣柜里。"
 		if seated_at_driver:
@@ -1443,7 +1466,11 @@ func _update_hud() -> void:
 			hint_label.text = "右侧车门：E / 下车返回车外"
 		else:
 			var focused_module_name: String = rv_interior.update_interaction_focus(hotaru.global_position)
-			if not focused_module_name.is_empty():
+			if is_instance_valid(harbor) and harbor.near_interior_ladder():
+				rv_interior.clear_interaction_focus()
+				interact_button.text = "爬上去 E"
+				hint_label.text = "副驾驶侧梯子：按 E / 交互进入上层集装箱"
+			elif not focused_module_name.is_empty():
 				hint_label.text = "可交互：%s · 按 E 或“交互”" % focused_module_name
 			else:
 				hint_label.text = "拖拽旋转 · 滚轮/双指缩放 · 靠近家具可交互"
@@ -1515,6 +1542,9 @@ func _update_camera(delta: float) -> void:
 		return
 	if is_instance_valid(harbor) and harbor.active:
 		harbor.update_camera(delta)
+		return
+	if is_instance_valid(harbor) and harbor.roof_interior_active:
+		harbor.update_roof_camera(delta)
 		return
 	if inside_store:
 		_set_town_projection()
@@ -1663,7 +1693,7 @@ func can_save_safely() -> bool:
 	if is_instance_valid(fabrication) and fabrication.active:return false
 	if is_instance_valid(factory) and (factory.active or factory.transitioning):return false
 	if is_instance_valid(temple) and temple.active:return false
-	if is_instance_valid(harbor) and harbor.active:return false
+	if is_instance_valid(harbor) and (harbor.active or harbor.roof_interior_active):return false
 	if is_instance_valid(shooting) and shooting.active:return false
 	if is_instance_valid(trolley) and trolley.loading:return false
 	if is_instance_valid(weapon_shop) and weapon_shop.active:return false
