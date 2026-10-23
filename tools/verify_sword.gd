@@ -46,8 +46,8 @@ func run() -> void:
 	var temple=main.temple
 	var hero=main.hotaru
 	hero.set_physics_process(false)
-	hero.global_position=temple.SITE+Vector3(0,temple.OUTDOOR_GROUND_Y-temple.SITE.y,-temple.ENTER_HALF.y+.1)
-	temple.enter(Vector2(0,-temple.ENTER_HALF.y+.1))
+	hero.global_position=temple.DOOR
+	temple.enter()
 	check(temple.active,"Temple did not enter before sword pickup")
 	hero.global_position=temple.RACK+Vector3(0,temple.TEMPLE_GROUND_Y-temple.RACK.y,-1.2)
 	check(temple.nearby(),"Temple offering sword is unreachable")

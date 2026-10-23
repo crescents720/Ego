@@ -3,6 +3,16 @@ const RANGE:=100.0
 const DAMAGE:=5
 const INTERVAL:=.12
 const WINDOW_Z:=1.45
+# The source M60 scene also contains a separate, horizontally displayed
+# tripod-mounted variant.  It looks like a second complete weapon when the
+# scene is used at the RV window, so every gameplay instance strips those
+# meshes and keeps only the single gun Hotaru actually operates.
+const DISPLAY_VARIANT_PREFIXES:=[
+ "polySurface315_",
+ "polySurface319_",
+ "polySurface321_",
+ "polySurface320_",
+]
 var main
 var active:=false
 var side:=1
@@ -43,6 +53,7 @@ func build(owner_main) -> void:
  process_mode=Node.PROCESS_MODE_ALWAYS
  for s in [-1,1]:
   var model: Node3D=load("res://assets/weapon_shop/m60_mounted.glb").instantiate()
+  _strip_display_variant(model)
   main.rv_interior.add_child(model)
   model.position=Vector3(s*1.08,1.24,.91)
   model.rotation.y=s*PI/2
@@ -53,6 +64,7 @@ func build(owner_main) -> void:
   for y in [.49,1.02]:_box(main.rv,Vector3(.10,.045,.96),Vector3(s*1.10,y,WINDOW_Z),metal)
   for z in [.99,1.91]:_box(main.rv,Vector3(.10,.57,.045),Vector3(s*1.10,.755,z),metal)
   var exterior: Node3D=load("res://assets/weapon_shop/m60_mounted.glb").instantiate()
+  _strip_display_variant(exterior)
   exterior.name="ExteriorM60_"+("Left" if s<0 else "Right")
   main.rv.add_child(exterior)
   exterior.position=Vector3(s*.78,.60,WINDOW_Z)
@@ -72,6 +84,7 @@ func build(owner_main) -> void:
     if str(clip).ends_with(state):clips[state]=clip
   if clips.has("GunHold"):player.get_animation(clips.GunHold).loop_mode=Animation.LOOP_LINEAR
  gun=load("res://assets/weapon_shop/m60_mounted.glb").instantiate()
+ _strip_display_variant(gun)
  proxy.add_child(gun)
  gun.position=Vector3(-.18,1.18,.28)
  flash=MeshInstance3D.new()
@@ -120,6 +133,18 @@ func build(owner_main) -> void:
   if main.mobile_joystick.mobile:b.mouse_filter=Control.MOUSE_FILTER_IGNORE
  screen.hide()
  _refresh_mounted_models()
+func _strip_display_variant(instance: Node3D) -> void:
+ for mesh in instance.find_children("*","MeshInstance3D",true,false):
+  for prefix in DISPLAY_VARIANT_PREFIXES:
+   if str(mesh.name).begins_with(prefix):
+    mesh.visible=false
+    mesh.set_meta("m60_removed_display_variant",true)
+    break
+func visible_weapon_mesh_count(instance: Node3D) -> int:
+ var count:=0
+ for mesh in instance.find_children("*","MeshInstance3D",true,false):
+  if mesh.visible and not mesh.get_meta("m60_removed_display_variant",false):count+=1
+ return count
 func _button(text_value: String,p: Vector2,dimensions: Vector2) -> Button:
  var b:=Button.new()
  b.text=text_value

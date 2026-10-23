@@ -2,7 +2,7 @@
 
 ## 当前可玩流程
 
-寺庙位于工厂北侧，仍属于小镇连续地图。寺庙模型保持四周开放；小萤从任意一侧跨入范围后，移动平面抬升到木质地板，镜头切为近距离第三人称。寺内是第一件正式装备的安全获取区：进入时小镇丧尸会隐藏、暂停并暂时移出战斗目标组，离开任意边缘后恢复原状态。
+寺庙位于工厂北侧，仍属于小镇连续地图。原模型的开放结构保留，但台阶前新增明确的木质正门标记；只有在正门按 E/交互后，移动平面才抬升到木质地板并切为近距离第三人称。从侧面或后方靠近不会触发镜头。寺内是第一件正式装备的安全获取区：进入时小镇丧尸会隐藏、暂停并暂时移出战斗目标组，回到正门交互离开后恢复原状态。
 
 大太刀横放在正殿中央的红色奉纳台上，两侧有暖色灯。背包需要 2.2 kg 空位；满包不会消耗唯一拾取。拾取后自动双手装备，保存字段 `odachi_taken` 防止重复生成。
 
@@ -34,6 +34,6 @@
 
 ## 验证
 
-`verify_sword` 覆盖拾取、五层动作/命中、逐次按键、低帧率补判、墙体遮挡、收刀和存档；`verify_temple_interior` 覆盖四面进入、安全区、第三人称相机、奉纳台和任意边缘离开；另有 `verify_melee_assist`、`verify_zombie_stagger`、`verify_odachi_skill_save`、`verify_personal_ui`。原有战斗、装备、工厂、推车和制造回归同时通过。
+`verify_sword` 覆盖拾取、五层动作/命中、逐次按键、低帧率补判、墙体遮挡、收刀和存档；`verify_temple_interior` 覆盖侧面/后方不触发、正门交互进入、安全区、第三人称相机、奉纳台和正门离开；另有 `verify_melee_assist`、`verify_zombie_stagger`、`verify_odachi_skill_save`、`verify_personal_ui`。原有战斗、装备、工厂、推车和制造回归同时通过。
 
-当前预览：`artifacts/sword_v2_combo1.gif` ～ `sword_v2_combo5.gif`、`artifacts/sword_v2_pose_audit.png`、`artifacts/sword_vfx_contact_1.png` ～ `sword_vfx_contact_5.png`、`artifacts/sword_sheathed_close.png`、`artifacts/temple_safe_interior.png`。
+当前预览：`artifacts/sword_v2_combo1.gif` ～ `sword_v2_combo5.gif`、`artifacts/sword_v2_pose_audit.png`、`artifacts/sword_vfx_contact_1.png` ～ `sword_vfx_contact_5.png`、`artifacts/sword_sheathed_close.png`、`artifacts/temple_front_gate.png`、`artifacts/temple_safe_interior.png`。

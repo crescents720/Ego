@@ -1,16 +1,18 @@
 extends Node3D
 
 # The temple remains part of the town instead of loading a disconnected room.
-# Crossing any side of the outer footprint moves Hotaru onto the raised veranda,
-# switches to a close third-person camera and turns the whole footprint into a
-# safe exploration area. Leaving any side returns her to the same approach point.
+# Only the marked front gate starts close third-person exploration.  Approaching
+# the open veranda from either side never changes camera mode.
 const SITE := Vector3(-94.0, 0.08, 345.0)
 const MODEL_DECK_RISE := 1.60
 const OUTDOOR_GROUND_Y := 0.95
 const TEMPLE_GROUND_Y := SITE.y + MODEL_DECK_RISE + OUTDOOR_GROUND_Y
-const ENTER_HALF := Vector2(10.75, 10.30)
 const EXIT_HALF := Vector2(7.75, 6.85)
-const ENTRY_INSET := Vector2(6.85, 6.55)
+const FRONT_DOOR_LOCAL := Vector3(0.0, OUTDOOR_GROUND_Y - SITE.y, -9.15)
+const FRONT_ENTRY_LOCAL := Vector3(0.0, TEMPLE_GROUND_Y - SITE.y, -5.85)
+const FRONT_DOOR_RANGE := 2.35
+const FRONT_EXIT_RANGE := 2.10
+const DOOR := SITE + FRONT_DOOR_LOCAL
 const ALTAR_LOCAL := Vector3(0.0, MODEL_DECK_RISE, 2.15)
 const RACK := SITE + ALTAR_LOCAL + Vector3(0.0, 0.78, 0.0)
 
@@ -20,12 +22,12 @@ var model: Node3D
 var altar: Node3D
 var sword: Node3D
 var label: Label3D
+var entrance_label: Label3D
 var yaw := PI
 var pitch := 0.20
 var aim_finger := -1
 var dragging := false
 var return_position := Vector3.ZERO
-var return_normal := Vector3(0.0, 0.0, -1.0)
 var outdoor_states: Array = []
 var population_was_processing := true
 var _entry_lock := 0.0
@@ -44,6 +46,26 @@ func build(owner_main) -> void:
 	main.world_root.add_child(model)
 	main.town_occlusion.register_building(model)
 	main.town_layout._add_building_collision(model, "ShinobiTemple")
+
+	# A compact timber gate at the foot of the existing front stair makes the
+	# single valid entrance legible in both the orthographic town view and on a
+	# phone screen.  It is a marker, not another opaque wall.
+	var gate := Node3D.new()
+	gate.name = "TempleFrontGate"
+	main.world_root.add_child(gate)
+	for x in [-1.75, 1.75]:
+		_box(gate, Vector3(0.28, 2.55, 0.28), DOOR + Vector3(x, 1.275, 0.0), Color("4a2924"), true)
+	_box(gate, Vector3(4.15, 0.30, 0.34), DOOR + Vector3(0.0, 2.52, 0.0), Color("68352d"))
+	_box(gate, Vector3(3.55, 0.16, 0.42), DOOR + Vector3(0.0, 2.83, 0.0), Color("2f2522"))
+	entrance_label = Label3D.new()
+	entrance_label.name = "TempleEntranceMarker"
+	entrance_label.text = "寺庙正门 · E 进入"
+	entrance_label.position = DOOR + Vector3(0.0, 3.25, 0.0)
+	entrance_label.font_size = 30
+	entrance_label.outline_size = 8
+	entrance_label.modulate = Color("f2dfaa")
+	entrance_label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	gate.add_child(entrance_label)
 
 	# A quiet central offering platform makes the first real weapon feel earned.
 	# The odachi rests horizontally on a dark timber stand, lit by two warm lamps.
@@ -114,6 +136,7 @@ func refresh() -> void:
 		return
 	sword.visible = not GameState.odachi_taken
 	label.visible = active
+	entrance_label.visible = not active
 	label.text = "奉纳台 · 大太刀 E 拾取" if not GameState.odachi_taken else "奉纳台 · 空刀架"
 
 
@@ -130,11 +153,8 @@ func _process(delta: float) -> void:
 		if absf(local.x) > EXIT_HALF.x or absf(local.y) > EXIT_HALF.y:
 			leave()
 		return
-	if _entry_lock > 0.0 or not _can_enter():
-		return
-	var approach := _flat_local(main.hotaru.global_position)
-	if absf(approach.x) <= ENTER_HALF.x and absf(approach.y) <= ENTER_HALF.y:
-		enter(approach)
+	# Entry is interaction-only.  Merely walking around the open sides must not
+	# toggle perspective back and forth.
 
 
 func _can_enter() -> bool:
@@ -154,29 +174,25 @@ func _flat_local(point: Vector3) -> Vector2:
 	return Vector2(point.x - SITE.x, point.z - SITE.z)
 
 
-func _entry_side(approach: Vector2) -> Vector3:
-	if approach.length_squared() < 0.001:
-		return Vector3(0.0, 0.0, -1.0)
-	if absf(approach.x) / ENTER_HALF.x > absf(approach.y) / ENTER_HALF.y:
-		return Vector3(signf(approach.x), 0.0, 0.0)
-	return Vector3(0.0, 0.0, signf(approach.y))
+func near_entrance() -> bool:
+	if active or _entry_lock > 0.0 or not _can_enter():
+		return false
+	var delta := Vector2(main.hotaru.global_position.x - DOOR.x, main.hotaru.global_position.z - DOOR.z)
+	return delta.length() <= FRONT_DOOR_RANGE
 
 
-func enter(approach: Vector2 = Vector2(0.0, -ENTER_HALF.y)) -> void:
-	if active or not _can_enter():
+func near_exit() -> bool:
+	if not active:
+		return false
+	var local := _flat_local(main.hotaru.global_position)
+	return absf(local.x) <= FRONT_EXIT_RANGE and local.y <= -5.15
+
+
+func enter() -> void:
+	if not near_entrance():
 		return
 	active = true
 	return_position = main.hotaru.global_position
-	return_normal = _entry_side(approach)
-	var inward := -return_normal
-	var entry := Vector2(
-		clampf(approach.x, -5.8, 5.8),
-		clampf(approach.y, -5.5, 5.5)
-	)
-	if not is_zero_approx(return_normal.x):
-		entry.x = return_normal.x * ENTRY_INSET.x
-	else:
-		entry.y = return_normal.z * ENTRY_INSET.y
 
 	main.mobile_joystick.reset()
 	# The raised wooden veranda is intentionally pedestrian-only. The trolley
@@ -185,8 +201,8 @@ func enter(approach: Vector2 = Vector2(0.0, -ENTER_HALF.y)) -> void:
 		main.trolley.release()
 	main.hotaru.velocity = Vector3.ZERO
 	main.hotaru.set_ground_height(TEMPLE_GROUND_Y)
-	main.hotaru.global_position = SITE + Vector3(entry.x, TEMPLE_GROUND_Y - SITE.y, entry.y)
-	main.hotaru.rotation.y = atan2(inward.x, inward.z)
+	main.hotaru.global_position = SITE + FRONT_ENTRY_LOCAL
+	main.hotaru.rotation.y = 0.0
 	yaw = main.hotaru.rotation.y
 	pitch = 0.20
 	dragging = false
@@ -194,7 +210,7 @@ func enter(approach: Vector2 = Vector2(0.0, -ENTER_HALF.y)) -> void:
 	_pause_outdoor_zombies()
 	refresh()
 	update_camera(0.0)
-	main.rest_notice("寺庙是安全区域。大太刀供奉在正殿中央，四周皆可离开。")
+	main.rest_notice("寺庙是安全区域。大太刀供奉在正殿中央，从正门交互离开。")
 
 
 func leave(silent: bool = false) -> void:
@@ -206,7 +222,7 @@ func leave(silent: bool = false) -> void:
 	for mesh in main.hotaru._body_meshes:
 		mesh.transparency = 0.0
 	main.hotaru.set_ground_height(OUTDOOR_GROUND_Y)
-	main.hotaru.global_position = return_position + return_normal * 0.75
+	main.hotaru.global_position = return_position + Vector3(0.0, 0.0, -0.70)
 	main.hotaru.velocity = Vector3.ZERO
 	_restore_outdoor_zombies()
 	refresh()
@@ -263,6 +279,9 @@ func nearby() -> bool:
 
 
 func interact() -> void:
+	if near_exit():
+		leave()
+		return
 	if not nearby():
 		return
 	if not GameState.try_add_items({"odachi": 1}):
@@ -278,11 +297,11 @@ func update_hud() -> void:
 	main.vehicle_button.hide()
 	main.upgrade_button.hide()
 	main.attack_button.visible = main.controls_enabled and not main.hotaru.dead
-	main.interact_button.visible = nearby()
-	main.interact_button.text = "拾取大太刀"
+	main.interact_button.visible = near_exit() or nearby()
+	main.interact_button.text = "离开寺庙" if near_exit() else "拾取大太刀"
 	main.speed_label.text = "寺内"
 	main.objective_label.text = "寺庙 · 安全区域 · 寻找正殿供奉的大太刀" if not GameState.odachi_taken else "寺庙 · 安全区域"
-	main.hint_label.text = "供奉台：E / 交互拾取大太刀" if nearby() else "第三人称探索 · 右键/右侧拖动视角 · 走向任意边缘离开"
+	main.hint_label.text = "正门：E / 交互离开寺庙" if near_exit() else ("供奉台：E / 交互拾取大太刀" if nearby() else "第三人称探索 · 右键/右侧拖动视角 · 从正门离开")
 
 
 func update_camera(_delta: float) -> void:

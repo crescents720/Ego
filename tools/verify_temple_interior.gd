@@ -42,22 +42,23 @@ func run() -> void:
 	check(temple.altar.get_parent() == main.world_root, "Odachi altar is not inside town temple")
 	check(temple.RACK.z > temple.SITE.z, "Odachi is not displayed inside the central hall")
 
-	# Every open side should enter the same safe exploration footprint.
-	var approaches: Array[Vector2] = [
-		Vector2(0.0, -temple.ENTER_HALF.y + 0.1),
-		Vector2(0.0, temple.ENTER_HALF.y - 0.1),
-		Vector2(-temple.ENTER_HALF.x + 0.1, 0.0),
-		Vector2(temple.ENTER_HALF.x - 0.1, 0.0),
-	]
-	for approach in approaches:
+	# The open sides and rear are scenery only: proximity must never switch camera.
+	for approach in [Vector2(-8.0, 0.0), Vector2(8.0, 0.0), Vector2(0.0, 7.0)]:
 		temple._entry_lock = 0.0
 		main.hotaru.set_ground_height(temple.OUTDOOR_GROUND_Y)
 		main.hotaru.global_position = temple.SITE + Vector3(approach.x, temple.OUTDOOR_GROUND_Y - temple.SITE.y, approach.y)
 		temple._process(0.01)
-		check(temple.active, "Temple did not accept entry from side %s" % approach)
-		check(is_equal_approx(main.hotaru.global_position.y, temple.TEMPLE_GROUND_Y), "Temple did not raise Hotaru to veranda floor")
-		check(absf(temple._flat_local(main.hotaru.global_position).x) <= temple.EXIT_HALF.x and absf(temple._flat_local(main.hotaru.global_position).y) <= temple.EXIT_HALF.y, "Temple entry landed outside exploration bounds")
-		temple.leave(true)
+		check(not temple.active and not temple.near_entrance(), "Temple side/rear approach incorrectly activated close camera: %s" % approach)
+
+	# Even at the front gate entry is explicit, matching the factory interaction.
+	temple._entry_lock = 0.0
+	main.hotaru.global_position = temple.DOOR
+	temple._process(0.01)
+	check(not temple.active and temple.near_entrance(), "Temple front gate was not focused")
+	main._interact()
+	check(temple.active, "Temple front-gate interaction did not enter")
+	check(is_equal_approx(main.hotaru.global_position.y, temple.TEMPLE_GROUND_Y), "Temple did not raise Hotaru to veranda floor")
+	temple.leave(true)
 
 	# An outdoor zombie already near the temple must disappear and stop completely.
 	var zombie = main.ZombieController.new()
@@ -69,8 +70,8 @@ func run() -> void:
 	await physics_frame
 	temple._entry_lock = 0.0
 	main.hotaru.set_ground_height(temple.OUTDOOR_GROUND_Y)
-	main.hotaru.global_position = temple.SITE + Vector3(0.0, temple.OUTDOOR_GROUND_Y - temple.SITE.y, -temple.ENTER_HALF.y + 0.1)
-	temple._process(0.01)
+	main.hotaru.global_position = temple.DOOR
+	temple.enter()
 	check(temple.active, "Temple safe exploration did not activate")
 	check(not zombie.visible and not zombie.is_physics_processing() and not zombie.is_in_group("zombies"), "Zombie remained targetable inside temple safe area")
 	check(not main.zombie_population.is_processing(), "Town population can spawn zombies while temple is active")
@@ -98,10 +99,11 @@ func run() -> void:
 	temple.update_camera(0.0)
 	await shot()
 
-	# Walking to any footprint edge restores the same outdoor side and enemies.
-	main.hotaru.global_position = temple.SITE + Vector3(temple.EXIT_HALF.x + 0.2, temple.TEMPLE_GROUND_Y - temple.SITE.y, 0.0)
-	temple._process(0.01)
-	check(not temple.active, "Temple did not leave at open footprint edge")
+	# The marked front doorway is the normal exit and restores the outdoor state.
+	main.hotaru.global_position = temple.SITE + Vector3(0.0, temple.TEMPLE_GROUND_Y - temple.SITE.y, -5.55)
+	check(temple.near_exit(), "Temple front exit was not focused")
+	main._interact()
+	check(not temple.active, "Temple front-gate interaction did not leave")
 	check(is_equal_approx(main.hotaru.global_position.y, temple.OUTDOOR_GROUND_Y), "Temple exit did not restore town floor")
 	check(zombie.visible and zombie.is_physics_processing() and zombie.is_in_group("zombies"), "Outdoor zombie state was not restored on exit")
 	check(main.zombie_population.is_processing(), "Town population stayed paused after temple exit")

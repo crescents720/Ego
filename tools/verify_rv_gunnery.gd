@@ -35,6 +35,9 @@ func run() -> void:
  m._interact()
  check(g.active and m.inside_rv and m.rv.occupied and s.m60_window=="right","Window interaction did not mount gun")
  check(g.gun.is_visible_in_tree(),"Active firing proxy gun is hidden")
+ check(g.visible_weapon_mesh_count(g.gun)==15,"M60 source display/tripod variant still overlaps gameplay gun")
+ for mesh in g.gun.find_children("*","MeshInstance3D",true,false):
+  if mesh.get_meta("m60_removed_display_variant",false):check(not mesh.visible,"Removed M60 display variant became visible")
  for mounted_side in [-1,1]:
   check(not g.mounted[mounted_side].is_visible_in_tree() and not g.exterior_mounted[mounted_side].is_visible_in_tree(),"Mounted M60 has overlapping cabin/exterior duplicate in firing view")
  for angle in [-.7,0.0,.7]:

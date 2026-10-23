@@ -985,6 +985,7 @@ func _interact() -> void:
 			hint_label.text = "靠近带青色轮廓的家具后再交互"
 		return
 	if factory.nearby():factory.enter();return
+	if is_instance_valid(temple) and temple.near_entrance():temple.enter();return
 	if weapon_shop.nearby():weapon_shop.enter();return
 	if _is_near_store_door():_enter_store();return
 	if rv.is_near_side_door(hotaru.global_position):
@@ -1389,8 +1390,9 @@ func _update_hud() -> void:
 		hint_label.text=""
 		return
 	var near_store: bool = not inside_rv and not inside_store and _is_near_store_door()
-	interact_button.visible = not in_vehicle and (inside_rv or near_store or factory.nearby() or phase == Phase.SCAVENGE or can_enter_interior)
-	interact_button.text = "进入工厂" if factory.nearby() else ("进店 E" if near_store else "交互 E")
+	var near_temple: bool = is_instance_valid(temple) and temple.near_entrance()
+	interact_button.visible = not in_vehicle and (inside_rv or near_store or near_temple or factory.nearby() or phase == Phase.SCAVENGE or can_enter_interior)
+	interact_button.text = "进入工厂" if factory.nearby() else ("进入寺庙" if near_temple else ("进店 E" if near_store else "交互 E"))
 	vehicle_button.visible = not service.active and ((inside_rv and seated_at_driver) or (not inside_rv and phase not in [Phase.TITLE, Phase.COMPLETE, Phase.GAME_OVER, Phase.UPGRADE]))
 	vehicle_button.text = "开始驾驶" if inside_rv and seated_at_driver else ("停车/起身" if in_vehicle else "侧门上车")
 	upgrade_button.visible = not inside_rv and phase == Phase.UPGRADE
@@ -1435,6 +1437,8 @@ func _update_hud() -> void:
 		hint_label.text = "摇杆上推前进、下拉倒车，斜推边开边转弯" if OS.has_feature("android") else "WASD/方向键驾驶 · Space 停车回车内，再到右侧门下车"
 	elif near_store:
 		hint_label.text = "便利店正门：按 E / 进店进入，返回入口可离开"
+	elif near_temple:
+		hint_label.text = "寺庙正门：按 E / 交互进入安全区域；从侧面靠近不会切换镜头"
 	elif near_rv:
 		interact_button.text = "上车 E"
 		hint_label.text = "房车右侧车门：E / Space 进入车内"
@@ -1449,6 +1453,10 @@ func _update_hud() -> void:
 		interact_button.show()
 		interact_button.text="进入工厂"
 		hint_label.text="工厂正门：交互进入；右侧上车按钮进入房车"
+	elif near_temple:
+		interact_button.show()
+		interact_button.text="进入寺庙"
+		hint_label.text="寺庙正门：交互进入"
 	elif is_instance_valid(weapon_shop) and weapon_shop.nearby():
 		interact_button.show()
 		interact_button.text="进入武器店"

@@ -23,8 +23,12 @@ func run() -> void:
  s.cargo={"m60":1,"m60_ammo":500}
  m._interior_camera_focus_override=m.RV_INTERIOR_ORIGIN+Vector3(0,.9,.3)
  m._interior_camera_distance=7
+ s.m60_window="right"
+ m.shooting._refresh_mounted_models()
  m._update_camera(100)
  await shot("gunnery_interior_right")
+ s.m60_window="left"
+ m.shooting._refresh_mounted_models()
  m._interior_camera_yaw=-.8
  m._update_camera(100)
  await shot("gunnery_interior_left")
