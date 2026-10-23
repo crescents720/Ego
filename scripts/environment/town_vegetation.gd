@@ -68,7 +68,7 @@ void fragment(){vec4 c=texture(albedo_tex,UV)*tint;ALBEDO=c.rgb;ROUGHNESS=0.95;A
  _flush()
 
 func clear(p: Vector2,radius: float) -> bool:
- if not Rect2(-164,-164,470,565).has_point(p):return false
+ if not Rect2(-164,-222,470,623).has_point(p):return false
  if Geometry2D.is_point_in_polygon(p,PackedVector2Array(town.LAKE)):return false
  for i in range(town.LAKE.size()):
   if p.distance_to(Geometry2D.get_closest_point_to_segment(p,town.LAKE[i],town.LAKE[(i+1)%town.LAKE.size()]))<radius:return false

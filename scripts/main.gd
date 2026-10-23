@@ -52,6 +52,7 @@ var mobile_driving
 var fabrication
 var factory
 var temple
+var harbor
 var inside_store: bool = false
 var store_interior
 var _store_return_position := Vector3.ZERO
@@ -168,6 +169,9 @@ func _ready() -> void:
 	temple=load("res://scripts/environment/temple.gd").new()
 	add_child(temple)
 	temple.build(self)
+	harbor=load("res://scripts/environment/harbor.gd").new()
+	add_child(harbor)
+	harbor.build(self)
 	fabrication=load("res://scripts/ui/vehicle_fabrication.gd").new()
 	add_child(fabrication)
 	fabrication.build(self)
@@ -220,7 +224,7 @@ func _process(delta: float) -> void:
 	GameState.vehicle_yaw=rv.rotation.y
 	rv.occupied=(inside_rv or in_vehicle) and phase!=Phase.GAME_OVER and not rv.wrecked
 	_update_camera(delta)
-	town_occlusion.update(camera, rv if in_vehicle or (is_instance_valid(shooting) and shooting.active) else hotaru, (not inside_rv or (is_instance_valid(shooting) and shooting.active)) and not inside_store and not factory.active and not temple.active)
+	town_occlusion.update(camera, harbor.crane if is_instance_valid(harbor) and harbor.active else (rv if in_vehicle or (is_instance_valid(shooting) and shooting.active) else hotaru), (not inside_rv or (is_instance_valid(shooting) and shooting.active)) and not inside_store and not factory.active and not temple.active and not (is_instance_valid(harbor) and harbor.active))
 	_update_phase_checks()
 	_update_hud()
 	if is_instance_valid(fabrication):fabrication.apply_hud()
@@ -398,10 +402,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if not controls_enabled or dialog_panel.visible:
 		return
+	if is_instance_valid(harbor) and harbor.active:
+		harbor.handle_input(event)
+		return
 	if is_instance_valid(shooting) and shooting.active:return
 	if inside_rv and _handle_interior_camera_input(event):
 		return
-	if not factory.active and not temple.active and is_instance_valid(outdoor_zoom) and outdoor_zoom.handle_world_input(event):
+	if not factory.active and not temple.active and not (is_instance_valid(harbor) and harbor.active) and is_instance_valid(outdoor_zoom) and outdoor_zoom.handle_world_input(event):
 		get_viewport().set_input_as_handled()
 		return
 	if event.is_action_pressed("toggle_vehicle"):
@@ -820,6 +827,7 @@ func _start_new_game() -> void:
 	rv.visible = true
 	rv.set_active(false)
 	in_vehicle = false
+	if is_instance_valid(harbor):harbor.reset()
 	_set_phase(Phase.LEAVE_HOME)
 
 
@@ -871,6 +879,7 @@ func _load_completed_save(path: String=GameState.SAVE_PATH) -> void:
 		hotaru.health_changed.emit(hotaru.health,hotaru.max_health)
 		_set_phase({0:Phase.LEAVE_HOME,1:Phase.DRIVE_TO_STORE,2:Phase.SCAVENGE,3:Phase.RETURN_TO_RV,4:Phase.EXPLORE}.get(GameState.tutorial_step,Phase.EXPLORE))
 		zombie_population.reset(Vector2(rv.global_position.x,rv.global_position.z))
+	if is_instance_valid(harbor):harbor.reset()
 
 
 func _set_phase(value: Phase) -> void:
@@ -902,7 +911,7 @@ func _set_phase(value: Phase) -> void:
 
 
 func _update_phase_checks() -> void:
-	if not controls_enabled or inside_rv or inside_store or (is_instance_valid(temple) and temple.active):
+	if not controls_enabled or inside_rv or inside_store or (is_instance_valid(temple) and temple.active) or (is_instance_valid(harbor) and harbor.active):
 		return
 	if phase == Phase.CLEAR_ZOMBIES and _alive_zombie_count() == 0:
 		_set_phase(Phase.SCAVENGE)
@@ -915,6 +924,7 @@ func _update_phase_checks() -> void:
 func _toggle_vehicle() -> void:
 	if is_instance_valid(factory) and (factory.active or factory.transitioning):return
 	if is_instance_valid(temple) and temple.active:return
+	if is_instance_valid(harbor) and harbor.active:return
 	if rv.wrecked:return
 	if inside_store or not controls_enabled or phase in [Phase.TITLE, Phase.GAME_OVER, Phase.COMPLETE]:
 		return
@@ -945,6 +955,8 @@ func _interact() -> void:
 		return
 	if is_instance_valid(temple) and temple.active:
 		if controls_enabled:temple.interact()
+		return
+	if is_instance_valid(harbor) and harbor.active:
 		return
 	if not controls_enabled or in_vehicle:
 		return
@@ -986,6 +998,7 @@ func _interact() -> void:
 		return
 	if factory.nearby():factory.enter();return
 	if is_instance_valid(temple) and temple.near_entrance():temple.enter();return
+	if is_instance_valid(harbor) and harbor.nearby():harbor.enter();return
 	if weapon_shop.nearby():weapon_shop.enter();return
 	if _is_near_store_door():_enter_store();return
 	if rv.is_near_side_door(hotaru.global_position):
@@ -1362,6 +1375,9 @@ func _update_hud() -> void:
 	if is_instance_valid(temple) and temple.active:
 		temple.update_hud()
 		return
+	if is_instance_valid(harbor) and harbor.active:
+		harbor.update_hud()
+		return
 	if is_instance_valid(shooting) and shooting.active:
 		shooting.update_hud()
 		return
@@ -1391,8 +1407,9 @@ func _update_hud() -> void:
 		return
 	var near_store: bool = not inside_rv and not inside_store and _is_near_store_door()
 	var near_temple: bool = is_instance_valid(temple) and temple.near_entrance()
-	interact_button.visible = not in_vehicle and (inside_rv or near_store or near_temple or factory.nearby() or phase == Phase.SCAVENGE or can_enter_interior)
-	interact_button.text = "进入工厂" if factory.nearby() else ("进入寺庙" if near_temple else ("进店 E" if near_store else "交互 E"))
+	var near_harbor: bool = is_instance_valid(harbor) and harbor.nearby()
+	interact_button.visible = not in_vehicle and (inside_rv or near_store or near_temple or near_harbor or factory.nearby() or phase == Phase.SCAVENGE or can_enter_interior)
+	interact_button.text = "进入工厂" if factory.nearby() else ("进入寺庙" if near_temple else ("驾驶吊车" if near_harbor else ("进店 E" if near_store else "交互 E")))
 	vehicle_button.visible = not service.active and ((inside_rv and seated_at_driver) or (not inside_rv and phase not in [Phase.TITLE, Phase.COMPLETE, Phase.GAME_OVER, Phase.UPGRADE]))
 	vehicle_button.text = "开始驾驶" if inside_rv and seated_at_driver else ("停车/起身" if in_vehicle else "侧门上车")
 	upgrade_button.visible = not inside_rv and phase == Phase.UPGRADE
@@ -1439,6 +1456,9 @@ func _update_hud() -> void:
 		hint_label.text = "便利店正门：按 E / 进店进入，返回入口可离开"
 	elif near_temple:
 		hint_label.text = "寺庙正门：按 E / 交互进入安全区域；从侧面靠近不会切换镜头"
+	elif near_harbor:
+		interact_button.text = "驾驶吊车"
+		hint_label.text = "港口吊车驾驶室：按 E / 交互启动吊装作业"
 	elif near_rv:
 		interact_button.text = "上车 E"
 		hint_label.text = "房车右侧车门：E / Space 进入车内"
@@ -1457,6 +1477,10 @@ func _update_hud() -> void:
 		interact_button.show()
 		interact_button.text="进入寺庙"
 		hint_label.text="寺庙正门：交互进入"
+	elif near_harbor:
+		interact_button.show()
+		interact_button.text="驾驶吊车"
+		hint_label.text="港口吊车：交互进入驾驶室"
 	elif is_instance_valid(weapon_shop) and weapon_shop.nearby():
 		interact_button.show()
 		interact_button.text="进入武器店"
@@ -1488,6 +1512,9 @@ func _update_camera(delta: float) -> void:
 		return
 	if is_instance_valid(temple) and temple.active:
 		temple.update_camera(delta)
+		return
+	if is_instance_valid(harbor) and harbor.active:
+		harbor.update_camera(delta)
 		return
 	if inside_store:
 		_set_town_projection()
@@ -1636,6 +1663,7 @@ func can_save_safely() -> bool:
 	if is_instance_valid(fabrication) and fabrication.active:return false
 	if is_instance_valid(factory) and (factory.active or factory.transitioning):return false
 	if is_instance_valid(temple) and temple.active:return false
+	if is_instance_valid(harbor) and harbor.active:return false
 	if is_instance_valid(shooting) and shooting.active:return false
 	if is_instance_valid(trolley) and trolley.loading:return false
 	if is_instance_valid(weapon_shop) and weapon_shop.active:return false

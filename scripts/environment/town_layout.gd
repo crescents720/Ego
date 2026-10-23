@@ -1,7 +1,7 @@
 extends Node3D
 
 # +Z is map north. Existing home/store coordinates remain the starter street.
-const DRIVE_BOUNDS := Rect2(-165, -165, 480, 580)
+const DRIVE_BOUNDS := Rect2(-165, -223, 480, 638)
 const MODELS := ["Filler_Housing", "group84", "LM_Laundrette", "LM_PawnShop1", "LM_Liquor"]
 const ROOT := "res://assets/third_party/ccity/"
 const SITES := [
@@ -15,6 +15,7 @@ const SITES := [
 	{"name":"垂钓码头", "rect":Rect2(170,60,22,24)},
 	{"name":"湖畔营地", "rect":Rect2(174,-58,45,40)},
 	{"name":"汽车修理厂", "rect":Rect2(88,-148,35,30)},
+	{"name":"集装箱码头", "rect":Rect2(-155,-225,310,58)},
 	{"name":"寺庙", "rect":Rect2(-112,320,36,45)},
 ]
 const LAKE := [Vector2(207,-2),Vector2(195,42),Vector2(202,90),Vector2(185,132),Vector2(194,183),Vector2(211,222),Vector2(216,272),Vector2(262,305),Vector2(307,267),Vector2(312,190),Vector2(302,110),Vector2(310,42),Vector2(277,-12),Vector2(235,-27)]
@@ -29,7 +30,7 @@ var _building_shapes: Dictionary = {}
 func build(owner_main: Node3D) -> void:
 	main=owner_main
 	name="TownFramework"
-	var ground:=_box("TownGround",Vector3(500,0.22,600),Vector3(70,-0.16,120),"52614b",true)
+	var ground:=_box("TownGround",Vector3(500,0.22,650),Vector3(70,-0.16,95),"52614b",true)
 	var grass_shader:=Shader.new()
 	grass_shader.code="""shader_type spatial;
 varying vec3 world;
@@ -45,7 +46,8 @@ void fragment(){vec2 p=world.xz;float wide=hash(floor(p*0.25));float fine=hash(f
 	for z in [-100.0,0.0,100.0,200.0,300.0]:
 		_road(Vector2(-120,z),Vector2(150,z),10.0)
 	_road(Vector2(-60,-100),Vector2(-60,200),7.0)
-	_road(Vector2(0,-160),Vector2(0,-100),10.0)
+	_road(Vector2(0,-216),Vector2(0,-100),10.0)
+	_road(Vector2(-145,-180),Vector2(145,-180),12.0)
 	_road(Vector2(0,300),Vector2(0,390),10.0)
 	# Dry access lanes to reserved shore sites; stop before the water.
 	for z in [-45.0,72.0,302.0]:
@@ -55,17 +57,17 @@ void fragment(){vec2 p=world.xz;float wide=hash(floor(p*0.25));float fine=hash(f
 	_road(Vector2(-94,300),Vector2(-94,328),7.0)
 	_lake()
 	for site in SITES:
-		if site.name not in ["汽车修理厂","加油站","武器店","工厂","寺庙"]:_reserved_site(site)
+		if site.name not in ["汽车修理厂","加油站","武器店","工厂","寺庙","集装箱码头"]:_reserved_site(site)
 	_populate()
 	_trees()
 	for x in [-177.0,317.0]:
-		_box("MapEdge",Vector3(1,8,600),Vector3(x,3,120),"52614b",true).visible=false
-	for z in [-177.0,417.0]:
+		_box("MapEdge",Vector3(1,8,650),Vector3(x,3,95),"52614b",true).visible=false
+	for z in [-228.0,417.0]:
 		_box("MapEdge",Vector3(500,8,1),Vector3(70,3,z),"52614b",true).visible=false
 	main._add_label("北向公路 · 后续区域",Vector3(0,3,368),Color("fff0b1"),30)
 	# End of the currently built roads, rather than barriers on the starter street.
 	_box("NorthRoadEnd",Vector3(12,0.8,0.7),Vector3(0,0.4,390),"b89b62",true)
-	_box("SouthRoadEnd",Vector3(12,0.8,0.7),Vector3(0,0.4,-160),"b89b62",true)
+	_box("SouthRoadEnd",Vector3(12,0.8,0.7),Vector3(0,0.4,-223),"b89b62",true)
 
 func _material(hex: String) -> StandardMaterial3D:
 	if not _materials.has(hex):

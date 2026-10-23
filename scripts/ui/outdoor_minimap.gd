@@ -94,11 +94,11 @@ func sync_state() -> void:
 	if not is_instance_valid(main):return
 	visible=not (is_instance_valid(main.factory) and main.factory.active) and not main.inside_rv and not main.inside_store and main.phase not in [main.Phase.TITLE,main.Phase.GAME_OVER] and not main.dialog_panel.visible
 	if is_instance_valid(main.opening) and main.opening.is_cinematic():visible=false
-	var target: Node3D=main.rv if main.in_vehicle else main.hotaru
+	var target: Node3D=main.harbor.crane if is_instance_valid(main.harbor) and main.harbor.active else (main.rv if main.in_vehicle else main.hotaru)
 	center_world=Vector2(target.global_position.x,target.global_position.z)
 	var forward: Vector3=-target.global_transform.basis.z if main.in_vehicle else target.global_transform.basis.z
 	heading=map_direction(Vector2(forward.x,forward.z)).normalized()
-	title_label.text="小镇 · "+("驾驶" if main.in_vehicle else "步行")
+	title_label.text="小镇 · "+("吊装" if is_instance_valid(main.harbor) and main.harbor.active else ("驾驶" if main.in_vehicle else "步行"))
 
 func map_point(world: Vector2) -> Vector2:
 	var offset:=world-center_world
@@ -139,7 +139,7 @@ func draw_map(canvas: Control) -> void:
 		canvas.draw_line(map_point(road.a),map_point(road.b),Color("b5b9a7"),maxf(1.6,road.width*scale_value),true)
 	canvas.draw_colored_polygon(_map_polygon(Rect2(-14.3,-47.6,6.6,9.2)),Color("d3b783"))
 	canvas.draw_colored_polygon(_map_polygon(Rect2(7.9,46.9,7.4,8.1)),Color("91c4ba"))
-	var names: Array[String]=["五金","工厂","医院","警局","武器","油站","取水","钓点","营地","修车","寺庙"]
+	var names: Array[String]=["五金","工厂","医院","警局","武器","油站","取水","钓点","营地","修车","港口","寺庙"]
 	for i in range(main.TownLayout.SITES.size()):
 		_poi(canvas,main.TownLayout.SITES[i].rect.get_center(),names[i],Color("b5c6b0"),false)
 	_poi(canvas,Vector2(-11,-43),"家",Color("f1ce8a"))

@@ -13,6 +13,11 @@ func run() -> void:
 	root.get_node("GameState").suppress_save=true
 	main._start_new_game()
 	main.hotaru.set_active(false)
+	# Asset-heavy scenes can give the population controller enough startup time
+	# to place a zombie on the test route; this test is strictly about roads.
+	main.zombie_population.set_process(false)
+	for zombie in get_nodes_in_group("zombies"):zombie.queue_free()
+	await physics_frame
 	if not check(main.town_layout.lots.size()>=50,"too few ordinary buildings"):return
 	for lot in main.town_layout.lots:
 		if not check(lot.bounds.size.y<8,"building exceeds low-rise selection"):return

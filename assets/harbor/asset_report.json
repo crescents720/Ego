@@ -1,0 +1,113 @@
+{
+  "crane": {
+    "source": "C:\\Users\\DingMeng\\Downloads\\Harbor_crane.usdz",
+    "scale": 0.01,
+    "origin_cm": [
+      -25.89319153265282,
+      -8.39785294022795,
+      -150.0
+    ],
+    "harbor_crane": {
+      "triangles": 66712,
+      "bytes": 5512564,
+      "bounds_min": [
+        -3.4608109944568923,
+        0.0,
+        -5.194158247814516
+      ],
+      "bounds_max": [
+        3.442093634625337,
+        28.736096301136072,
+        27.4503490833883
+      ]
+    },
+    "harbor_spreader": {
+      "triangles": 8936,
+      "bytes": 993952,
+      "bounds_min": [
+        -3.6319171227616494,
+        8.724100542058714,
+        26.483972023215035
+      ],
+      "bounds_max": [
+        3.6104485555867427,
+        11.977788729287706,
+        27.986115295865417
+      ]
+    }
+  },
+  "containers": {
+    "source": "C:\\Users\\DingMeng\\Downloads\\Container_Pack.usdz",
+    "assets": {
+      "container_20_old": {
+        "triangles": 11589,
+        "bytes": 952944,
+        "dimensions": [
+          6.06,
+          2.765714355778143,
+          2.294547838379033
+        ]
+      },
+      "container_20_blue": {
+        "triangles": 11589,
+        "bytes": 978584,
+        "dimensions": [
+          6.06,
+          2.765714355778143,
+          2.294547838379033
+        ]
+      },
+      "container_20_red": {
+        "triangles": 11589,
+        "bytes": 961820,
+        "dimensions": [
+          6.06,
+          2.765714355778143,
+          2.294547838379033
+        ]
+      },
+      "container_40_blue": {
+        "triangles": 12176,
+        "bytes": 874140,
+        "dimensions": [
+          12.19,
+          2.954403884823773,
+          2.451084791373027
+        ]
+      }
+    }
+  },
+  "terrain": {
+    "source": "C:\\Users\\DingMeng\\Downloads\\gt_racing_2_-_weinberge.usdz",
+    "textures": {
+      "water_base.jpg": {
+        "size": [
+          256,
+          256
+        ],
+        "bytes": 15574
+      },
+      "water_normal.jpg": {
+        "size": [
+          128,
+          128
+        ],
+        "bytes": 6613
+      },
+      "shore_dirt.jpg": {
+        "size": [
+          256,
+          256
+        ],
+        "bytes": 8072
+      },
+      "shore_rock.jpg": {
+        "size": [
+          512,
+          512
+        ],
+        "bytes": 95525
+      }
+    }
+  }
+}

@@ -28,6 +28,9 @@ func _buttons() -> Array:
  if is_instance_valid(main.trolley) and is_instance_valid(main.trolley.toggle_button):buttons.append(main.trolley.toggle_button);buttons.append(main.trolley.inventory_button)
  if is_instance_valid(main.test_settings):buttons.append(main.test_settings.launch)
  if is_instance_valid(main.fabrication):buttons.append(main.fabrication.install_button)
+ if is_instance_valid(main.harbor):
+  for button in [main.harbor.raise_button,main.harbor.lower_button,main.harbor.grab_button,main.harbor.exit_button]:
+   if is_instance_valid(button):buttons.append(button)
  return buttons
 
 func can_act() -> bool:
@@ -40,7 +43,7 @@ func can_act() -> bool:
  return true
 
 func can_control() -> bool:
- return can_act() and not main.in_vehicle and not main.seated_at_driver and main.hotaru.active
+ return can_act() and ((is_instance_valid(main.harbor) and main.harbor.active) or (not main.in_vehicle and not main.seated_at_driver and main.hotaru.active))
 
 func _process(_delta: float) -> void:
  visible=can_control()
@@ -91,6 +94,7 @@ func update_stick(local: Vector2) -> void:
  var direction:=stick.normalized()*strength
  main.hotaru.touch_move=Vector2(direction.x,-direction.y)
  main.rv.touch_move=main.hotaru.touch_move
+ if is_instance_valid(main.harbor):main.harbor.touch_move=main.hotaru.touch_move
  queue_redraw()
 
 func reset_stick() -> void:
@@ -99,6 +103,7 @@ func reset_stick() -> void:
  if is_instance_valid(main):
   if is_instance_valid(main.hotaru):main.hotaru.touch_move=Vector2.ZERO
   if is_instance_valid(main.rv):main.rv.touch_move=Vector2.ZERO
+  if is_instance_valid(main.harbor):main.harbor.touch_move=Vector2.ZERO
  queue_redraw()
 
 func reset() -> void:

@@ -1,0 +1,37 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://pxvtjp8b8ev3"
+path="res://.godot/imported/container_20_blue_0.png-ac7da032c674a8a769bfec39f5c96113.ctex"
+metadata={
+"vram_texture": false
+}
+generator_parameters={
+"md5": "68d88871b886e9b7dd757abed69679de"
+}
+
+[deps]
+
+source_file="res://assets/harbor/container_20_blue_0.png"
+dest_files=["res://.godot/imported/container_20_blue_0.png-ac7da032c674a8a769bfec39f5c96113.ctex"]
+
+[params]
+
+compress/mode=0
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=1
