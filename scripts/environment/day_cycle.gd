@@ -41,10 +41,10 @@ func _process(delta: float) -> void:
  var minutes:=int(fposmod(6+phase*24,24)*60)
  label.text="%s · 第 %d 天\n%02d:%02d"%["夜晚" if night else "白昼",int(GameState.world_seconds/GameState.DAY_SECONDS)+1,minutes/60,minutes%60]
  var daylight:=smoothstep(-.14,.14,sin(phase*TAU))
- var indoor: bool=main.inside_rv or main.inside_store or (is_instance_valid(main.factory) and main.factory.active)
+ var indoor: bool=main.inside_rv or main.inside_store or (is_instance_valid(main.factory) and main.factory.active) or (is_instance_valid(main.hospital) and main.hospital.active)
  for child in main.get_children():
   if child is DirectionalLight3D:
-   child.light_energy=1.05 if indoor else lerpf(.16,1.15,daylight)
+   child.light_energy=0.0 if is_instance_valid(main.hospital) and main.hospital.active else (1.05 if indoor else lerpf(.16,1.15,daylight))
    child.light_color=Color("95b1ed").lerp(Color("ffe2b5"),daylight) if not indoor else Color("ffe6c8")
    child.rotation_degrees.x=-32.0-35.0*sin(phase*PI) if not indoor else -52.0
   elif child is WorldEnvironment:

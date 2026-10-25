@@ -29,7 +29,7 @@ func _buttons() -> Array:
  if is_instance_valid(main.test_settings):buttons.append(main.test_settings.launch)
  if is_instance_valid(main.fabrication):buttons.append(main.fabrication.install_button)
  if is_instance_valid(main.harbor):
-  for button in [main.harbor.raise_button,main.harbor.lower_button,main.harbor.grab_button,main.harbor.exit_button]:
+  for button in [main.harbor.raise_button,main.harbor.lower_button,main.harbor.grab_button,main.harbor.exit_button,main.harbor.fix_button]:
    if is_instance_valid(button):buttons.append(button)
  return buttons
 
@@ -40,15 +40,21 @@ func can_act() -> bool:
  if is_instance_valid(main.opening) and main.opening.is_cinematic():return false
  if is_instance_valid(main.service) and main.service.active:return false
  if is_instance_valid(main.sleep_controller) and main.sleep_controller.sleeping:return false
+ if is_instance_valid(main.harbor) and main.harbor.cab_transitioning:return false
  return true
 
 func can_control() -> bool:
  return can_act() and ((is_instance_valid(main.harbor) and main.harbor.active) or (not main.in_vehicle and not main.seated_at_driver and main.hotaru.active))
 
 func _process(_delta: float) -> void:
+ # Desktop buttons own their held state. An inactive touch router must not
+ # clear mouse button_down every frame just because mobile is false.
+ if not mobile:
+  hide()
+  return
  visible=can_control()
  if not visible:reset_stick()
- if not can_act():action_touches.clear()
+ if not can_act():reset()
 
 func _input(event: InputEvent) -> void:
  if not mobile:return
@@ -66,6 +72,7 @@ func _input(event: InputEvent) -> void:
    elif action_touches.has(event.index):
     var button: Button=action_touches[event.index]
     action_touches.erase(event.index)
+    if is_instance_valid(button) and button.has_meta("hold_action"):button.button_up.emit()
     get_viewport().set_input_as_handled()
     if can_act() and is_instance_valid(button) and button.is_visible_in_tree() and not button.disabled and button.get_global_rect().has_point(event.position):
      button.pressed.emit()
@@ -81,8 +88,14 @@ func _input(event: InputEvent) -> void:
   for button in _buttons():
    if button.is_visible_in_tree() and not button.disabled and button.get_global_rect().has_point(event.position):
     action_touches[event.index]=button
+    if button.has_meta("hold_action"):button.button_down.emit()
     get_viewport().set_input_as_handled()
     return
+ elif event is InputEventScreenDrag and action_touches.has(event.index):
+  var button: Button=action_touches[event.index]
+  if button.has_meta("hold_action") and not button.get_global_rect().has_point(event.position):
+   button.button_up.emit()
+   action_touches.erase(event.index)
  elif event is InputEventScreenDrag and event.index==finger:
   if can_control():update_stick(get_global_transform_with_canvas().affine_inverse()*event.position)
   else:reset()
@@ -108,7 +121,12 @@ func reset_stick() -> void:
 
 func reset() -> void:
  reset_stick()
+ for button in action_touches.values():
+  if is_instance_valid(button) and button.has_meta("hold_action"):button.button_up.emit()
  action_touches.clear()
+ if is_instance_valid(main) and is_instance_valid(main.harbor):
+  main.harbor._raise_held=false
+  main.harbor._lower_held=false
 
 func _notification(what: int) -> void:
  if what in [NOTIFICATION_WM_WINDOW_FOCUS_OUT,NOTIFICATION_APPLICATION_PAUSED]:reset()

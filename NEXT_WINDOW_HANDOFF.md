@@ -1,6 +1,49 @@
 # 《末日与黎明》新窗口接手文档
 
-更新：2026-10-22。这是当前状态的入口；聊天附件与历史文档仅作背景，不要把旧需求重新全部执行一遍。
+**先读 [2026-10-23 至 10-25 最新进度与公司交接](docs/progress_2026-10-25.md)。下方为历史过程记录；旧坐标、旧镜头方案若有冲突，以最新摘要及当前代码为准。**
+
+更新：2026-10-25。这是当前状态的入口；聊天附件与历史文档仅作背景，不要把旧需求重新全部执行一遍。
+
+
+## 2026-10-25 医院园区与入口
+
+医院外新增完整院墙与东侧临街双扇院门，使用 Downloads/Fence_retaining_wall.usdz 和 Gate_01.usdz 转换的原材质模型（tools/build_hospital_campus.py）。范围 x17..58 / z229..271，院门中心 (58,.08,255)。围墙与门柱有碰撞；双扇门分别绕铰链打开，角色过门后关闭，推车同步带入/带出。
+
+`hospital.in_campus` 表示庭院第三人称状态，`hospital.active` 仍只表示建筑内部。街道交互推开院门进入庭院，保留外部世界与医院外观；医院不再参与建筑遮挡透明。主楼正门对齐原模型玻璃门 x40/z245.95；出楼回庭院，出院门恢复小镇俯视。楼内接待区补双扇出口门、门把手及 EXIT 返回庭院标识。院内右键/手机右侧拖动转镜头，小地图保持北朝上，隐藏角色头顶放大的名字。旧档人物若已位于园区内，恢复庭院镜头。园区/过门中禁止保存临时状态，回街道可存。
+
+验证：verify_hospital.gd 全部通过（HOSPITAL_VERIFY errors=0），包含临街入口、实际胶囊通行、庭院镜头、全部 29 房间可达、两层楼梯、楼内外推车驻留、推车双向过院门、恢复俯视。capture_hospital_campus.gd 实际 Vulkan 画面检查围墙院门/庭院/楼内出口。未导出 APK；未改玩家存档。
+
+
+## 2026-10-25 近景质量与可玩通行修复
+
+针对实玩截图：外观纹理上限由 1024 恢复为 4096，外部正门加 2.56 m 实体双扇门、金属框、门把手和雨棚，避免继续把远景贴图当近景门。保留原楼体尺寸与材质色调；外观 GLB 约 22.85 MB，尚未验证手机显存表现。
+
+办公室不再使用裁切残片 office_station，重建两组完整桌椅/显示器并补碰撞；接待台/护士台改为面向入口的简洁完整柜台。病房门改成入墙滑门，不再扫进床边通道；双床沿远墙布置；诊室01/202门位绕开接待台，术前观察床后移，保留16病房27床及已确认整体平面。
+
+镜头改球体扫掠、窄处肩侧回退，天花板和台阶加入仅供镜头检测的碰撞层8。取消近墙时隐藏人物；楼梯使用较短跟随距离。扶手按实际两跑高度重新连贯建模。楼梯行进中更新楼层指示但不在横跨平台时改变高度。
+
+验证 tools/verify_hospital.gd：29间房门逐个胶囊双向穿越、两层连通性、折返楼梯连续走动、楼梯多位置四方向镜头体积检测、人物保持可见、园区和推车进出，最终 errors=0。tools/capture_hospital_quality.gd 与 capture_hospital_campus.gd 用 Vulkan 检查实际画面。未改玩家存档，未导出 APK。
+
+
+## 2026-10-25 病房轻量化与连续相机
+
+实查旧 bed_a 为 65,714 三角面/26网格，31份约203.7万面，旧运行时每网格生成三角网格碰撞。医院现在改为共用7个材质网格的轻量床（240面/张），31床合计7440面，每床一个 BoxShape 碰撞；旧glb仍保留但医院不再加载。浅病房和采样室门位调整，避免简化碰撞后门口拥挤。最多4盏近处灯亮、不开动态阴影；二楼远离楼梯时隐藏一楼渲染，保留碰撞。
+
+新脚本 scripts/environment/hospital_camera.gd：持续单一环绕方向，删去每帧选择左右/背后机位。球体扫掠立即限长，遮挡解除保持0.18秒再以指数阻尼恢复；鼠标/触屏手动转动优先，1.6秒无手动输入且持续移动0.35秒后缓慢向移动朝向回正，静止不回正。重用查询形状避免每帧分配；抬高观察枢轴，角色近镜头材质距离渐隐，出院恢复材质。借鉴公开Godot spring arm和Unity Cinemachine阻尼/回正原则，非声称复刻原神内部代码。
+
+参考：https://docs.godotengine.org/en/stable/tutorials/3d/spring_arm.html 、https://docs.unity.cn/Packages/com.unity.cinemachine@6.6/manual/CinemachineDeoccluder.html 、https://docs.unity.cn/Packages/com.unity.cinemachine@2.1/manual/index.html 。
+
+验证：verify_hospital.gd 加入211双侧通道、180帧微扰角落不换侧/不跳变、手动等待/移动回正/静止保持、每床面数和碰撞预算；完整验证 errors=0。Vulkan本机211独立测试场景120帧：中位16.645ms，P95 17.574ms，212 draw calls / 23496 primitives。该捕获脚本停用主控制器循环，数据仅代表此测试场景，不能当完整游戏或安卓性能承诺。日志 artifacts/verify_hospital_light.log、capture_hospital_light.log；未导出APK，未动玩家存档。
+
+
+## 2026-10-25 手术室旧外壳清理
+
+用户截图的黄色墙、绿色锯齿地面来自 tools/build_hospital_furniture.py 对 operating 的特殊保留分支：它保留了源场景墙地面，导致与统一房间地面重叠。改为按空间边界和水平面过滤源建筑外壳，保留内部医疗设备；重新导出 operating_furniture.glb。医院运行时房间墙裙/地砖为唯一房间外壳，不对设备做全白覆盖。清理后231511三角面，仍为源扫描设备（本轮没有声称全部设备已轻量化）。Vulkan实际画面 artifacts/hospital_operating.png 已检查无黄色墙和绿色交叠闪面；验证见 artifacts/verify_operating_cleanup.log。未打APK。
+
+
+## 2026-10-25 太平间柜体修复
+
+原通用 architectural_plane / 高度裁切把 Locker_2048_LockerWall 的柜体侧背板当房间墙删除，且按 floor 名称过滤误删 AutopsyTable_Walls_Floor_AutopsyTable 的完整台体，造成纸片柜和悬空附件。morgue 改按明确物件名保留完整 Locker_2048 柜体/柜门、Surgical_Trolley、Cabinet、Sink、AutopsyTable/1、Surgical_Lamp；不再对家具做逐面建筑裁切或简化。排除原墙地板、尸体、散落托盘及零碎附件。完整柜深原尺寸1.9m，场景水平0.85缩放后约1.62m；模型旋转PI令柜门面向室内、背靠南墙，替换旧0.64压窄比例。资产8292面/1.6MB。实际Vulkan图 artifacts/hospital_morgue.png 已检查柜格内部厚度和完整灯具/台腿；verify_morgue_rebuild.log errors=0。未导出APK。
 
 ## 如何继续
 
@@ -13,7 +56,19 @@ Python：`C:/Users/ding5/AppData/Local/Python/pythoncore-3.14-64/python.exe`。�
 
 优先阅读本文件及 `docs/rest_save_repair.md`、`docs/day_cargo_revision.md`。README 中较早的过程记录有过时数值，以本文件和最新实现为准。`docs/home_handoff.md` 是之前搬家时的旧交接。
 
-## 2026-10-22 大太刀四连击实装（当前）
+## 2026-10-24 上下层内饰修正（当前）
+
+见 docs/container_harbor.md 最后一节。梯子回到最左窗边，交互仅左区 x<-.15/距锚点.95m，不再抢主驾。二层改为与一层共用旋转缩放的俯视剖切镜头；镜头保持角度垂直升降2.8m，两层0.65秒渐隐，切换时锁移动与交互。二层按外部缩小房车/内部可玩内饰的轴向比例放大为约8.79×2.64，原点由(4000,0,0)改为(1000,2.8,-1.027)，检修口与左窗梯对齐。顶板和近墙视觉剖切、保留碰撞。旧固定箱存档自动用新版空间，无新存档字段。verify_harbor新增主驾交互、左右分区、镜头垂直平移/同角度、旋转剖切、地板孔洞测试通过；Vulkan正反视角核对。未打APK。
+
+## 2026-10-23 公司版本同步及港口任务收尾（历史）
+
+优先阅读 docs/odachi_temple.md 与 docs/container_harbor.md。下方 10/22“四连击一次播完”已被公司后续实现取代：当前太刀术 1～5 层、逐次输入连段、蓝色剑气/安全收刀，寺庙正门交互进入安全区，schema 6。不要还原旧版规则。
+
+港口公司草稿包含 26 个多色箱体、一键固定/承重框/副驾梯和上层房间。本机续完脚本类型错误、E 交互未接、手机固定按钮遗漏、四根钢索仅一根更新、钢索悬空/旧碎片、旧 SouthRoadEnd 和世界边界挡吊车、隐藏驾驶员自身挡吊车、后排箱体超出对正范围。新增顶箱保护、堆叠落点高度检查。上层真实分块地板检修口、近距背后镜头、上下层瞬间切镜头、返回点避开座椅；当前上下楼为切换，没有专门爬梯动画。固定状态保存，固定箱不能再抓，上层禁存，回车内可正常存。未改玩家档，未导出APK。
+
+verify_harbor / verify_mobile_driving 通过，Vulkan 港口、车顶、梯子、上层画面已检查。verify_rv_gunnery 的旧 15 网格预期与公司已清理的 12 网格资产不一致，按实物修正；详情及日志见港口文档。本机原有大量 .import 修改与新增导入贴图为迁移/导入状态，未批量回滚。
+
+## 2026-10-22 大太刀四连击实装（历史，已被上方公司版取代）
 
 用户确认视觉上可辨认的四刀版本先进入游戏。寺庙取得大太刀后，普通攻击现固定播放`SwordCombo4`：斜斩→反向上挑→横斩→举刀下劈，总时长2.66秒，四个独立命中点为.432/.945/1.468/2.072；每刀伤害4、距离2.4m，逐刀复核正面夹角、距离和墙体遮挡。四连期间锁定角色位移，完整收势后才能重新攻击；原目标死亡或离开范围后，后续刀可寻找正面最近目标。`SwordCombo5`技术上确有第五刀，但因视觉近似收势，留待后续太刀术训练。未新增存档字段。
 
@@ -245,3 +300,44 @@ verify_fabrication完整计时/扣料/四面/真实丧尸/500次/维修/存档�
 部分更早的 UI 测试仍按历史布局/物资数字编写，不要盲目为满足旧断言改回旧规则。最新图像在 `artifacts/rv_sealed_windshield.png`、`sleep_pose.png`、`six_save_slots.png`、`town_repair_shop.png`。`tools/capture_rest_repair.gd` 可重新截取。
 
 已在本机 Intel Graphics 上验证，尚无手机帧率/发热测试。需要后续关注快进时敌人密集区与夜间的性能；素材蒙皮与美术细节仍为原型水平。修理厂为消耗材料交互，无修车技师剧情或维修动画；不存在尚未完成的本轮阻塞。
+
+## 2026-10-24：梯子模型、精准吊装与连续升降
+
+- 已导入用户 `Ladder.usdz`（原件不修改），车内梯子前移 0.95 m；副驾座椅后移 0.20 m，留出梯子落脚通道，驾驶座交互仍独立。吊车侧增加同款梯子和 1.8 秒上下攀爬表现。
+- 蓝色停车框缩为 7.2 × 3.1 m。车中心需在指定位置 X ±0.45 / Z ±0.30 m，车身与堆场箱体方向偏差不超过 6°；吊箱相对车顶偏差不超过 0.35 m、夹角不超过 8°。失败保留吊钩负载并提示重新调整。
+- 手机按住升降连续运动，速度 1.4 m/s，松手/滑出/暂停停止；桌面按钮及键盘同样连续。完整四根钢索端点随吊具实时变化。
+- 负载使用形状扫掠和专用房车碰撞体，在下放及低位平移时阻挡穿车；不是自由摆动或破坏物理模拟。拾取也要求吊具准确对准，不再远距离吸箱。
+- `tools/build_ladder_assets.py` 生成梯子及带 Climb 动画的 `hotaru_climb.glb`，当前角色运行时使用后者；以后重新生成剑术动画后，也需重新运行此脚本同步，保持导入动画采样 120 fps。
+- 验证：verify_harbor、verify_harbor_precision、verify_mobile_driving、verify_sword 通过；检查了正常车内视角的梯子和吊车攀爬截图。测试退出仍有原有 ObjectDB/resource 清理警告，未修改玩家存档，未导出 APK。
+
+## 2026-10-24：梯子通路、桌面长按与寺庙入口修复
+
+- 副驾座椅保留外观，取消 PassengerSeat 碰撞，允许穿过；旧测试只检测梯子终点不充分，verify_harbor 现在逐段扫掠过道至梯子的完整路线，再验证驾驶座与梯子各自交互。
+- 桌面长按失效根因是 mobile_joystick._process 在 mobile=false 时仍每帧 reset()，清空吊车按住状态。桌面不再运行触屏状态清理；失焦仍释放，吊车暂停/禁用控制时也清空升降标记。verify_harbor_precision 新增跨真实 process_frame 的桌面长按及松手验证，同时保留手机触摸验证。
+- 从寺庙 GLB 删除正门中轴柱身、柱脚及贴附几何共 58 个三角面，生成碰撞自动同步。保留屋顶、地板和侧柱；原 USDZ 不动。tools/remove_temple_entry_column.py 可重复执行，build_temple_assets.py 已接入同一筛选，重建不会恢复挡门柱。
+- verify_harbor / verify_harbor_precision / verify_temple_interior 通过；截图 artifacts/temple_entry_clear.png 已目视确认入口视野通畅。未改玩家存档、未导出 APK。
+
+## 2026-10-24：区立医院内部探索
+
+优先阅读 docs/hospital.md 与 hospital_floorplan.svg。医院替换原预留标记，SITE=(37,.08,250)，入口在庭院北侧主楼；独立内部空间 ORIGIN=(5000,0,0)，与外部轮廓同尺度。主楼两层、附楼单层，6 间病房 + 接待/护士站/办公室/检验/手术/准备/太平间共 13 区。真实连续走廊、开关房门、位置驱动上下楼台阶、镜头避墙与身体淡化、室内小地图。楼梯左中、层高 3.6 m，附楼经西翼走廊相连。
+
+医院控制器 scripts/environment/hospital.gd；地图 scripts/ui/hospital_map.gd。主控制器接入进出/HUD/相机/新游戏和载入复位/保存限制/独立上车按钮，移动摇杆保留现有方式。cart 空间 ID=5，能带入、留下、重访和带出；现有位置字段兼容，不改存档结构。室外敌人暂停并移出 zombies 组，离开恢复；内部暂无新刷怪、搜刮或医疗规则，此轮范围是建筑与探索。
+
+assets/hospital 使用外观+七套家具轻量化转换，手术室暖白灰黄作为统一风格。剥离来源房间墙壳和残留隔板、移除太平间尸体。原始 USDZ 未修改；完整参考 GLB 放 artifacts/hospital_reference_models，.gdignore/.gitignore 排除。构建依赖新增 scipy；运行 build_hospital_assets.py 和 build_hospital_furniture.py，然后 Godot 导入。
+
+verify_hospital：真实碰撞网格两层连通、13 区可达、逐步上下楼、门开关、推车离开重访、恢复室外及禁瞬时存档通过。Vulkan 实际渲染已核对。截图 artifacts/hospital_*.png。未打 APK，后续整体包需真机检查性能。
+
+
+## 医院 V2（2026-10-24，用户已确认平面并要求实装）
+- 已改建为 16 间病房、27 张住院床，另 4 张诊疗床，29 个独立房间；两跑折返楼梯、外墙凹口、门和地图同步。
+- 用户明确：统一风格不是全部白色。家具转换取消浅色覆盖，恢复原贴图/颜色，修复 st0 UV 与简化丢 UV。医院独立灯光关闭室外太阳叠加；共同装修采用暖灰、灰绿、深青、木色。
+- 新 tools/build_hospital_kit.py 提取独立床、监护/检验设备、工位、接待台。共享 HospitalBuilder 修复 UV 与源固色读取。勿再用统一白色材质覆盖原件。
+- docs/hospital.md 为现状，docs/hospital_floorplan_v2.svg 为获批方案；验证 tools/verify_hospital.gd / capture_hospital.gd。当前不打 APK。
+
+## 2026-10-25 医院水平空间扩大两倍
+
+用户要求医院外观、全部房间与走廊至少扩大两倍。运行时采用 SPACE_SCALE=(2,1,2)：内外长宽均为原来的两倍、面积四倍，层高仍为3.6m。原外观约30.55×34.05m，现约61.1×68.1m。蓝图坐标保留，必须通过 to_interior_world / to_interior_local 转换人物、楼梯、门、地图和相机位置，不可直接 ORIGIN+蓝图点。
+
+家具在逆缩放节点下按扩大后的房间重新布置，床、柜、设备、办公桌、接待台和等候椅保持正常尺寸；太平间柜组移至扩大后的后墙。院墙范围改为 x6..69/z208..292，仍位于道路之间；东院门(69,.08,260)，建筑入口随外观比例对齐。城镇预留用地同步扩大，避免生成住宅/树木占用新院区。平面图的面积、比例尺、走廊及楼梯尺寸同步更新。
+
+验证：artifacts/verify_hospital_expanded.log，errors=0；两层房间连通、中央走廊5m横向扫掠、门开关、折返楼梯、推车与院门进出、镜头稳定性、正常床尺寸及低面数预算均通过。实际渲染 artifacts/hospital_corridor.png、hospital_triple_ward.png、hospital_campus_overview.png 已检查。仅为桌面测试，未导出APK，未修改玩家存档。

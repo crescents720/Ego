@@ -503,7 +503,8 @@ func _build_collision_shell() -> void:
 	_add_collision("FrontWall", Vector3(2.7, 2.4, 0.12), Vector3(0.0, 1.2, 3.50))
 	_add_collision("CockpitNose", Vector3(2.7, 1.45, 0.16), Vector3(0.0, 0.72, -6.00))
 	_add_collision("Dashboard", Vector3(2.42, 0.86, 0.50), Vector3(0.0, 0.65, -5.20))
-	_add_collision("PassengerSeat", Vector3(0.64, 1.08, 0.72), Vector3(-0.67, 0.54, -4.04))
+	# The decorative passenger seat must not obstruct the ladder access route.
+	# Keep its visual model, but allow Hotaru to walk through it.
 	_add_collision("DriverSeat", Vector3(0.64, 0.88, 0.70), Vector3(0.67, 0.44, -4.04))
 
 	# Coarse furniture collision keeps navigation stable on mobile while the

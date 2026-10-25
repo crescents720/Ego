@@ -8,8 +8,8 @@
       -150.0
     ],
     "harbor_crane": {
-      "triangles": 66712,
-      "bytes": 5512564,
+      "triangles": 66060,
+      "bytes": 5514204,
       "bounds_min": [
         -3.4608109944568923,
         0.0,
@@ -19,7 +19,8 @@
         3.442093634625337,
         28.736096301136072,
         27.4503490833883
-      ]
+      ],
+      "rope_note": "652 static rope fragment triangles removed; four continuous runtime cables replace them."
     },
     "harbor_spreader": {
       "triangles": 8936,

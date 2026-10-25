@@ -152,7 +152,7 @@ func _physics_process(_delta: float) -> void:
  if pushing and main.controls_enabled:
   var forward: Vector3=Vector3(sin(main.hotaru.rotation.y),0,cos(main.hotaru.rotation.y))
   var desired: Vector3=main.hotaru.global_position+forward*1.05
-  desired.y=.16 if main.inside_store or main.factory.active else .08
+  desired.y=main.hotaru.global_position.y-.87 if is_instance_valid(main.hospital) and main.hospital.active else (.16 if main.inside_store or main.factory.active else .08)
   var query:=PhysicsShapeQueryParameters3D.new()
   var box:=BoxShape3D.new()
   box.size=Vector3(.72,.65,1.08)
@@ -170,7 +170,7 @@ func _physics_process(_delta: float) -> void:
  if not loading:
   visual.position=GameState.cart_position
   visual.rotation.y=GameState.cart_yaw
- visual.visible=GameState.cart_deployed and GameState.cart_owned and not main.inside_rv and main.phase not in [main.Phase.TITLE,main.Phase.GAME_OVER] and (GameState.spatial_room_id(GameState.cart_position)==(3 if main.factory.active else (2 if main.inside_store else 0)))
+ visual.visible=GameState.cart_deployed and GameState.cart_owned and not main.inside_rv and main.phase not in [main.Phase.TITLE,main.Phase.GAME_OVER] and (GameState.spatial_room_id(GameState.cart_position)==(5 if is_instance_valid(main.hospital) and main.hospital.active else (3 if main.factory.active else (2 if main.inside_store else 0))))
  cargo_visual.visible=not GameState.cart_items.is_empty()
  lathe_visual.visible=GameState.cart_items.has("lathe")
  gun_visual.visible=GameState.cart_items.has("m60")

@@ -7,7 +7,7 @@ const ROOT := "res://assets/third_party/ccity/"
 const SITES := [
 	{"name":"五金店", "rect":Rect2(-112,130,42,48)},
 	{"name":"工厂", "rect":Rect2(-112,218,92,64)},
-	{"name":"医院", "rect":Rect2(12,218,50,64)},
+	{"name":"医院", "rect":Rect2(6,208,63,84)},
 	{"name":"警察局", "rect":Rect2(88,222,48,60)},
 	{"name":"武器店", "rect":Rect2(88,130,48,48)},
 	{"name":"加油站", "rect":Rect2(12,-158,62,49)},
@@ -57,17 +57,17 @@ void fragment(){vec2 p=world.xz;float wide=hash(floor(p*0.25));float fine=hash(f
 	_road(Vector2(-94,300),Vector2(-94,328),7.0)
 	_lake()
 	for site in SITES:
-		if site.name not in ["汽车修理厂","加油站","武器店","工厂","寺庙","集装箱码头"]:_reserved_site(site)
+		if site.name not in ["汽车修理厂","加油站","武器店","工厂","寺庙","集装箱码头","医院"]:_reserved_site(site)
 	_populate()
 	_trees()
 	for x in [-177.0,317.0]:
 		_box("MapEdge",Vector3(1,8,650),Vector3(x,3,95),"52614b",true).visible=false
-	for z in [-228.0,417.0]:
+	for z in [-234.0,417.0]:
 		_box("MapEdge",Vector3(500,8,1),Vector3(70,3,z),"52614b",true).visible=false
 	main._add_label("北向公路 · 后续区域",Vector3(0,3,368),Color("fff0b1"),30)
 	# End of the currently built roads, rather than barriers on the starter street.
 	_box("NorthRoadEnd",Vector3(12,0.8,0.7),Vector3(0,0.4,390),"b89b62",true)
-	_box("SouthRoadEnd",Vector3(12,0.8,0.7),Vector3(0,0.4,-223),"b89b62",true)
+	# The southern road now opens onto the port; no roadblock across its crane lane.
 
 func _material(hex: String) -> StandardMaterial3D:
 	if not _materials.has(hex):

@@ -35,7 +35,8 @@ func run() -> void:
  m._interact()
  check(g.active and m.inside_rv and m.rv.occupied and s.m60_window=="right","Window interaction did not mount gun")
  check(g.gun.is_visible_in_tree(),"Active firing proxy gun is hidden")
- check(g.visible_weapon_mesh_count(g.gun)==15,"M60 source display/tripod variant still overlaps gameplay gun")
+ # Current mounted GLB already contains only the 12 gameplay meshes.
+ check(g.visible_weapon_mesh_count(g.gun)==12,"M60 gameplay mesh count differs from cleaned mounted asset")
  for mesh in g.gun.find_children("*","MeshInstance3D",true,false):
   if mesh.get_meta("m60_removed_display_variant",false):check(not mesh.visible,"Removed M60 display variant became visible")
  for mounted_side in [-1,1]:

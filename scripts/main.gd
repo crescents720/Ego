@@ -52,6 +52,7 @@ var mobile_driving
 var fabrication
 var factory
 var temple
+var hospital
 var harbor
 var inside_store: bool = false
 var store_interior
@@ -169,6 +170,9 @@ func _ready() -> void:
 	temple=load("res://scripts/environment/temple.gd").new()
 	add_child(temple)
 	temple.build(self)
+	hospital=load("res://scripts/environment/hospital.gd").new()
+	add_child(hospital)
+	hospital.build(self)
 	harbor=load("res://scripts/environment/harbor.gd").new()
 	add_child(harbor)
 	harbor.build(self)
@@ -224,7 +228,7 @@ func _process(delta: float) -> void:
 	GameState.vehicle_yaw=rv.rotation.y
 	rv.occupied=(inside_rv or in_vehicle) and phase!=Phase.GAME_OVER and not rv.wrecked
 	_update_camera(delta)
-	town_occlusion.update(camera, harbor.crane if is_instance_valid(harbor) and harbor.active else (rv if in_vehicle or (is_instance_valid(shooting) and shooting.active) else hotaru), (not inside_rv or (is_instance_valid(shooting) and shooting.active)) and not inside_store and not factory.active and not temple.active and not (is_instance_valid(harbor) and harbor.active))
+	town_occlusion.update(camera, harbor.crane if is_instance_valid(harbor) and harbor.active else (rv if in_vehicle or (is_instance_valid(shooting) and shooting.active) else hotaru), (not inside_rv or (is_instance_valid(shooting) and shooting.active)) and not inside_store and not factory.active and not temple.active and not hospital.active and not hospital.in_campus and not (is_instance_valid(harbor) and harbor.active))
 	_update_phase_checks()
 	_update_hud()
 	if is_instance_valid(harbor):harbor.apply_hud()
@@ -409,7 +413,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if is_instance_valid(shooting) and shooting.active:return
 	if inside_rv and _handle_interior_camera_input(event):
 		return
-	if not factory.active and not temple.active and not (is_instance_valid(harbor) and harbor.active) and is_instance_valid(outdoor_zoom) and outdoor_zoom.handle_world_input(event):
+	if not factory.active and not temple.active and not hospital.active and not hospital.in_campus and not (is_instance_valid(harbor) and harbor.active) and is_instance_valid(outdoor_zoom) and outdoor_zoom.handle_world_input(event):
 		get_viewport().set_input_as_handled()
 		return
 	if event.is_action_pressed("toggle_vehicle"):
@@ -791,6 +795,7 @@ func _start_new_game() -> void:
 	if is_instance_valid(fabrication):fabrication.stop_work("");fabrication.close()
 	if is_instance_valid(factory):factory.reset()
 	if is_instance_valid(temple):temple.reset()
+	if is_instance_valid(hospital):hospital.reset()
 	if is_instance_valid(shooting):shooting.stop(false)
 	if is_instance_valid(title_screen):title_screen.hide()
 	get_node("HUD").show()
@@ -836,6 +841,7 @@ func _load_completed_save(path: String=GameState.SAVE_PATH) -> void:
 	if is_instance_valid(fabrication):fabrication.stop_work("");fabrication.close()
 	if is_instance_valid(factory):factory.reset()
 	if is_instance_valid(temple):temple.reset()
+	if is_instance_valid(hospital):hospital.reset()
 	if is_instance_valid(shooting):shooting.stop(false)
 	if not GameState.load_completed_save(path):
 		return
@@ -912,7 +918,7 @@ func _set_phase(value: Phase) -> void:
 
 
 func _update_phase_checks() -> void:
-	if not controls_enabled or inside_rv or inside_store or (is_instance_valid(temple) and temple.active) or (is_instance_valid(harbor) and harbor.active):
+	if not controls_enabled or inside_rv or inside_store or (is_instance_valid(temple) and temple.active) or (is_instance_valid(hospital) and hospital.active) or (is_instance_valid(harbor) and harbor.active):
 		return
 	if phase == Phase.CLEAR_ZOMBIES and _alive_zombie_count() == 0:
 		_set_phase(Phase.SCAVENGE)
@@ -923,7 +929,9 @@ func _update_phase_checks() -> void:
 
 
 func _toggle_vehicle() -> void:
+	if is_instance_valid(harbor) and harbor.roof_transitioning:return
 	if is_instance_valid(factory) and (factory.active or factory.transitioning):return
+	if is_instance_valid(hospital) and (hospital.active or hospital.in_campus or hospital.gate_busy):return
 	if is_instance_valid(temple) and temple.active:return
 	if is_instance_valid(harbor) and harbor.active:return
 	if rv.wrecked:return
@@ -957,6 +965,18 @@ func _toggle_vehicle() -> void:
 
 
 func _interact() -> void:
+	if is_instance_valid(hospital) and hospital.gate_busy:return
+	if is_instance_valid(harbor) and harbor.roof_transitioning:return
+	if controls_enabled and inside_rv and is_instance_valid(harbor):
+		if harbor.roof_interior_active:
+			harbor.interact_roof_interior()
+			return
+		if harbor.near_interior_ladder():
+			harbor.enter_roof_interior()
+			return
+	if is_instance_valid(hospital) and (hospital.active or hospital.in_campus):
+		if controls_enabled:hospital.interact()
+		return
 	if is_instance_valid(factory) and factory.active:
 		if controls_enabled:factory.interact()
 		return
@@ -1003,6 +1023,8 @@ func _interact() -> void:
 		else:
 			hint_label.text = "靠近带青色轮廓的家具后再交互"
 		return
+	if hospital.near_gate():hospital.use_gate();return
+	if hospital.near_entrance():hospital.enter();return
 	if factory.nearby():factory.enter();return
 	if is_instance_valid(temple) and temple.near_entrance():temple.enter();return
 	if is_instance_valid(harbor) and harbor.nearby():harbor.enter();return
@@ -1379,6 +1401,9 @@ func _on_speed_changed(_speed_kph: int) -> void:
 func _update_hud() -> void:
 	if not is_instance_valid(hotaru) or not is_instance_valid(rv) or not is_instance_valid(rv_interior):
 		return
+	if is_instance_valid(hospital) and (hospital.active or hospital.in_campus):
+		hospital.update_hud()
+		return
 	if is_instance_valid(factory) and factory.active:
 		factory.update_hud()
 		return
@@ -1496,7 +1521,14 @@ func _update_hud() -> void:
 	else:
 		hint_label.text = "拖动左下摇杆移动" if OS.has_feature("android") else "WASD/方向按钮移动"
 
-	if factory.nearby():
+	if hospital.near_gate():
+		interact_button.show();interact_button.text="推开院门 E"
+		hint_label.text="医院园区 · 推开院门进入"
+	elif hospital.near_entrance():
+		interact_button.show()
+		interact_button.text="进入医院"
+		hint_label.text="医院正门：交互进入 · 主楼两层 / 附楼一层"
+	elif factory.nearby():
 		interact_button.show()
 		interact_button.text="进入工厂"
 		hint_label.text="工厂正门：交互进入；右侧上车按钮进入房车"
@@ -1534,6 +1566,9 @@ func _update_camera(delta: float) -> void:
 	if is_instance_valid(shooting) and shooting.active:
 		shooting.update_camera(delta)
 		return
+	if is_instance_valid(hospital) and (hospital.active or hospital.in_campus):
+		hospital.update_camera(delta)
+		return
 	if is_instance_valid(factory) and factory.active:
 		factory.update_camera(delta)
 		return
@@ -1543,7 +1578,7 @@ func _update_camera(delta: float) -> void:
 	if is_instance_valid(harbor) and harbor.active:
 		harbor.update_camera(delta)
 		return
-	if is_instance_valid(harbor) and harbor.roof_interior_active:
+	if is_instance_valid(harbor) and (harbor.roof_interior_active or harbor.roof_transitioning):
 		harbor.update_roof_camera(delta)
 		return
 	if inside_store:
@@ -1558,15 +1593,7 @@ func _update_camera(delta: float) -> void:
 		camera.projection = Camera3D.PROJECTION_PERSPECTIVE
 		camera.keep_aspect = Camera3D.KEEP_HEIGHT
 		var interior_center: Vector3 = _interior_camera_focus_override if _interior_camera_focus_override is Vector3 else rv_interior.get_camera_pivot()
-		var horizontal_distance: float = cos(_interior_camera_pitch) * _interior_camera_distance
-		var interior_camera_offset := Vector3(
-			sin(_interior_camera_yaw) * horizontal_distance,
-			sin(_interior_camera_pitch) * _interior_camera_distance,
-			cos(_interior_camera_yaw) * horizontal_distance
-		)
-		var interior_camera_position: Vector3 = interior_center + interior_camera_offset
-		camera.global_position = camera.global_position.lerp(interior_camera_position, 1.0 - exp(-delta * 7.0))
-		camera.look_at(interior_center, Vector3.UP)
+		_update_rv_orbit_camera(delta,interior_center)
 		rv_interior.update_camera_cutaway(camera.global_position)
 		return
 	var target: Node3D = rv if in_vehicle else hotaru
@@ -1575,6 +1602,15 @@ func _update_camera(delta: float) -> void:
 	var desired := target.global_position + offset
 	camera.global_position = camera.global_position.lerp(desired, 1.0 - exp(-delta * 5.2))
 	camera.look_at(target.global_position + Vector3(0.0, 0.6, 0.0), Vector3.UP)
+
+
+func _update_rv_orbit_camera(delta: float,center: Vector3) -> void:
+	camera.projection=Camera3D.PROJECTION_PERSPECTIVE
+	camera.keep_aspect=Camera3D.KEEP_HEIGHT
+	var horizontal: float=cos(_interior_camera_pitch)*_interior_camera_distance
+	var offset:=Vector3(sin(_interior_camera_yaw)*horizontal,sin(_interior_camera_pitch)*_interior_camera_distance,cos(_interior_camera_yaw)*horizontal)
+	camera.global_position=camera.global_position.lerp(center+offset,1.0-exp(-delta*7.0))
+	camera.look_at(center,Vector3.UP)
 
 
 func _alive_zombie_count() -> int:
@@ -1692,8 +1728,9 @@ func is_under_attack() -> bool:
 func can_save_safely() -> bool:
 	if is_instance_valid(fabrication) and fabrication.active:return false
 	if is_instance_valid(factory) and (factory.active or factory.transitioning):return false
+	if is_instance_valid(hospital) and (hospital.active or hospital.in_campus or hospital.gate_busy):return false
 	if is_instance_valid(temple) and temple.active:return false
-	if is_instance_valid(harbor) and (harbor.active or harbor.roof_interior_active):return false
+	if is_instance_valid(harbor) and (harbor.active or harbor.roof_interior_active or harbor.roof_transitioning):return false
 	if is_instance_valid(shooting) and shooting.active:return false
 	if is_instance_valid(trolley) and trolley.loading:return false
 	if is_instance_valid(weapon_shop) and weapon_shop.active:return false

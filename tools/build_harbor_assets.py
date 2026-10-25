@@ -24,7 +24,7 @@ from PIL import Image
 from pxr import Usd, UsdGeom, UsdShade
 
 
-DOWNLOADS = Path(r"C:\Users\DingMeng\Downloads")
+DOWNLOADS = Path(os.environ.get("EGO_ASSET_DOWNLOADS", str(Path.home() / "Downloads")))
 OUTPUT = Path("assets/harbor")
 OUTPUT.mkdir(parents=True, exist_ok=True)
 
@@ -234,6 +234,11 @@ def export_crane() -> dict:
             triangles = _triangulate(mesh)
             vertices, uvs, triangles = _uvs(prim, vertices, triangles)
             vertices, uvs, triangles = _simplify(vertices, uvs, triangles, reduction)
+            # Static thin rope fragments are replaced by four runtime hoist cables.
+            if output_name == "harbor_crane" and prim.GetName() == "Object_4":
+                faces = vertices[triangles]
+                old_ropes = (faces[:, :, 2].min(axis=1) > 26) & (faces[:, :, 1].max(axis=1) < 24.8)
+                triangles = triangles[~old_ropes]
             material = UsdShade.MaterialBindingAPI(prim).ComputeBoundMaterial()[0]
             builder.add_mesh(prim.GetName(), vertices, uvs, triangles, material)
             bounds.append(vertices)

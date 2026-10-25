@@ -11,3 +11,11 @@ artifacts/dorm_reference_audit.png
 *.apk
 
 .codex-harbor-deps/
+
+# Local full-detail hospital reference conversions; runtime uses the curated kit.
+artifacts/hospital_reference_models/
+
+# Local Python caches and one-off editing helpers (not runtime/build tools).
+__pycache__/
+*.py[cod]
+/artifacts/*.py

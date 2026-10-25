@@ -29,7 +29,7 @@ const SWORD_FALLBACK_DATA := {
 }
 const SWORD_STAGGER := {1:0.18,2:0.38,3:0.42,4:0.46,5:0.50}
 const SWORD_FINISHER_STAGGER := {1:0.18,2:0.70,3:0.72,4:0.76,5:0.95}
-const ANIMATED_CHARACTER_MODEL_PATH := "res://assets/characters/anime-girl/hotaru_sword.glb"
+const ANIMATED_CHARACTER_MODEL_PATH := "res://assets/characters/anime-girl/hotaru_climb.glb"
 const STATIC_CHARACTER_MODEL_PATH := "res://assets/characters/anime-girl/girl.glb"
 
 const DEATH_DURATION := 1.65
@@ -762,7 +762,7 @@ func _cache_character_animations() -> void:
 	_animation_names.clear()
 	for animation_name in _animation_player.get_animation_list():
 		var normalized := str(animation_name).to_lower()
-		for state_name in ["Idle", "Walk", "Sit", "Punch", "Hit","BatIdleR","BatWalkR","BatAttackR","BatIdleL","BatWalkL","BatAttackL","Death","Sleep","RepairKneel","FuelHold","PushIdle","PushWalk","LatheWork","SwordIdle","SwordWalk","SwordCombo1","SwordCombo2","SwordCombo3","SwordCombo4","SwordCombo5"]:
+		for state_name in ["Idle", "Walk", "Sit", "Punch", "Hit","BatIdleR","BatWalkR","BatAttackR","BatIdleL","BatWalkL","BatAttackL","Death","Sleep","RepairKneel","FuelHold","PushIdle","PushWalk","LatheWork","Climb","SwordIdle","SwordWalk","SwordCombo1","SwordCombo2","SwordCombo3","SwordCombo4","SwordCombo5"]:
 			var target: String = str(state_name).to_lower()
 			if normalized == target or normalized.ends_with("/" + target) or normalized.ends_with("|" + target):
 				_animation_names[state_name] = animation_name

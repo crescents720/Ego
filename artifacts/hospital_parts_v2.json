@@ -1,0 +1,4598 @@
+{
+  "ward_a": [
+    {
+      "name": "Object_0",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/Line002_0/Object_4/Object_0",
+      "lo": [
+        -0.431,
+        0.0,
+        -1.302
+      ],
+      "hi": [
+        0.431,
+        2.914,
+        2.974
+      ]
+    },
+    {
+      "name": "Object_1",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/Box002_1/Object_6/Object_1",
+      "lo": [
+        -1.983,
+        -0.0,
+        2.716
+      ],
+      "hi": [
+        -0.431,
+        2.914,
+        2.974
+      ]
+    },
+    {
+      "name": "Object_2",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/Group1983821888_28/Group1983821889_7/Line1789540112_2/Object_10/Object_2",
+      "lo": [
+        -0.884,
+        1.256,
+        2.749
+      ],
+      "hi": [
+        -0.871,
+        1.37,
+        2.792
+      ]
+    },
+    {
+      "name": "Object_3",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/Group1983821888_28/Group1983821889_7/Rectangle2059400057_3/Object_12/Object_3",
+      "lo": [
+        -0.912,
+        0.814,
+        2.794
+      ],
+      "hi": [
+        -0.475,
+        1.931,
+        2.837
+      ]
+    },
+    {
+      "name": "Object_4",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/Group1983821888_28/Group1983821889_7/Rectangle2059400058_4/Object_14/Object_4",
+      "lo": [
+        -0.889,
+        1.32,
+        2.787
+      ],
+      "hi": [
+        -0.867,
+        1.407,
+        2.794
+      ]
+    },
+    {
+      "name": "Object_5",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/Group1983821888_28/Group1983821889_7/Rectangle2059400059_5/Object_16/Object_5",
+      "lo": [
+        -0.835,
+        0.891,
+        2.813
+      ],
+      "hi": [
+        -0.552,
+        1.853,
+        2.818
+      ]
+    },
+    {
+      "name": "Object_6",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/Group1983821888_28/Group1983821889_7/Rectangle2059400060_6/Object_18/Object_6",
+      "lo": [
+        -0.843,
+        0.883,
+        2.812
+      ],
+      "hi": [
+        -0.544,
+        1.862,
+        2.82
+      ]
+    },
+    {
+      "name": "Object_7",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/Group1983821888_28/Group1983821890_13/Line1789540113_8/Object_21/Object_7",
+      "lo": [
+        -1.543,
+        1.256,
+        2.749
+      ],
+      "hi": [
+        -1.529,
+        1.37,
+        2.792
+      ]
+    },
+    {
+      "name": "Object_8",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/Group1983821888_28/Group1983821890_13/Rectangle2059400061_9/Object_23/Object_8",
+      "lo": [
+        -1.939,
+        0.814,
+        2.794
+      ],
+      "hi": [
+        -1.501,
+        1.931,
+        2.837
+      ]
+    },
+    {
+      "name": "Object_9",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/Group1983821888_28/Group1983821890_13/Rectangle2059400062_10/Object_25/Object_9",
+      "lo": [
+        -1.547,
+        1.32,
+        2.787
+      ],
+      "hi": [
+        -1.525,
+        1.407,
+        2.794
+      ]
+    },
+    {
+      "name": "Object_10",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/Group1983821888_28/Group1983821890_13/Rectangle2059400063_11/Object_27/Object_10",
+      "lo": [
+        -1.861,
+        0.891,
+        2.813
+      ],
+      "hi": [
+        -1.579,
+        1.853,
+        2.818
+      ]
+    },
+    {
+      "name": "Object_11",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/Group1983821888_28/Group1983821890_13/Rectangle2059400064_12/Object_29/Object_11",
+      "lo": [
+        -1.87,
+        0.883,
+        2.812
+      ],
+      "hi": [
+        -1.57,
+        1.862,
+        2.82
+      ]
+    },
+    {
+      "name": "Object_12",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/Group1983821888_28/Rectangle2059400044_15/Object_31/Object_12",
+      "lo": [
+        -1.983,
+        0.776,
+        2.813
+      ],
+      "hi": [
+        -0.431,
+        2.5,
+        2.899
+      ]
+    },
+    {
+      "name": "Object_13",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/Group1983821888_28/Rectangle2059400046_17/Object_33/Object_13",
+      "lo": [
+        -1.466,
+        0.815,
+        2.851
+      ],
+      "hi": [
+        -0.948,
+        1.932,
+        2.86
+      ]
+    },
+    {
+      "name": "Object_14",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/Group1983821888_28/Rectangle2059400047_18/Object_35/Object_14",
+      "lo": [
+        -1.457,
+        0.823,
+        2.853
+      ],
+      "hi": [
+        -0.957,
+        1.923,
+        2.858
+      ]
+    },
+    {
+      "name": "Object_15",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/Group1983821888_28/Rectangle2059400048_19/Object_37/Object_15",
+      "lo": [
+        -1.935,
+        1.975,
+        2.853
+      ],
+      "hi": [
+        -0.478,
+        2.453,
+        2.858
+      ]
+    },
+    {
+      "name": "Object_16",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/Group1983821888_28/Rectangle2059400049_20/Object_39/Object_16",
+      "lo": [
+        -1.944,
+        1.966,
+        2.851
+      ],
+      "hi": [
+        -0.47,
+        2.461,
+        2.86
+      ]
+    },
+    {
+      "name": "Object_17",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/Group1983821888_28/Rectangle2059400050_21/Object_41/Object_17",
+      "lo": [
+        -1.94,
+        1.971,
+        2.813
+      ],
+      "hi": [
+        -0.474,
+        2.457,
+        2.815
+      ]
+    },
+    {
+      "name": "Object_18",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/Group1983821888_28/Rectangle2059400051_22/Object_43/Object_18",
+      "lo": [
+        -1.94,
+        1.971,
+        2.815
+      ],
+      "hi": [
+        -0.474,
+        2.457,
+        2.899
+      ]
+    },
+    {
+      "name": "Object_19",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/Group1983821888_28/Rectangle2059400055_26/Object_45/Object_19",
+      "lo": [
+        -1.461,
+        0.819,
+        2.815
+      ],
+      "hi": [
+        -0.953,
+        1.927,
+        2.899
+      ]
+    },
+    {
+      "name": "Object_20",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/Group1983821888_28/Rectangle2059400056_27/Object_47/Object_20",
+      "lo": [
+        -1.461,
+        0.819,
+        2.813
+      ],
+      "hi": [
+        -0.953,
+        1.927,
+        2.815
+      ]
+    },
+    {
+      "name": "Object_21",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/Box003_29/Object_49/Object_21",
+      "lo": [
+        -2.4,
+        -0.086,
+        -1.314
+      ],
+      "hi": [
+        -0.086,
+        0.0,
+        2.716
+      ]
+    },
+    {
+      "name": "Object_22",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/Rectangle40_30/Object_51/Object_22",
+      "lo": [
+        -2.17,
+        2.391,
+        -0.236
+      ],
+      "hi": [
+        -0.086,
+        2.417,
+        0.733
+      ]
+    },
+    {
+      "name": "Object_23",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Box25_31/Object_54/Object_23",
+      "lo": [
+        -1.691,
+        0.824,
+        0.178
+      ],
+      "hi": [
+        -1.367,
+        0.841,
+        0.823
+      ]
+    },
+    {
+      "name": "Object_24",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Box25_31/Object_55/Object_24",
+      "lo": [
+        -1.674,
+        0.84,
+        0.194
+      ],
+      "hi": [
+        -1.383,
+        0.84,
+        0.806
+      ]
+    },
+    {
+      "name": "Object_25",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Box27_32/Object_57/Object_25",
+      "lo": [
+        -2.018,
+        0.413,
+        0.082
+      ],
+      "hi": [
+        -1.964,
+        0.804,
+        0.447
+      ]
+    },
+    {
+      "name": "Object_26",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Box28_33/Object_59/Object_26",
+      "lo": [
+        -0.187,
+        0.413,
+        0.082
+      ],
+      "hi": [
+        -0.133,
+        0.804,
+        0.447
+      ]
+    },
+    {
+      "name": "Object_27",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Box29_34/Object_61/Object_27",
+      "lo": [
+        -1.683,
+        0.815,
+        0.222
+      ],
+      "hi": [
+        -1.375,
+        0.823,
+        0.711
+      ]
+    },
+    {
+      "name": "Object_28",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Box30_35/Object_63/Object_28",
+      "lo": [
+        -1.683,
+        0.802,
+        0.307
+      ],
+      "hi": [
+        -1.375,
+        0.811,
+        0.539
+      ]
+    },
+    {
+      "name": "Object_29",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/ChamferBox115_36/Object_65/Object_29",
+      "lo": [
+        -2.006,
+        0.201,
+        -0.045
+      ],
+      "hi": [
+        -1.974,
+        0.272,
+        0.574
+      ]
+    },
+    {
+      "name": "Object_30",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/ChamferBox116_37/Object_67/Object_30",
+      "lo": [
+        -0.177,
+        0.201,
+        -0.045
+      ],
+      "hi": [
+        -0.145,
+        0.272,
+        0.574
+      ]
+    },
+    {
+      "name": "Object_31",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Cylinder54_38/Object_69/Object_31",
+      "lo": [
+        -1.773,
+        0.046,
+        0.618
+      ],
+      "hi": [
+        -1.714,
+        0.141,
+        0.656
+      ]
+    },
+    {
+      "name": "Object_32",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Cylinder55_39/Object_71/Object_32",
+      "lo": [
+        -1.8,
+        0.018,
+        0.625
+      ],
+      "hi": [
+        -1.721,
+        0.102,
+        0.649
+      ]
+    },
+    {
+      "name": "Object_33",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Cylinder55_39/Object_72/Object_33",
+      "lo": [
+        -1.808,
+        0.008,
+        0.626
+      ],
+      "hi": [
+        -1.713,
+        0.112,
+        0.648
+      ]
+    },
+    {
+      "name": "Object_34",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Cylinder56_40/Object_74/Object_34",
+      "lo": [
+        -1.751,
+        0.141,
+        0.62
+      ],
+      "hi": [
+        -1.687,
+        0.197,
+        0.654
+      ]
+    },
+    {
+      "name": "Object_35",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Cylinder57_41/Object_76/Object_35",
+      "lo": [
+        -0.444,
+        0.046,
+        0.618
+      ],
+      "hi": [
+        -0.385,
+        0.141,
+        0.656
+      ]
+    },
+    {
+      "name": "Object_36",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Cylinder58_42/Object_78/Object_36",
+      "lo": [
+        -0.437,
+        0.018,
+        0.625
+      ],
+      "hi": [
+        -0.358,
+        0.102,
+        0.649
+      ]
+    },
+    {
+      "name": "Object_37",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Cylinder58_42/Object_79/Object_37",
+      "lo": [
+        -0.445,
+        0.008,
+        0.626
+      ],
+      "hi": [
+        -0.35,
+        0.112,
+        0.648
+      ]
+    },
+    {
+      "name": "Object_38",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Cylinder59_43/Object_81/Object_38",
+      "lo": [
+        -0.471,
+        0.141,
+        0.62
+      ],
+      "hi": [
+        -0.407,
+        0.197,
+        0.654
+      ]
+    },
+    {
+      "name": "Object_39",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Cylinder60_44/Object_83/Object_39",
+      "lo": [
+        -1.773,
+        0.046,
+        -0.123
+      ],
+      "hi": [
+        -1.714,
+        0.141,
+        -0.085
+      ]
+    },
+    {
+      "name": "Object_40",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Cylinder61_45/Object_85/Object_40",
+      "lo": [
+        -1.8,
+        0.018,
+        -0.117
+      ],
+      "hi": [
+        -1.721,
+        0.102,
+        -0.092
+      ]
+    },
+    {
+      "name": "Object_41",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Cylinder61_45/Object_86/Object_41",
+      "lo": [
+        -1.808,
+        0.008,
+        -0.115
+      ],
+      "hi": [
+        -1.713,
+        0.112,
+        -0.094
+      ]
+    },
+    {
+      "name": "Object_42",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Cylinder62_46/Object_88/Object_42",
+      "lo": [
+        -1.751,
+        0.141,
+        -0.121
+      ],
+      "hi": [
+        -1.687,
+        0.197,
+        -0.088
+      ]
+    },
+    {
+      "name": "Object_43",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Cylinder63_47/Object_90/Object_43",
+      "lo": [
+        -1.687,
+        0.142,
+        -0.116
+      ],
+      "hi": [
+        -0.471,
+        0.181,
+        0.649
+      ]
+    },
+    {
+      "name": "Object_44",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Cylinder64_48/Object_92/Object_44",
+      "lo": [
+        -0.444,
+        0.046,
+        -0.123
+      ],
+      "hi": [
+        -0.385,
+        0.141,
+        -0.085
+      ]
+    },
+    {
+      "name": "Object_45",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Cylinder65_49/Object_94/Object_45",
+      "lo": [
+        -0.437,
+        0.018,
+        -0.117
+      ],
+      "hi": [
+        -0.358,
+        0.102,
+        -0.092
+      ]
+    },
+    {
+      "name": "Object_46",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Cylinder65_49/Object_95/Object_46",
+      "lo": [
+        -0.445,
+        0.008,
+        -0.115
+      ],
+      "hi": [
+        -0.35,
+        0.112,
+        -0.094
+      ]
+    },
+    {
+      "name": "Object_47",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Cylinder66_50/Object_97/Object_47",
+      "lo": [
+        -0.471,
+        0.141,
+        -0.121
+      ],
+      "hi": [
+        -0.407,
+        0.197,
+        -0.088
+      ]
+    },
+    {
+      "name": "Object_48",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Obj_70_51/Object_99/Object_48",
+      "lo": [
+        -1.4,
+        0.03,
+        0.801
+      ],
+      "hi": [
+        -1.343,
+        0.068,
+        0.852
+      ]
+    },
+    {
+      "name": "Object_49",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Obj_70_51/Object_100/Object_49",
+      "lo": [
+        -1.399,
+        0.008,
+        0.8
+      ],
+      "hi": [
+        -1.343,
+        0.058,
+        0.853
+      ]
+    },
+    {
+      "name": "Object_50",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Obj_71_52/Object_102/Object_50",
+      "lo": [
+        -1.727,
+        0.03,
+        0.811
+      ],
+      "hi": [
+        -1.668,
+        0.068,
+        0.864
+      ]
+    },
+    {
+      "name": "Object_51",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Obj_71_52/Object_103/Object_51",
+      "lo": [
+        -1.727,
+        0.008,
+        0.81
+      ],
+      "hi": [
+        -1.668,
+        0.058,
+        0.865
+      ]
+    },
+    {
+      "name": "Object_52",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Obj_72_53/Object_105/Object_52",
+      "lo": [
+        -1.727,
+        0.03,
+        0.278
+      ],
+      "hi": [
+        -1.668,
+        0.068,
+        0.331
+      ]
+    },
+    {
+      "name": "Object_53",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Obj_72_53/Object_106/Object_53",
+      "lo": [
+        -1.727,
+        0.008,
+        0.277
+      ],
+      "hi": [
+        -1.668,
+        0.058,
+        0.332
+      ]
+    },
+    {
+      "name": "Object_54",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Obj_73_54/Object_108/Object_54",
+      "lo": [
+        -1.4,
+        0.03,
+        0.29
+      ],
+      "hi": [
+        -1.343,
+        0.068,
+        0.341
+      ]
+    },
+    {
+      "name": "Object_55",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Obj_73_54/Object_109/Object_55",
+      "lo": [
+        -1.399,
+        0.008,
+        0.289
+      ],
+      "hi": [
+        -1.343,
+        0.058,
+        0.342
+      ]
+    },
+    {
+      "name": "Object_56",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Object26_55/Object_111/Object_56",
+      "lo": [
+        -1.864,
+        0.286,
+        -0.179
+      ],
+      "hi": [
+        -1.407,
+        0.48,
+        -0.179
+      ]
+    },
+    {
+      "name": "Object_57",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Object27_56/Object_113/Object_57",
+      "lo": [
+        -1.764,
+        0.056,
+        0.621
+      ],
+      "hi": [
+        -1.756,
+        0.065,
+        0.653
+      ]
+    },
+    {
+      "name": "Object_58",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Object28_57/Object_115/Object_58",
+      "lo": [
+        -0.402,
+        0.056,
+        0.621
+      ],
+      "hi": [
+        -0.393,
+        0.065,
+        0.653
+      ]
+    },
+    {
+      "name": "Object_59",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Object29_58/Object_117/Object_59",
+      "lo": [
+        -1.764,
+        0.056,
+        -0.12
+      ],
+      "hi": [
+        -1.756,
+        0.065,
+        -0.088
+      ]
+    },
+    {
+      "name": "Object_60",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Object30_59/Object_119/Object_60",
+      "lo": [
+        -0.402,
+        0.056,
+        -0.12
+      ],
+      "hi": [
+        -0.393,
+        0.065,
+        -0.088
+      ]
+    },
+    {
+      "name": "Object_61",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Rectangle228_60/Object_121/Object_61",
+      "lo": [
+        -0.186,
+        0.271,
+        -0.131
+      ],
+      "hi": [
+        -0.137,
+        0.776,
+        0.659
+      ]
+    },
+    {
+      "name": "Object_62",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Rectangle229_61/Object_123/Object_62",
+      "lo": [
+        -1.975,
+        0.361,
+        -0.153
+      ],
+      "hi": [
+        -0.191,
+        0.387,
+        0.687
+      ]
+    },
+    {
+      "name": "Object_63",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Rectangle230_62/Object_125/Object_63",
+      "lo": [
+        -1.869,
+        0.283,
+        -0.179
+      ],
+      "hi": [
+        -1.404,
+        0.482,
+        -0.156
+      ]
+    },
+    {
+      "name": "Object_64",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Rectangle231_63/Object_127/Object_64",
+      "lo": [
+        -1.778,
+        0.298,
+        -0.175
+      ],
+      "hi": [
+        -1.496,
+        0.468,
+        -0.16
+      ]
+    },
+    {
+      "name": "Object_65",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Rectangle232_64/Object_129/Object_65",
+      "lo": [
+        -0.967,
+        0.298,
+        -0.175
+      ],
+      "hi": [
+        -0.406,
+        0.468,
+        -0.16
+      ]
+    },
+    {
+      "name": "Object_66",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Rectangle233_65/Object_131/Object_66",
+      "lo": [
+        -1.059,
+        0.283,
+        -0.179
+      ],
+      "hi": [
+        -0.309,
+        0.482,
+        -0.156
+      ]
+    },
+    {
+      "name": "Object_67",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Rectangle234_66/Object_133/Object_67",
+      "lo": [
+        -0.967,
+        0.298,
+        0.693
+      ],
+      "hi": [
+        -0.406,
+        0.468,
+        0.709
+      ]
+    },
+    {
+      "name": "Object_68",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Rectangle235_67/Object_135/Object_68",
+      "lo": [
+        -1.059,
+        0.283,
+        0.689
+      ],
+      "hi": [
+        -0.309,
+        0.482,
+        0.713
+      ]
+    },
+    {
+      "name": "Object_69",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Rectangle236_68/Object_137/Object_69",
+      "lo": [
+        -1.869,
+        0.283,
+        0.689
+      ],
+      "hi": [
+        -1.404,
+        0.482,
+        0.713
+      ]
+    },
+    {
+      "name": "Object_70",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Rectangle237_69/Object_139/Object_70",
+      "lo": [
+        -1.778,
+        0.298,
+        0.693
+      ],
+      "hi": [
+        -1.496,
+        0.468,
+        0.709
+      ]
+    },
+    {
+      "name": "Object_71",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Rectangle238_70/Object_141/Object_71",
+      "lo": [
+        -2.016,
+        0.271,
+        -0.131
+      ],
+      "hi": [
+        -1.967,
+        0.776,
+        0.659
+      ]
+    },
+    {
+      "name": "Object_72",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Rectangle239_71/Object_143/Object_72",
+      "lo": [
+        -1.671,
+        0.772,
+        0.197
+      ],
+      "hi": [
+        -1.387,
+        0.824,
+        0.811
+      ]
+    },
+    {
+      "name": "Object_73",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/Star05_72/Object_145/Object_73",
+      "lo": [
+        -1.699,
+        0.068,
+        0.295
+      ],
+      "hi": [
+        -1.357,
+        0.824,
+        0.847
+      ]
+    },
+    {
+      "name": "Object_74",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/vm_v4_069_3_73/Object_147/Object_74",
+      "lo": [
+        -1.968,
+        0.387,
+        -0.15
+      ],
+      "hi": [
+        -0.189,
+        0.539,
+        0.684
+      ]
+    },
+    {
+      "name": "Object_75",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/vm_v4_069_3_73/Object_148/Object_75",
+      "lo": [
+        -1.968,
+        0.387,
+        -0.15
+      ],
+      "hi": [
+        -0.189,
+        0.539,
+        0.684
+      ]
+    },
+    {
+      "name": "Object_76",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________30_75/vm_v4_069_6_74/Object_150/Object_76",
+      "lo": [
+        -0.526,
+        0.522,
+        -0.004
+      ],
+      "hi": [
+        -0.174,
+        0.662,
+        0.526
+      ]
+    },
+    {
+      "name": "Object_77",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs_97/Archmodels70_056_03_76/Object_153/Object_77",
+      "lo": [
+        -0.123,
+        0.937,
+        0.546
+      ],
+      "hi": [
+        -0.115,
+        0.945,
+        0.557
+      ]
+    },
+    {
+      "name": "Object_78",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs_97/Archmodels70_056_05_77/Object_155/Object_78",
+      "lo": [
+        -0.126,
+        0.948,
+        0.011
+      ],
+      "hi": [
+        -0.111,
+        0.985,
+        0.517
+      ]
+    },
+    {
+      "name": "Object_79",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs_97/Archmodels70_056_08_78/Object_157/Object_79",
+      "lo": [
+        -0.126,
+        0.948,
+        0.011
+      ],
+      "hi": [
+        -0.111,
+        0.949,
+        0.517
+      ]
+    },
+    {
+      "name": "Object_80",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs_97/Archmodels70_056_09_79/Object_159/Object_80",
+      "lo": [
+        -0.121,
+        0.952,
+        0.029
+      ],
+      "hi": [
+        -0.116,
+        0.967,
+        0.498
+      ]
+    },
+    {
+      "name": "Object_81",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs_97/Archmodels70_056_10_80/Object_161/Object_81",
+      "lo": [
+        -0.121,
+        0.952,
+        0.01
+      ],
+      "hi": [
+        -0.116,
+        0.967,
+        0.517
+      ]
+    },
+    {
+      "name": "Object_82",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs_97/Archmodels70_057_37_81/Object_163/Object_82",
+      "lo": [
+        -0.15,
+        1.0,
+        0.695
+      ],
+      "hi": [
+        -0.136,
+        1.068,
+        0.763
+      ]
+    },
+    {
+      "name": "Object_83",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs_97/Group1983821891_86/Archmodels70_056_02_82/Object_166/Object_83",
+      "lo": [
+        -0.14,
+        1.022,
+        -0.193
+      ],
+      "hi": [
+        -0.14,
+        1.046,
+        -0.058
+      ]
+    },
+    {
+      "name": "Object_84",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs_97/Group1983821891_86/Archmodels70_056_02_82/Object_167/Object_84",
+      "lo": [
+        -0.141,
+        1.015,
+        -0.2
+      ],
+      "hi": [
+        -0.139,
+        1.053,
+        -0.162
+      ]
+    },
+    {
+      "name": "Object_85",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs_97/Group1983821891_86/Archmodels70_056_02_82/Object_168/Object_85",
+      "lo": [
+        -0.141,
+        1.015,
+        -0.089
+      ],
+      "hi": [
+        -0.139,
+        1.053,
+        -0.051
+      ]
+    },
+    {
+      "name": "Object_86",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs_97/Group1983821891_86/Archmodels70_056_04_83/Object_170/Object_86",
+      "lo": [
+        -0.14,
+        1.007,
+        -0.208
+      ],
+      "hi": [
+        -0.137,
+        1.061,
+        -0.043
+      ]
+    },
+    {
+      "name": "Object_87",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs_97/Group1983821891_86/Archmodels70_056_11_84/Object_172/Object_87",
+      "lo": [
+        -0.138,
+        0.993,
+        0.176
+      ],
+      "hi": [
+        -0.136,
+        1.007,
+        0.352
+      ]
+    },
+    {
+      "name": "Object_88",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs_97/Group1983821891_86/Archmodels70_056_17_85/Object_174/Object_88",
+      "lo": [
+        -0.149,
+        1.022,
+        0.487
+      ],
+      "hi": [
+        -0.136,
+        1.048,
+        0.572
+      ]
+    },
+    {
+      "name": "Object_89",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs_97/Group1983821892_89/Archmodels70_057_38_87/Object_177/Object_89",
+      "lo": [
+        -0.14,
+        1.023,
+        0.052
+      ],
+      "hi": [
+        -0.14,
+        1.047,
+        0.076
+      ]
+    },
+    {
+      "name": "Object_90",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs_97/Group1983821892_89/Archmodels70_057_38_87/Object_178/Object_90",
+      "lo": [
+        -0.141,
+        1.016,
+        0.045
+      ],
+      "hi": [
+        -0.139,
+        1.054,
+        0.083
+      ]
+    },
+    {
+      "name": "Object_91",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs_97/Group1983821892_89/Archmodels70_057_39_88/Object_180/Object_91",
+      "lo": [
+        -0.14,
+        1.008,
+        0.037
+      ],
+      "hi": [
+        -0.137,
+        1.061,
+        0.09
+      ]
+    },
+    {
+      "name": "Object_92",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs_97/Group1983821893_93/Archmodels70_056_01_90/Object_183/Object_92",
+      "lo": [
+        -0.137,
+        0.945,
+        -0.253
+      ],
+      "hi": [
+        -0.103,
+        1.117,
+        0.782
+      ]
+    },
+    {
+      "name": "Object_93",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs_97/Group1983821893_93/Archmodels70_056_06_91/Object_185/Object_93",
+      "lo": [
+        -0.137,
+        0.945,
+        -0.257
+      ],
+      "hi": [
+        -0.103,
+        1.117,
+        0.786
+      ]
+    },
+    {
+      "name": "Object_94",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs_97/Group1983821893_93/Archmodels70_056_07_92/Object_187/Object_94",
+      "lo": [
+        -0.136,
+        0.967,
+        -0.253
+      ],
+      "hi": [
+        -0.136,
+        1.095,
+        0.782
+      ]
+    },
+    {
+      "name": "Object_95",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs_97/Object031_94/Object_189/Object_95",
+      "lo": [
+        -0.127,
+        0.944,
+        0.545
+      ],
+      "hi": [
+        -0.103,
+        0.945,
+        0.558
+      ]
+    },
+    {
+      "name": "Object_96",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs_97/_________40_96/Archmodels70_057_36_95/Object_192/Object_96",
+      "lo": [
+        -0.147,
+        1.004,
+        0.623
+      ],
+      "hi": [
+        -0.137,
+        1.063,
+        0.677
+      ]
+    },
+    {
+      "name": "Object_97",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/Rectangle2059400068_98/Object_194/Object_97",
+      "lo": [
+        -2.17,
+        2.391,
+        1.29
+      ],
+      "hi": [
+        -0.086,
+        2.417,
+        2.259
+      ]
+    },
+    {
+      "name": "Object_98",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs001_120/Archmodels70_056_018_99/Object_197/Object_98",
+      "lo": [
+        -0.123,
+        0.937,
+        2.073
+      ],
+      "hi": [
+        -0.115,
+        0.945,
+        2.085
+      ]
+    },
+    {
+      "name": "Object_99",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs001_120/Archmodels70_056_019_100/Object_199/Object_99",
+      "lo": [
+        -0.126,
+        0.948,
+        1.539
+      ],
+      "hi": [
+        -0.111,
+        0.985,
+        2.045
+      ]
+    },
+    {
+      "name": "Object_100",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs001_120/Archmodels70_056_020_101/Object_201/Object_100",
+      "lo": [
+        -0.126,
+        0.948,
+        1.539
+      ],
+      "hi": [
+        -0.111,
+        0.949,
+        2.045
+      ]
+    },
+    {
+      "name": "Object_101",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs001_120/Archmodels70_056_021_102/Object_203/Object_101",
+      "lo": [
+        -0.121,
+        0.952,
+        1.557
+      ],
+      "hi": [
+        -0.116,
+        0.967,
+        2.025
+      ]
+    },
+    {
+      "name": "Object_102",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs001_120/Archmodels70_056_022_103/Object_205/Object_102",
+      "lo": [
+        -0.121,
+        0.952,
+        1.537
+      ],
+      "hi": [
+        -0.116,
+        0.967,
+        2.045
+      ]
+    },
+    {
+      "name": "Object_103",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs001_120/Archmodels70_057_042_104/Object_207/Object_103",
+      "lo": [
+        -0.15,
+        1.0,
+        2.222
+      ],
+      "hi": [
+        -0.136,
+        1.068,
+        2.291
+      ]
+    },
+    {
+      "name": "Object_104",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs001_120/Group1983821894_109/Archmodels70_056_023_105/Object_210/Object_104",
+      "lo": [
+        -0.138,
+        0.993,
+        1.704
+      ],
+      "hi": [
+        -0.136,
+        1.007,
+        1.88
+      ]
+    },
+    {
+      "name": "Object_105",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs001_120/Group1983821894_109/Archmodels70_056_024_106/Object_212/Object_105",
+      "lo": [
+        -0.149,
+        1.022,
+        2.015
+      ],
+      "hi": [
+        -0.136,
+        1.048,
+        2.1
+      ]
+    },
+    {
+      "name": "Object_106",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs001_120/Group1983821894_109/Archmodels70_056_025_107/Object_214/Object_106",
+      "lo": [
+        -0.14,
+        1.022,
+        1.334
+      ],
+      "hi": [
+        -0.14,
+        1.046,
+        1.47
+      ]
+    },
+    {
+      "name": "Object_107",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs001_120/Group1983821894_109/Archmodels70_056_025_107/Object_215/Object_107",
+      "lo": [
+        -0.141,
+        1.015,
+        1.327
+      ],
+      "hi": [
+        -0.139,
+        1.053,
+        1.365
+      ]
+    },
+    {
+      "name": "Object_108",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs001_120/Group1983821894_109/Archmodels70_056_025_107/Object_216/Object_108",
+      "lo": [
+        -0.141,
+        1.015,
+        1.439
+      ],
+      "hi": [
+        -0.139,
+        1.053,
+        1.477
+      ]
+    },
+    {
+      "name": "Object_109",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs001_120/Group1983821894_109/Archmodels70_056_026_108/Object_218/Object_109",
+      "lo": [
+        -0.14,
+        1.007,
+        1.32
+      ],
+      "hi": [
+        -0.137,
+        1.061,
+        1.484
+      ]
+    },
+    {
+      "name": "Object_110",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs001_120/Group1983821895_112/Archmodels70_057_040_110/Object_221/Object_110",
+      "lo": [
+        -0.14,
+        1.023,
+        1.579
+      ],
+      "hi": [
+        -0.14,
+        1.047,
+        1.603
+      ]
+    },
+    {
+      "name": "Object_111",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs001_120/Group1983821895_112/Archmodels70_057_040_110/Object_222/Object_111",
+      "lo": [
+        -0.141,
+        1.016,
+        1.572
+      ],
+      "hi": [
+        -0.139,
+        1.054,
+        1.61
+      ]
+    },
+    {
+      "name": "Object_112",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs001_120/Group1983821895_112/Archmodels70_057_041_111/Object_224/Object_112",
+      "lo": [
+        -0.14,
+        1.008,
+        1.564
+      ],
+      "hi": [
+        -0.137,
+        1.061,
+        1.618
+      ]
+    },
+    {
+      "name": "Object_113",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs001_120/Group1983821896_116/Archmodels70_056_027_113/Object_227/Object_113",
+      "lo": [
+        -0.136,
+        0.967,
+        1.275
+      ],
+      "hi": [
+        -0.136,
+        1.095,
+        2.309
+      ]
+    },
+    {
+      "name": "Object_114",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs001_120/Group1983821896_116/Archmodels70_056_028_114/Object_229/Object_114",
+      "lo": [
+        -0.137,
+        0.945,
+        1.275
+      ],
+      "hi": [
+        -0.103,
+        1.117,
+        2.309
+      ]
+    },
+    {
+      "name": "Object_115",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs001_120/Group1983821896_116/Archmodels70_056_029_115/Object_231/Object_115",
+      "lo": [
+        -0.137,
+        0.945,
+        1.271
+      ],
+      "hi": [
+        -0.103,
+        1.117,
+        2.313
+      ]
+    },
+    {
+      "name": "Object_116",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs001_120/Object038_117/Object_233/Object_116",
+      "lo": [
+        -0.127,
+        0.944,
+        2.072
+      ],
+      "hi": [
+        -0.103,
+        0.945,
+        2.086
+      ]
+    },
+    {
+      "name": "Object_117",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/fffs001_120/_________042_119/Archmodels70_057_043_118/Object_236/Object_117",
+      "lo": [
+        -0.147,
+        1.004,
+        2.151
+      ],
+      "hi": [
+        -0.137,
+        1.063,
+        2.205
+      ]
+    },
+    {
+      "name": "Object_118",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/Box039_121/Object_238/Object_118",
+      "lo": [
+        -0.129,
+        -0.0,
+        -0.733
+      ],
+      "hi": [
+        -0.086,
+        2.414,
+        2.543
+      ]
+    },
+    {
+      "name": "Object_119",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Box040_122/Object_241/Object_119",
+      "lo": [
+        -1.691,
+        0.824,
+        1.703
+      ],
+      "hi": [
+        -1.367,
+        0.841,
+        2.349
+      ]
+    },
+    {
+      "name": "Object_120",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Box040_122/Object_242/Object_120",
+      "lo": [
+        -1.674,
+        0.84,
+        1.719
+      ],
+      "hi": [
+        -1.383,
+        0.84,
+        2.332
+      ]
+    },
+    {
+      "name": "Object_121",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Box041_123/Object_244/Object_121",
+      "lo": [
+        -2.018,
+        0.413,
+        1.608
+      ],
+      "hi": [
+        -1.964,
+        0.804,
+        1.973
+      ]
+    },
+    {
+      "name": "Object_122",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Box042_124/Object_246/Object_122",
+      "lo": [
+        -0.187,
+        0.413,
+        1.608
+      ],
+      "hi": [
+        -0.133,
+        0.804,
+        1.973
+      ]
+    },
+    {
+      "name": "Object_123",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Box043_125/Object_248/Object_123",
+      "lo": [
+        -1.683,
+        0.815,
+        1.747
+      ],
+      "hi": [
+        -1.375,
+        0.823,
+        2.237
+      ]
+    },
+    {
+      "name": "Object_124",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Box044_126/Object_250/Object_124",
+      "lo": [
+        -1.683,
+        0.802,
+        1.832
+      ],
+      "hi": [
+        -1.375,
+        0.811,
+        2.065
+      ]
+    },
+    {
+      "name": "Object_125",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/ChamferBox117_127/Object_252/Object_125",
+      "lo": [
+        -2.006,
+        0.201,
+        1.481
+      ],
+      "hi": [
+        -1.974,
+        0.272,
+        2.1
+      ]
+    },
+    {
+      "name": "Object_126",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/ChamferBox118_128/Object_254/Object_126",
+      "lo": [
+        -0.177,
+        0.201,
+        1.481
+      ],
+      "hi": [
+        -0.145,
+        0.272,
+        2.1
+      ]
+    },
+    {
+      "name": "Object_127",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Cylinder067_129/Object_256/Object_127",
+      "lo": [
+        -1.773,
+        0.046,
+        2.144
+      ],
+      "hi": [
+        -1.714,
+        0.141,
+        2.182
+      ]
+    },
+    {
+      "name": "Object_128",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Cylinder068_130/Object_258/Object_128",
+      "lo": [
+        -1.8,
+        0.018,
+        2.15
+      ],
+      "hi": [
+        -1.721,
+        0.102,
+        2.175
+      ]
+    },
+    {
+      "name": "Object_129",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Cylinder068_130/Object_259/Object_129",
+      "lo": [
+        -1.808,
+        0.008,
+        2.152
+      ],
+      "hi": [
+        -1.713,
+        0.112,
+        2.173
+      ]
+    },
+    {
+      "name": "Object_130",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Cylinder069_131/Object_261/Object_130",
+      "lo": [
+        -1.751,
+        0.141,
+        2.146
+      ],
+      "hi": [
+        -1.687,
+        0.197,
+        2.179
+      ]
+    },
+    {
+      "name": "Object_131",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Cylinder070_132/Object_263/Object_131",
+      "lo": [
+        -0.444,
+        0.046,
+        2.144
+      ],
+      "hi": [
+        -0.385,
+        0.141,
+        2.182
+      ]
+    },
+    {
+      "name": "Object_132",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Cylinder071_133/Object_265/Object_132",
+      "lo": [
+        -0.437,
+        0.018,
+        2.15
+      ],
+      "hi": [
+        -0.358,
+        0.102,
+        2.175
+      ]
+    },
+    {
+      "name": "Object_133",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Cylinder071_133/Object_266/Object_133",
+      "lo": [
+        -0.445,
+        0.008,
+        2.152
+      ],
+      "hi": [
+        -0.35,
+        0.112,
+        2.173
+      ]
+    },
+    {
+      "name": "Object_134",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Cylinder072_134/Object_268/Object_134",
+      "lo": [
+        -0.471,
+        0.141,
+        2.146
+      ],
+      "hi": [
+        -0.407,
+        0.197,
+        2.179
+      ]
+    },
+    {
+      "name": "Object_135",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Cylinder073_135/Object_270/Object_135",
+      "lo": [
+        -1.773,
+        0.046,
+        1.403
+      ],
+      "hi": [
+        -1.714,
+        0.141,
+        1.44
+      ]
+    },
+    {
+      "name": "Object_136",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Cylinder074_136/Object_272/Object_136",
+      "lo": [
+        -1.8,
+        0.018,
+        1.409
+      ],
+      "hi": [
+        -1.721,
+        0.102,
+        1.434
+      ]
+    },
+    {
+      "name": "Object_137",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Cylinder074_136/Object_273/Object_137",
+      "lo": [
+        -1.808,
+        0.008,
+        1.411
+      ],
+      "hi": [
+        -1.713,
+        0.112,
+        1.432
+      ]
+    },
+    {
+      "name": "Object_138",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Cylinder075_137/Object_275/Object_138",
+      "lo": [
+        -1.751,
+        0.141,
+        1.405
+      ],
+      "hi": [
+        -1.687,
+        0.197,
+        1.438
+      ]
+    },
+    {
+      "name": "Object_139",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Cylinder076_138/Object_277/Object_139",
+      "lo": [
+        -1.687,
+        0.142,
+        1.409
+      ],
+      "hi": [
+        -0.471,
+        0.181,
+        2.175
+      ]
+    },
+    {
+      "name": "Object_140",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Cylinder077_139/Object_279/Object_140",
+      "lo": [
+        -0.444,
+        0.046,
+        1.403
+      ],
+      "hi": [
+        -0.385,
+        0.141,
+        1.44
+      ]
+    },
+    {
+      "name": "Object_141",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Cylinder078_140/Object_281/Object_141",
+      "lo": [
+        -0.437,
+        0.018,
+        1.409
+      ],
+      "hi": [
+        -0.358,
+        0.102,
+        1.434
+      ]
+    },
+    {
+      "name": "Object_142",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Cylinder078_140/Object_282/Object_142",
+      "lo": [
+        -0.445,
+        0.008,
+        1.411
+      ],
+      "hi": [
+        -0.35,
+        0.112,
+        1.432
+      ]
+    },
+    {
+      "name": "Object_143",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Cylinder079_141/Object_284/Object_143",
+      "lo": [
+        -0.471,
+        0.141,
+        1.405
+      ],
+      "hi": [
+        -0.407,
+        0.197,
+        1.438
+      ]
+    },
+    {
+      "name": "Object_144",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Obj_074_142/Object_286/Object_144",
+      "lo": [
+        -1.4,
+        0.03,
+        2.327
+      ],
+      "hi": [
+        -1.343,
+        0.068,
+        2.377
+      ]
+    },
+    {
+      "name": "Object_145",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Obj_074_142/Object_287/Object_145",
+      "lo": [
+        -1.399,
+        0.008,
+        2.326
+      ],
+      "hi": [
+        -1.343,
+        0.058,
+        2.379
+      ]
+    },
+    {
+      "name": "Object_146",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Obj_075_143/Object_289/Object_146",
+      "lo": [
+        -1.727,
+        0.03,
+        2.336
+      ],
+      "hi": [
+        -1.668,
+        0.068,
+        2.39
+      ]
+    },
+    {
+      "name": "Object_147",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Obj_075_143/Object_290/Object_147",
+      "lo": [
+        -1.727,
+        0.008,
+        2.336
+      ],
+      "hi": [
+        -1.668,
+        0.058,
+        2.391
+      ]
+    },
+    {
+      "name": "Object_148",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Obj_076_144/Object_292/Object_148",
+      "lo": [
+        -1.727,
+        0.03,
+        1.804
+      ],
+      "hi": [
+        -1.668,
+        0.068,
+        1.857
+      ]
+    },
+    {
+      "name": "Object_149",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Obj_076_144/Object_293/Object_149",
+      "lo": [
+        -1.727,
+        0.008,
+        1.803
+      ],
+      "hi": [
+        -1.668,
+        0.058,
+        1.858
+      ]
+    },
+    {
+      "name": "Object_150",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Obj_077_145/Object_295/Object_150",
+      "lo": [
+        -1.4,
+        0.03,
+        1.816
+      ],
+      "hi": [
+        -1.343,
+        0.068,
+        1.867
+      ]
+    },
+    {
+      "name": "Object_151",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Obj_077_145/Object_296/Object_151",
+      "lo": [
+        -1.399,
+        0.008,
+        1.815
+      ],
+      "hi": [
+        -1.343,
+        0.058,
+        1.868
+      ]
+    },
+    {
+      "name": "Object_152",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Object039_146/Object_298/Object_152",
+      "lo": [
+        -1.864,
+        0.286,
+        1.346
+      ],
+      "hi": [
+        -1.407,
+        0.48,
+        1.346
+      ]
+    },
+    {
+      "name": "Object_153",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Object040_147/Object_300/Object_153",
+      "lo": [
+        -1.764,
+        0.056,
+        2.147
+      ],
+      "hi": [
+        -1.756,
+        0.065,
+        2.179
+      ]
+    },
+    {
+      "name": "Object_154",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Object041_148/Object_302/Object_154",
+      "lo": [
+        -0.402,
+        0.056,
+        2.147
+      ],
+      "hi": [
+        -0.393,
+        0.065,
+        2.179
+      ]
+    },
+    {
+      "name": "Object_155",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Object042_149/Object_304/Object_155",
+      "lo": [
+        -1.764,
+        0.056,
+        1.406
+      ],
+      "hi": [
+        -1.756,
+        0.065,
+        1.437
+      ]
+    },
+    {
+      "name": "Object_156",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Object043_150/Object_306/Object_156",
+      "lo": [
+        -0.402,
+        0.056,
+        1.406
+      ],
+      "hi": [
+        -0.393,
+        0.065,
+        1.437
+      ]
+    },
+    {
+      "name": "Object_157",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Rectangle2059400069_151/Object_308/Object_157",
+      "lo": [
+        -0.186,
+        0.271,
+        1.395
+      ],
+      "hi": [
+        -0.137,
+        0.776,
+        2.185
+      ]
+    },
+    {
+      "name": "Object_158",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Rectangle2059400070_152/Object_310/Object_158",
+      "lo": [
+        -1.975,
+        0.361,
+        1.373
+      ],
+      "hi": [
+        -0.191,
+        0.387,
+        2.213
+      ]
+    },
+    {
+      "name": "Object_159",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Rectangle2059400071_153/Object_312/Object_159",
+      "lo": [
+        -1.869,
+        0.283,
+        1.346
+      ],
+      "hi": [
+        -1.404,
+        0.482,
+        1.37
+      ]
+    },
+    {
+      "name": "Object_160",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Rectangle2059400072_154/Object_314/Object_160",
+      "lo": [
+        -1.778,
+        0.298,
+        1.35
+      ],
+      "hi": [
+        -1.496,
+        0.468,
+        1.366
+      ]
+    },
+    {
+      "name": "Object_161",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Rectangle2059400073_155/Object_316/Object_161",
+      "lo": [
+        -0.967,
+        0.298,
+        1.35
+      ],
+      "hi": [
+        -0.406,
+        0.468,
+        1.366
+      ]
+    },
+    {
+      "name": "Object_162",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Rectangle2059400074_156/Object_318/Object_162",
+      "lo": [
+        -1.059,
+        0.283,
+        1.346
+      ],
+      "hi": [
+        -0.309,
+        0.482,
+        1.37
+      ]
+    },
+    {
+      "name": "Object_163",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Rectangle2059400075_157/Object_320/Object_163",
+      "lo": [
+        -0.967,
+        0.298,
+        2.219
+      ],
+      "hi": [
+        -0.406,
+        0.468,
+        2.235
+      ]
+    },
+    {
+      "name": "Object_164",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Rectangle2059400076_158/Object_322/Object_164",
+      "lo": [
+        -1.059,
+        0.283,
+        2.215
+      ],
+      "hi": [
+        -0.309,
+        0.482,
+        2.239
+      ]
+    },
+    {
+      "name": "Object_165",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Rectangle2059400077_159/Object_324/Object_165",
+      "lo": [
+        -1.869,
+        0.283,
+        2.215
+      ],
+      "hi": [
+        -1.404,
+        0.482,
+        2.239
+      ]
+    },
+    {
+      "name": "Object_166",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Rectangle2059400078_160/Object_326/Object_166",
+      "lo": [
+        -1.778,
+        0.298,
+        2.219
+      ],
+      "hi": [
+        -1.496,
+        0.468,
+        2.235
+      ]
+    },
+    {
+      "name": "Object_167",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Rectangle2059400079_161/Object_328/Object_167",
+      "lo": [
+        -2.016,
+        0.271,
+        1.395
+      ],
+      "hi": [
+        -1.967,
+        0.776,
+        2.185
+      ]
+    },
+    {
+      "name": "Object_168",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Rectangle2059400080_162/Object_330/Object_168",
+      "lo": [
+        -1.671,
+        0.772,
+        1.723
+      ],
+      "hi": [
+        -1.387,
+        0.824,
+        2.337
+      ]
+    },
+    {
+      "name": "Object_169",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/Star006_163/Object_332/Object_169",
+      "lo": [
+        -1.699,
+        0.068,
+        1.821
+      ],
+      "hi": [
+        -1.357,
+        0.824,
+        2.372
+      ]
+    },
+    {
+      "name": "Object_170",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/vm_v4_069_007_164/Object_334/Object_170",
+      "lo": [
+        -1.968,
+        0.387,
+        1.376
+      ],
+      "hi": [
+        -0.189,
+        0.539,
+        2.21
+      ]
+    },
+    {
+      "name": "Object_171",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/vm_v4_069_007_164/Object_335/Object_171",
+      "lo": [
+        -1.968,
+        0.387,
+        1.376
+      ],
+      "hi": [
+        -0.189,
+        0.539,
+        2.21
+      ]
+    },
+    {
+      "name": "Object_172",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________043_166/vm_v4_069_008_165/Object_337/Object_172",
+      "lo": [
+        -0.526,
+        0.522,
+        1.521
+      ],
+      "hi": [
+        -0.174,
+        0.662,
+        2.052
+      ]
+    },
+    {
+      "name": "Object_173",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/Box045_167/Object_339/Object_173",
+      "lo": [
+        -0.091,
+        1.223,
+        -0.733
+      ],
+      "hi": [
+        -0.086,
+        2.914,
+        2.716
+      ]
+    },
+    {
+      "name": "Object_174",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________025_178/book_1_172/Box1578964563_168/Object_343/Object_174",
+      "lo": [
+        -0.473,
+        0.703,
+        -0.5
+      ],
+      "hi": [
+        -0.225,
+        0.727,
+        -0.233
+      ]
+    },
+    {
+      "name": "Object_175",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________025_178/book_1_172/Box1578964563_168/Object_344/Object_175",
+      "lo": [
+        -0.474,
+        0.703,
+        -0.5
+      ],
+      "hi": [
+        -0.225,
+        0.728,
+        -0.233
+      ]
+    },
+    {
+      "name": "Object_176",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________025_178/book_1_172/Line005_169/Object_346/Object_176",
+      "lo": [
+        -0.468,
+        0.705,
+        -0.496
+      ],
+      "hi": [
+        -0.228,
+        0.726,
+        -0.237
+      ]
+    },
+    {
+      "name": "Object_177",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________025_178/book_1_172/Line006_170/Object_348/Object_177",
+      "lo": [
+        -0.469,
+        0.704,
+        -0.291
+      ],
+      "hi": [
+        -0.466,
+        0.726,
+        -0.29
+      ]
+    },
+    {
+      "name": "Object_178",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________025_178/book_1_172/Line007_171/Object_350/Object_178",
+      "lo": [
+        -0.407,
+        0.704,
+        -0.497
+      ],
+      "hi": [
+        -0.405,
+        0.726,
+        -0.495
+      ]
+    },
+    {
+      "name": "Object_179",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________025_178/book_2_177/Box1578964562_173/Object_353/Object_179",
+      "lo": [
+        -0.406,
+        0.732,
+        -0.491
+      ],
+      "hi": [
+        -0.303,
+        0.744,
+        -0.293
+      ]
+    },
+    {
+      "name": "Object_180",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________025_178/book_2_177/Box1578964562_173/Object_354/Object_180",
+      "lo": [
+        -0.407,
+        0.726,
+        -0.492
+      ],
+      "hi": [
+        -0.187,
+        0.745,
+        -0.234
+      ]
+    },
+    {
+      "name": "Object_181",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________025_178/book_2_177/Box1578964562_173/Object_355/Object_181",
+      "lo": [
+        -0.408,
+        0.726,
+        -0.492
+      ],
+      "hi": [
+        -0.186,
+        0.746,
+        -0.234
+      ]
+    },
+    {
+      "name": "Object_182",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________025_178/book_2_177/Line008_174/Object_357/Object_182",
+      "lo": [
+        -0.402,
+        0.727,
+        -0.487
+      ],
+      "hi": [
+        -0.189,
+        0.744,
+        -0.237
+      ]
+    },
+    {
+      "name": "Object_183",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________025_178/book_2_177/Line009_175/Object_359/Object_183",
+      "lo": [
+        -0.402,
+        0.727,
+        -0.296
+      ],
+      "hi": [
+        -0.4,
+        0.744,
+        -0.295
+      ]
+    },
+    {
+      "name": "Object_184",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________025_178/book_2_177/Line010_176/Object_361/Object_184",
+      "lo": [
+        -0.306,
+        0.727,
+        -0.488
+      ],
+      "hi": [
+        -0.304,
+        0.744,
+        -0.486
+      ]
+    },
+    {
+      "name": "Object_185",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/xiadele_2_185/fff_184/xiadele_CYLINDER_TEXTURED_BOTTLE_VASE_179/Object_365/Object_185",
+      "lo": [
+        -0.393,
+        0.704,
+        1.056
+      ],
+      "hi": [
+        -0.287,
+        0.972,
+        1.162
+      ]
+    },
+    {
+      "name": "Object_186",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/xiadele_2_185/fff_184/xiadele_MEDICINE_BOTTLE_VASE_180/Object_367/Object_186",
+      "lo": [
+        -0.335,
+        0.704,
+        0.946
+      ],
+      "hi": [
+        -0.229,
+        0.844,
+        1.052
+      ]
+    },
+    {
+      "name": "Object_187",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/xiadele_2_185/fff_184/xiadele_ORCHID_183/xiadele_leaf___181/Object_370/Object_187",
+      "lo": [
+        -0.498,
+        0.735,
+        0.911
+      ],
+      "hi": [
+        -0.338,
+        0.795,
+        1.062
+      ]
+    },
+    {
+      "name": "Object_188",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/xiadele_2_185/fff_184/xiadele_ORCHID_183/xiadele_leaf___181/Object_371/Object_188",
+      "lo": [
+        -0.426,
+        0.762,
+        0.973
+      ],
+      "hi": [
+        -0.422,
+        1.032,
+        0.977
+      ]
+    },
+    {
+      "name": "Object_189",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/xiadele_2_185/fff_184/xiadele_ORCHID_183/xiadele_leaf___181/Object_372/Object_189",
+      "lo": [
+        -0.428,
+        0.86,
+        0.973
+      ],
+      "hi": [
+        -0.417,
+        0.922,
+        0.979
+      ]
+    },
+    {
+      "name": "Object_190",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/xiadele_2_185/fff_184/xiadele_ORCHID_183/xiadele_orchid__182/Object_374/Object_190",
+      "lo": [
+        -0.437,
+        0.978,
+        0.948
+      ],
+      "hi": [
+        -0.31,
+        1.058,
+        1.033
+      ]
+    },
+    {
+      "name": "Object_191",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/xiadele_2_185/fff_184/xiadele_ORCHID_183/xiadele_orchid__182/Object_375/Object_191",
+      "lo": [
+        -0.435,
+        0.991,
+        0.954
+      ],
+      "hi": [
+        -0.31,
+        1.046,
+        1.028
+      ]
+    },
+    {
+      "name": "Object_192",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/xiadele_2_185/fff_184/xiadele_ORCHID_183/xiadele_orchid__182/Object_376/Object_192",
+      "lo": [
+        -0.454,
+        0.762,
+        0.946
+      ],
+      "hi": [
+        -0.275,
+        1.038,
+        1.019
+      ]
+    },
+    {
+      "name": "Object_193",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/xiadele_2_185/fff_184/xiadele_ORCHID_183/xiadele_orchid__182/Object_377/Object_193",
+      "lo": [
+        -0.317,
+        0.967,
+        0.992
+      ],
+      "hi": [
+        -0.271,
+        0.988,
+        1.022
+      ]
+    },
+    {
+      "name": "Object_194",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/xiadele_2_185/fff_184/xiadele_ORCHID_183/xiadele_orchid__182/Object_378/Object_194",
+      "lo": [
+        -0.471,
+        0.755,
+        0.919
+      ],
+      "hi": [
+        -0.379,
+        0.798,
+        1.005
+      ]
+    },
+    {
+      "name": "Object_195",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/xiadele_2_185/fff_184/xiadele_ORCHID_183/xiadele_orchid__182/Object_379/Object_195",
+      "lo": [
+        -0.454,
+        0.761,
+        0.946
+      ],
+      "hi": [
+        -0.398,
+        0.77,
+        1.003
+      ]
+    },
+    {
+      "name": "Object_196",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/xiadele_2_185/fff_184/xiadele_ORCHID_183/xiadele_orchid__182/Object_380/Object_196",
+      "lo": [
+        -0.456,
+        0.704,
+        0.944
+      ],
+      "hi": [
+        -0.395,
+        0.776,
+        1.005
+      ]
+    },
+    {
+      "name": "Object_197",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/xiadele_2_185/fff_184/xiadele_ORCHID_183/xiadele_orchid__182/Object_381/Object_197",
+      "lo": [
+        -0.454,
+        0.704,
+        0.946
+      ],
+      "hi": [
+        -0.397,
+        0.762,
+        1.003
+      ]
+    },
+    {
+      "name": "Object_198",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________004_189/Circle019_186/Object_384/Object_198",
+      "lo": [
+        -0.404,
+        0.826,
+        -0.415
+      ],
+      "hi": [
+        -0.28,
+        0.851,
+        -0.291
+      ]
+    },
+    {
+      "name": "Object_199",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________004_189/Cylinder029_187/Object_386/Object_199",
+      "lo": [
+        -0.408,
+        0.748,
+        -0.418
+      ],
+      "hi": [
+        -0.276,
+        0.874,
+        -0.287
+      ]
+    },
+    {
+      "name": "Object_200",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_________004_189/Plane035_188/Object_388/Object_200",
+      "lo": [
+        -0.441,
+        0.794,
+        -0.456
+      ],
+      "hi": [
+        -0.233,
+        0.98,
+        -0.246
+      ]
+    },
+    {
+      "name": "Object_201",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/xiadele_CURTAIN02_190/Object_390/Object_201",
+      "lo": [
+        -0.648,
+        0.168,
+        2.488
+      ],
+      "hi": [
+        0.212,
+        2.518,
+        2.646
+      ]
+    },
+    {
+      "name": "Object_202",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/xiadele_CURTAIN02_190/Object_391/Object_202",
+      "lo": [
+        -0.677,
+        -0.001,
+        2.46
+      ],
+      "hi": [
+        0.234,
+        0.208,
+        2.649
+      ]
+    },
+    {
+      "name": "Object_203",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_1_191/Object_393/Object_203",
+      "lo": [
+        -0.619,
+        0.33,
+        0.639
+      ],
+      "hi": [
+        -0.07,
+        2.398,
+        0.786
+      ]
+    },
+    {
+      "name": "Object_204",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/_1_191/Object_394/Object_204",
+      "lo": [
+        -0.619,
+        0.186,
+        0.636
+      ],
+      "hi": [
+        -0.054,
+        0.367,
+        0.828
+      ]
+    },
+    {
+      "name": "Object_205",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/diaoding065_193/Circle311817_192/Object_397/Object_205",
+      "lo": [
+        1.569,
+        2.454,
+        1.105
+      ],
+      "hi": [
+        1.618,
+        2.459,
+        1.153
+      ]
+    },
+    {
+      "name": "Object_206",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/diaoding065_193/Circle311817_192/Object_398/Object_206",
+      "lo": [
+        1.576,
+        2.456,
+        1.112
+      ],
+      "hi": [
+        1.611,
+        2.456,
+        1.147
+      ]
+    },
+    {
+      "name": "Object_207",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/diaoding066_195/Circle311818_194/Object_401/Object_207",
+      "lo": [
+        1.569,
+        2.454,
+        2.537
+      ],
+      "hi": [
+        1.618,
+        2.459,
+        2.586
+      ]
+    },
+    {
+      "name": "Object_208",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/diaoding066_195/Circle311818_194/Object_402/Object_208",
+      "lo": [
+        1.576,
+        2.456,
+        2.544
+      ],
+      "hi": [
+        1.611,
+        2.456,
+        2.579
+      ]
+    },
+    {
+      "name": "Object_209",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/chuang_tou_gui_204/Box1578964583_196/Object_405/Object_209",
+      "lo": [
+        -0.583,
+        0.292,
+        0.876
+      ],
+      "hi": [
+        -0.577,
+        0.353,
+        0.901
+      ]
+    },
+    {
+      "name": "Object_210",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/chuang_tou_gui_204/Group1983821905_199/Arc001_197/Object_408/Object_210",
+      "lo": [
+        -0.598,
+        0.556,
+        0.859
+      ],
+      "hi": [
+        -0.549,
+        0.657,
+        1.234
+      ]
+    },
+    {
+      "name": "Object_211",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/chuang_tou_gui_204/Group1983821905_199/Box1578964582_198/Object_410/Object_211",
+      "lo": [
+        -0.592,
+        0.558,
+        1.014
+      ],
+      "hi": [
+        -0.591,
+        0.57,
+        1.098
+      ]
+    },
+    {
+      "name": "Object_212",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/chuang_tou_gui_204/Line1789540115_200/Object_412/Object_212",
+      "lo": [
+        -0.605,
+        0.678,
+        0.84
+      ],
+      "hi": [
+        -0.167,
+        0.704,
+        1.252
+      ]
+    },
+    {
+      "name": "Object_213",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/chuang_tou_gui_204/Line1789540117_201/Object_414/Object_213",
+      "lo": [
+        -0.6,
+        0.049,
+        0.859
+      ],
+      "hi": [
+        -0.167,
+        0.678,
+        1.234
+      ]
+    },
+    {
+      "name": "Object_214",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/chuang_tou_gui_204/Rectangle2059400086_202/Object_416/Object_214",
+      "lo": [
+        -0.586,
+        0.049,
+        0.842
+      ],
+      "hi": [
+        -0.167,
+        0.678,
+        1.251
+      ]
+    },
+    {
+      "name": "Object_215",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/chuang_tou_gui_204/Rectangle2059400087_203/Object_418/Object_215",
+      "lo": [
+        -0.599,
+        0.094,
+        0.857
+      ],
+      "hi": [
+        -0.564,
+        0.535,
+        1.237
+      ]
+    },
+    {
+      "name": "Object_216",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/chuang_tou_gui001_213/Box1578964585_205/Object_421/Object_216",
+      "lo": [
+        -0.583,
+        0.292,
+        -0.609
+      ],
+      "hi": [
+        -0.577,
+        0.353,
+        -0.584
+      ]
+    },
+    {
+      "name": "Object_217",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/chuang_tou_gui001_213/Group1983821906_208/Arc002_206/Object_424/Object_217",
+      "lo": [
+        -0.598,
+        0.556,
+        -0.626
+      ],
+      "hi": [
+        -0.549,
+        0.657,
+        -0.251
+      ]
+    },
+    {
+      "name": "Object_218",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/chuang_tou_gui001_213/Group1983821906_208/Box1578964584_207/Object_426/Object_218",
+      "lo": [
+        -0.592,
+        0.558,
+        -0.472
+      ],
+      "hi": [
+        -0.591,
+        0.57,
+        -0.388
+      ]
+    },
+    {
+      "name": "Object_219",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/chuang_tou_gui001_213/Line1789540118_209/Object_428/Object_219",
+      "lo": [
+        -0.6,
+        0.049,
+        -0.626
+      ],
+      "hi": [
+        -0.167,
+        0.678,
+        -0.251
+      ]
+    },
+    {
+      "name": "Object_220",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/chuang_tou_gui001_213/Line1789540119_210/Object_430/Object_220",
+      "lo": [
+        -0.605,
+        0.678,
+        -0.645
+      ],
+      "hi": [
+        -0.167,
+        0.704,
+        -0.233
+      ]
+    },
+    {
+      "name": "Object_221",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/chuang_tou_gui001_213/Rectangle2059400088_211/Object_432/Object_221",
+      "lo": [
+        -0.586,
+        0.049,
+        -0.643
+      ],
+      "hi": [
+        -0.167,
+        0.678,
+        -0.234
+      ]
+    },
+    {
+      "name": "Object_222",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/chuang_tou_gui001_213/Rectangle2059400089_212/Object_434/Object_222",
+      "lo": [
+        -0.599,
+        0.094,
+        -0.628
+      ],
+      "hi": [
+        -0.564,
+        0.535,
+        -0.249
+      ]
+    }
+  ],
+  "ward_b": [
+    {
+      "name": "Object_0",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/walls_0/Object_4/Object_0",
+      "lo": [
+        -1.722,
+        -0.15,
+        -3.312
+      ],
+      "hi": [
+        1.722,
+        2.395,
+        0.692
+      ]
+    },
+    {
+      "name": "Object_1",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/floor_bottom_1/Object_6/Object_1",
+      "lo": [
+        -1.497,
+        -0.15,
+        -2.994
+      ],
+      "hi": [
+        1.497,
+        -0.019,
+        2.096
+      ]
+    },
+    {
+      "name": "Object_2",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/floor_2/Object_8/Object_2",
+      "lo": [
+        -1.497,
+        -0.019,
+        -2.994
+      ],
+      "hi": [
+        1.497,
+        -0.019,
+        2.096
+      ]
+    },
+    {
+      "name": "Object_3",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/floor_tiles_3/Object_10/Object_3",
+      "lo": [
+        -1.497,
+        -0.019,
+        -2.994
+      ],
+      "hi": [
+        1.497,
+        -0.0,
+        2.096
+      ]
+    },
+    {
+      "name": "Object_4",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_2_14/cgaxis_models_55_03_01_4/Object_13/Object_4",
+      "lo": [
+        1.073,
+        0.546,
+        -1.118
+      ],
+      "hi": [
+        1.213,
+        0.814,
+        -0.88
+      ]
+    },
+    {
+      "name": "Object_5",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_2_14/cgaxis_models_55_03_02_5/Object_15/Object_5",
+      "lo": [
+        1.17,
+        0.691,
+        -1.124
+      ],
+      "hi": [
+        1.189,
+        0.738,
+        -1.112
+      ]
+    },
+    {
+      "name": "Object_6",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_2_14/cgaxis_models_55_03_03_6/Object_17/Object_6",
+      "lo": [
+        1.073,
+        0.583,
+        -1.116
+      ],
+      "hi": [
+        1.079,
+        0.605,
+        -0.881
+      ]
+    },
+    {
+      "name": "Object_7",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_2_14/cgaxis_models_55_03_04_7/Object_19/Object_7",
+      "lo": [
+        1.056,
+        0.549,
+        -1.141
+      ],
+      "hi": [
+        1.236,
+        0.838,
+        -0.856
+      ]
+    },
+    {
+      "name": "Object_8",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_2_14/cgaxis_models_55_03_05_8/Object_21/Object_8",
+      "lo": [
+        1.083,
+        0.629,
+        -1.103
+      ],
+      "hi": [
+        1.084,
+        0.801,
+        -0.894
+      ]
+    },
+    {
+      "name": "Object_9",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_2_14/cgaxis_models_55_03_06_9/Object_23/Object_9",
+      "lo": [
+        1.073,
+        0.587,
+        -1.085
+      ],
+      "hi": [
+        1.074,
+        0.6,
+        -1.079
+      ]
+    },
+    {
+      "name": "Object_10",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_2_14/cgaxis_models_55_03_07_10/Object_25/Object_10",
+      "lo": [
+        1.14,
+        0.701,
+        -1.119
+      ],
+      "hi": [
+        1.153,
+        0.738,
+        -1.115
+      ]
+    },
+    {
+      "name": "Object_11",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_2_14/cgaxis_models_55_03_08_11/Object_27/Object_11",
+      "lo": [
+        1.137,
+        0.698,
+        -1.12
+      ],
+      "hi": [
+        1.156,
+        0.717,
+        -1.115
+      ]
+    },
+    {
+      "name": "Object_12",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_2_14/cgaxis_models_55_03_09_12/Object_29/Object_12",
+      "lo": [
+        1.104,
+        0.579,
+        -1.111
+      ],
+      "hi": [
+        1.208,
+        0.835,
+        -0.888
+      ]
+    },
+    {
+      "name": "Object_13",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_2_14/cgaxis_models_55_03_10_13/Object_31/Object_13",
+      "lo": [
+        1.081,
+        0.629,
+        -1.103
+      ],
+      "hi": [
+        1.083,
+        0.801,
+        -0.894
+      ]
+    },
+    {
+      "name": "Object_14",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/wheelchair_21/cgaxis_models_55_20_01_15/Object_34/Object_14",
+      "lo": [
+        -1.269,
+        0.367,
+        -1.617
+      ],
+      "hi": [
+        -0.699,
+        0.745,
+        -1.046
+      ]
+    },
+    {
+      "name": "Object_15",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/wheelchair_21/cgaxis_models_55_20_02_16/Object_36/Object_15",
+      "lo": [
+        -1.414,
+        -0.0,
+        -1.762
+      ],
+      "hi": [
+        -0.611,
+        0.479,
+        -0.958
+      ]
+    },
+    {
+      "name": "Object_16",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/wheelchair_21/cgaxis_models_55_20_03_17/Object_38/Object_16",
+      "lo": [
+        -1.209,
+        0.087,
+        -1.557
+      ],
+      "hi": [
+        -0.702,
+        0.418,
+        -1.049
+      ]
+    },
+    {
+      "name": "Object_17",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/wheelchair_21/cgaxis_models_55_20_04_18/Object_40/Object_17",
+      "lo": [
+        -1.355,
+        0.025,
+        -1.702
+      ],
+      "hi": [
+        -0.543,
+        0.772,
+        -0.891
+      ]
+    },
+    {
+      "name": "Object_18",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/wheelchair_21/cgaxis_models_55_20_05_19/Object_42/Object_18",
+      "lo": [
+        -1.415,
+        0.021,
+        -1.762
+      ],
+      "hi": [
+        -0.562,
+        0.773,
+        -0.91
+      ]
+    },
+    {
+      "name": "Object_19",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/wheelchair_21/cgaxis_models_55_20_05_19/Object_43/Object_19",
+      "lo": [
+        -1.32,
+        0.431,
+        -1.303
+      ],
+      "hi": [
+        -1.262,
+        0.457,
+        -1.243
+      ]
+    },
+    {
+      "name": "Object_20",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/wheelchair_21/cgaxis_models_55_20_06_20/Object_45/Object_20",
+      "lo": [
+        -1.39,
+        0.029,
+        -1.737
+      ],
+      "hi": [
+        -0.545,
+        0.741,
+        -0.892
+      ]
+    },
+    {
+      "name": "Object_21",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/wheelchair_21/cgaxis_models_55_20_06_20/Object_46/Object_21",
+      "lo": [
+        -1.388,
+        0.034,
+        -1.735
+      ],
+      "hi": [
+        -0.7,
+        0.741,
+        -1.047
+      ]
+    },
+    {
+      "name": "Object_22",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/wall_panel_22/Object_48/Object_22",
+      "lo": [
+        1.43,
+        0.15,
+        -0.945
+      ],
+      "hi": [
+        1.452,
+        1.472,
+        0.524
+      ]
+    },
+    {
+      "name": "Object_23",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/plant_27/cgaxis_models_50_01_01_23/Object_51/Object_23",
+      "lo": [
+        -0.355,
+        0.656,
+        -1.919
+      ],
+      "hi": [
+        -0.174,
+        0.992,
+        -1.61
+      ]
+    },
+    {
+      "name": "Object_24",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/plant_27/cgaxis_models_50_01_01_23/Object_52/Object_24",
+      "lo": [
+        -0.297,
+        0.683,
+        -1.836
+      ],
+      "hi": [
+        -0.009,
+        1.025,
+        -1.654
+      ]
+    },
+    {
+      "name": "Object_25",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/plant_27/cgaxis_models_50_01_01_23/Object_53/Object_25",
+      "lo": [
+        -0.273,
+        0.5,
+        -1.928
+      ],
+      "hi": [
+        -0.083,
+        1.015,
+        -1.643
+      ]
+    },
+    {
+      "name": "Object_26",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/plant_27/cgaxis_models_50_01_01_23/Object_54/Object_26",
+      "lo": [
+        -0.268,
+        0.485,
+        -1.927
+      ],
+      "hi": [
+        -0.007,
+        0.988,
+        -1.756
+      ]
+    },
+    {
+      "name": "Object_27",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/plant_27/cgaxis_models_50_01_01_23/Object_55/Object_27",
+      "lo": [
+        -0.332,
+        0.797,
+        -1.909
+      ],
+      "hi": [
+        -0.009,
+        1.119,
+        -1.614
+      ]
+    },
+    {
+      "name": "Object_28",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/plant_27/cgaxis_models_50_01_01_23/Object_56/Object_28",
+      "lo": [
+        -0.402,
+        0.698,
+        -1.829
+      ],
+      "hi": [
+        -0.094,
+        1.087,
+        -1.638
+      ]
+    },
+    {
+      "name": "Object_29",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/plant_27/cgaxis_models_50_01_02_24/Object_58/Object_29",
+      "lo": [
+        -0.276,
+        0.484,
+        -1.835
+      ],
+      "hi": [
+        -0.159,
+        0.549,
+        -1.718
+      ]
+    },
+    {
+      "name": "Object_30",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/plant_27/cgaxis_models_50_01_03_25/Object_60/Object_30",
+      "lo": [
+        -0.282,
+        0.466,
+        -1.84
+      ],
+      "hi": [
+        -0.154,
+        0.616,
+        -1.713
+      ]
+    },
+    {
+      "name": "Object_31",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/plant_27/cgaxis_models_50_01_04_26/Object_62/Object_31",
+      "lo": [
+        -0.277,
+        0.484,
+        -1.836
+      ],
+      "hi": [
+        -0.159,
+        0.59,
+        -1.717
+      ]
+    },
+    {
+      "name": "Object_32",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_1_40/cgaxis_models_55_07_01_28/Object_65/Object_32",
+      "lo": [
+        0.854,
+        0.755,
+        0.538
+      ],
+      "hi": [
+        0.893,
+        0.903,
+        0.87
+      ]
+    },
+    {
+      "name": "Object_33",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_1_40/cgaxis_models_55_07_02_29/Object_67/Object_33",
+      "lo": [
+        0.814,
+        0.075,
+        0.388
+      ],
+      "hi": [
+        1.15,
+        1.298,
+        0.891
+      ]
+    },
+    {
+      "name": "Object_34",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_1_40/cgaxis_models_55_07_03_30/Object_69/Object_34",
+      "lo": [
+        0.766,
+        0.288,
+        0.356
+      ],
+      "hi": [
+        1.105,
+        1.33,
+        0.867
+      ]
+    },
+    {
+      "name": "Object_35",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_1_40/cgaxis_models_55_07_03_30/Object_70/Object_35",
+      "lo": [
+        0.829,
+        0.675,
+        0.616
+      ],
+      "hi": [
+        0.856,
+        0.7,
+        0.716
+      ]
+    },
+    {
+      "name": "Object_36",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_1_40/cgaxis_models_55_07_04_31/Object_72/Object_36",
+      "lo": [
+        0.661,
+        0.485,
+        0.322
+      ],
+      "hi": [
+        0.919,
+        1.248,
+        0.716
+      ]
+    },
+    {
+      "name": "Object_37",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_1_40/cgaxis_models_55_07_04_31/Object_73/Object_37",
+      "lo": [
+        0.628,
+        0.367,
+        0.565
+      ],
+      "hi": [
+        0.894,
+        0.7,
+        0.785
+      ]
+    },
+    {
+      "name": "Object_38",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_1_40/cgaxis_models_55_07_04_31/Object_74/Object_38",
+      "lo": [
+        0.628,
+        0.241,
+        0.455
+      ],
+      "hi": [
+        0.884,
+        0.873,
+        0.785
+      ]
+    },
+    {
+      "name": "Object_39",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_1_40/cgaxis_models_55_07_04_31/Object_75/Object_39",
+      "lo": [
+        0.8,
+        0.29,
+        0.269
+      ],
+      "hi": [
+        0.893,
+        1.244,
+        0.57
+      ]
+    },
+    {
+      "name": "Object_40",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_1_40/cgaxis_models_55_07_04_31/Object_76/Object_40",
+      "lo": [
+        0.848,
+        0.363,
+        0.25
+      ],
+      "hi": [
+        0.921,
+        0.961,
+        0.361
+      ]
+    },
+    {
+      "name": "Object_41",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_1_40/cgaxis_models_55_07_05_32/Object_78/Object_41",
+      "lo": [
+        0.714,
+        0.23,
+        0.308
+      ],
+      "hi": [
+        0.96,
+        1.334,
+        0.782
+      ]
+    },
+    {
+      "name": "Object_42",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_1_40/cgaxis_models_55_07_06_33/Object_80/Object_42",
+      "lo": [
+        0.822,
+        0.249,
+        0.644
+      ],
+      "hi": [
+        0.94,
+        0.345,
+        0.763
+      ]
+    },
+    {
+      "name": "Object_43",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_1_40/cgaxis_models_55_07_07_34/Object_82/Object_43",
+      "lo": [
+        0.821,
+        -0.0,
+        0.53
+      ],
+      "hi": [
+        1.177,
+        0.064,
+        0.877
+      ]
+    },
+    {
+      "name": "Object_44",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_1_40/cgaxis_models_55_07_08_35/Object_84/Object_44",
+      "lo": [
+        0.831,
+        0.009,
+        0.528
+      ],
+      "hi": [
+        1.167,
+        0.054,
+        0.879
+      ]
+    },
+    {
+      "name": "Object_45",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_1_40/cgaxis_models_55_07_09_36/Object_86/Object_45",
+      "lo": [
+        0.865,
+        0.816,
+        0.766
+      ],
+      "hi": [
+        0.887,
+        0.891,
+        0.844
+      ]
+    },
+    {
+      "name": "Object_46",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_1_40/cgaxis_models_55_07_10_37/Object_88/Object_46",
+      "lo": [
+        0.77,
+        0.318,
+        0.325
+      ],
+      "hi": [
+        0.895,
+        1.295,
+        0.717
+      ]
+    },
+    {
+      "name": "Object_47",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_1_40/cgaxis_models_55_07_11_38/Object_90/Object_47",
+      "lo": [
+        0.791,
+        0.02,
+        0.315
+      ],
+      "hi": [
+        1.157,
+        1.309,
+        0.884
+      ]
+    },
+    {
+      "name": "Object_48",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_1_40/cgaxis_models_55_07_12_39/Object_92/Object_48",
+      "lo": [
+        1.081,
+        0.722,
+        0.522
+      ],
+      "hi": [
+        1.102,
+        0.833,
+        0.885
+      ]
+    },
+    {
+      "name": "Object_49",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/window_frame_43/Object001_41/Object_95/Object_49",
+      "lo": [
+        -1.621,
+        0.599,
+        -3.117
+      ],
+      "hi": [
+        -0.036,
+        2.021,
+        -1.532
+      ]
+    },
+    {
+      "name": "Object_50",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/window_frame_43/Object003_42/Object_97/Object_50",
+      "lo": [
+        -1.604,
+        0.62,
+        -3.101
+      ],
+      "hi": [
+        -0.106,
+        2.0,
+        -1.602
+      ]
+    },
+    {
+      "name": "Object_51",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/heater_47/cgaxis_free_07_01_44/Object_100/Object_51",
+      "lo": [
+        -1.23,
+        0.133,
+        -2.697
+      ],
+      "hi": [
+        -0.204,
+        0.437,
+        -1.671
+      ]
+    },
+    {
+      "name": "Object_52",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/heater_47/cgaxis_free_07_02_45/Object_102/Object_52",
+      "lo": [
+        -1.22,
+        0.133,
+        -2.711
+      ],
+      "hi": [
+        -0.19,
+        0.433,
+        -1.681
+      ]
+    },
+    {
+      "name": "Object_53",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/heater_47/cgaxis_free_07_03_46/Object_104/Object_53",
+      "lo": [
+        -1.217,
+        0.077,
+        -2.684
+      ],
+      "hi": [
+        -0.222,
+        0.414,
+        -1.724
+      ]
+    },
+    {
+      "name": "Object_54",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/sofa_50/cgaxis_models_25_30_01_48/Object_107/Object_54",
+      "lo": [
+        -0.285,
+        0.033,
+        -2.878
+      ],
+      "hi": [
+        1.274,
+        0.775,
+        -1.319
+      ]
+    },
+    {
+      "name": "Object_55",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/sofa_50/cgaxis_models_25_30_01_48/Object_108/Object_55",
+      "lo": [
+        -0.3,
+        0.035,
+        -2.805
+      ],
+      "hi": [
+        1.201,
+        0.76,
+        -1.304
+      ]
+    },
+    {
+      "name": "Object_56",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/sofa_50/cgaxis_models_25_30_02_49/Object_110/Object_56",
+      "lo": [
+        -0.207,
+        -0.0,
+        -2.798
+      ],
+      "hi": [
+        1.195,
+        0.037,
+        -1.396
+      ]
+    },
+    {
+      "name": "Object_57",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_table_55/cgaxis_models_55_25_01_51/Object_113/Object_57",
+      "lo": [
+        0.775,
+        0.055,
+        -1.143
+      ],
+      "hi": [
+        1.284,
+        0.561,
+        -0.833
+      ]
+    },
+    {
+      "name": "Object_58",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_table_55/cgaxis_models_55_25_02_52/Object_115/Object_58",
+      "lo": [
+        0.773,
+        0.002,
+        -1.16
+      ],
+      "hi": [
+        1.286,
+        0.058,
+        -0.842
+      ]
+    },
+    {
+      "name": "Object_59",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_table_55/cgaxis_models_55_25_03_53/Object_117/Object_59",
+      "lo": [
+        0.775,
+        0.0,
+        -1.162
+      ],
+      "hi": [
+        1.285,
+        0.051,
+        -0.842
+      ]
+    },
+    {
+      "name": "Object_60",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_table_55/cgaxis_models_55_25_04_54/Object_119/Object_60",
+      "lo": [
+        0.743,
+        0.542,
+        -1.11
+      ],
+      "hi": [
+        1.316,
+        0.551,
+        -0.877
+      ]
+    },
+    {
+      "name": "Object_61",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_3_63/cgaxis_models_55_22_03_56/Object_122/Object_61",
+      "lo": [
+        0.876,
+        -0.0,
+        -0.796
+      ],
+      "hi": [
+        1.208,
+        0.051,
+        -0.462
+      ]
+    },
+    {
+      "name": "Object_62",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_3_63/cgaxis_models_55_24_01_57/Object_124/Object_62",
+      "lo": [
+        0.899,
+        0.055,
+        -0.779
+      ],
+      "hi": [
+        1.199,
+        0.816,
+        -0.47
+      ]
+    },
+    {
+      "name": "Object_63",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_3_63/cgaxis_models_55_24_02_58/Object_126/Object_63",
+      "lo": [
+        0.881,
+        0.002,
+        -0.793
+      ],
+      "hi": [
+        1.203,
+        1.242,
+        -0.464
+      ]
+    },
+    {
+      "name": "Object_64",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_3_63/cgaxis_models_55_24_04_59/Object_128/Object_64",
+      "lo": [
+        0.965,
+        0.82,
+        -0.702
+      ],
+      "hi": [
+        1.154,
+        1.234,
+        -0.542
+      ]
+    },
+    {
+      "name": "Object_65",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_3_63/cgaxis_models_55_24_05_60/Object_130/Object_65",
+      "lo": [
+        0.985,
+        1.032,
+        -0.695
+      ],
+      "hi": [
+        1.131,
+        1.081,
+        -0.561
+      ]
+    },
+    {
+      "name": "Object_66",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_3_63/cgaxis_models_55_24_06_61/Object_132/Object_66",
+      "lo": [
+        0.979,
+        0.318,
+        -0.694
+      ],
+      "hi": [
+        1.153,
+        1.191,
+        -0.539
+      ]
+    },
+    {
+      "name": "Object_67",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/medical_machine_3_63/cgaxis_models_55_24_07_62/Object_134/Object_67",
+      "lo": [
+        1.094,
+        0.995,
+        -0.598
+      ],
+      "hi": [
+        1.152,
+        1.119,
+        -0.539
+      ]
+    },
+    {
+      "name": "Object_68",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/hospital_bed_70/cgaxis_models_55_15_01_64/Object_137/Object_68",
+      "lo": [
+        -0.095,
+        0.538,
+        -0.379
+      ],
+      "hi": [
+        1.18,
+        0.958,
+        0.23
+      ]
+    },
+    {
+      "name": "Object_69",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/hospital_bed_70/cgaxis_models_55_15_02_65/Object_139/Object_69",
+      "lo": [
+        -0.128,
+        0.002,
+        -0.477
+      ],
+      "hi": [
+        1.37,
+        1.011,
+        0.325
+      ]
+    },
+    {
+      "name": "Object_70",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/hospital_bed_70/cgaxis_models_55_15_03_66/Object_141/Object_70",
+      "lo": [
+        -0.117,
+        0.412,
+        -0.427
+      ],
+      "hi": [
+        1.359,
+        0.979,
+        0.274
+      ]
+    },
+    {
+      "name": "Object_71",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/hospital_bed_70/cgaxis_models_55_15_04_67/Object_143/Object_71",
+      "lo": [
+        -0.039,
+        -0.0,
+        -0.376
+      ],
+      "hi": [
+        1.281,
+        0.087,
+        0.226
+      ]
+    },
+    {
+      "name": "Object_72",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/hospital_bed_70/cgaxis_models_55_15_05_68/Object_145/Object_72",
+      "lo": [
+        -0.124,
+        0.056,
+        -0.374
+      ],
+      "hi": [
+        1.366,
+        0.783,
+        0.225
+      ]
+    },
+    {
+      "name": "Object_73",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/hospital_bed_70/cgaxis_models_55_15_06_69/Object_147/Object_73",
+      "lo": [
+        -0.126,
+        0.078,
+        -0.363
+      ],
+      "hi": [
+        1.368,
+        0.862,
+        0.265
+      ]
+    },
+    {
+      "name": "Object_74",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/hospital_bed_70/cgaxis_models_55_15_06_69/Object_148/Object_74",
+      "lo": [
+        -0.075,
+        0.367,
+        -0.41
+      ],
+      "hi": [
+        1.317,
+        0.833,
+        0.258
+      ]
+    },
+    {
+      "name": "Object_75",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/hospital_bed_70/cgaxis_models_55_15_06_69/Object_149/Object_75",
+      "lo": [
+        0.164,
+        0.374,
+        -0.418
+      ],
+      "hi": [
+        1.145,
+        0.788,
+        0.265
+      ]
+    },
+    {
+      "name": "Object_76",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/table_72/cgaxis_models_48_20_01_71/Object_152/Object_76",
+      "lo": [
+        -0.527,
+        -0.0,
+        -2.103
+      ],
+      "hi": [
+        0.095,
+        0.466,
+        -1.481
+      ]
+    },
+    {
+      "name": "Object_77",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/blinds_83/cgaxis_models_47_06_01_2_73/Object_155/Object_77",
+      "lo": [
+        -1.442,
+        2.025,
+        -2.208
+      ],
+      "hi": [
+        -0.751,
+        2.059,
+        -1.518
+      ]
+    },
+    {
+      "name": "Object_78",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/blinds_83/cgaxis_models_47_06_01_3_74/Object_157/Object_78",
+      "lo": [
+        -0.713,
+        2.01,
+        -2.937
+      ],
+      "hi": [
+        -0.022,
+        2.059,
+        -2.247
+      ]
+    },
+    {
+      "name": "Object_79",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/blinds_83/cgaxis_models_47_06_02_2_75/Object_159/Object_79",
+      "lo": [
+        -1.46,
+        1.438,
+        -2.209
+      ],
+      "hi": [
+        -0.738,
+        2.07,
+        -1.491
+      ]
+    },
+    {
+      "name": "Object_80",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/blinds_83/cgaxis_models_47_06_02_3_76/Object_161/Object_80",
+      "lo": [
+        -0.714,
+        1.438,
+        -2.955
+      ],
+      "hi": [
+        0.005,
+        2.07,
+        -2.233
+      ]
+    },
+    {
+      "name": "Object_81",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/blinds_83/cgaxis_models_47_06_03_2_77/Object_163/Object_81",
+      "lo": [
+        -1.471,
+        1.437,
+        -2.237
+      ],
+      "hi": [
+        -0.719,
+        2.07,
+        -1.486
+      ]
+    },
+    {
+      "name": "Object_82",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/blinds_83/cgaxis_models_47_06_03_3_78/Object_165/Object_82",
+      "lo": [
+        -0.742,
+        1.437,
+        -2.966
+      ],
+      "hi": [
+        0.009,
+        2.07,
+        -2.215
+      ]
+    },
+    {
+      "name": "Object_83",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/blinds_83/cgaxis_models_47_06_04_2_79/Object_167/Object_83",
+      "lo": [
+        -1.455,
+        2.05,
+        -2.222
+      ],
+      "hi": [
+        -0.725,
+        2.068,
+        -1.492
+      ]
+    },
+    {
+      "name": "Object_84",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/blinds_83/cgaxis_models_47_06_04_3_80/Object_169/Object_84",
+      "lo": [
+        -0.726,
+        2.05,
+        -2.95
+      ],
+      "hi": [
+        0.004,
+        2.068,
+        -2.221
+      ]
+    },
+    {
+      "name": "Object_85",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/blinds_83/cgaxis_models_47_06_05_2_81/Object_171/Object_85",
+      "lo": [
+        -1.457,
+        2.05,
+        -2.224
+      ],
+      "hi": [
+        -0.723,
+        2.068,
+        -1.49
+      ]
+    },
+    {
+      "name": "Object_86",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/blinds_83/cgaxis_models_47_06_05_3_82/Object_173/Object_86",
+      "lo": [
+        -0.728,
+        2.05,
+        -2.952
+      ],
+      "hi": [
+        0.005,
+        2.068,
+        -2.219
+      ]
+    },
+    {
+      "name": "Object_87",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/window_102/cgaxis_models_46_05_01_005_84/Object_176/Object_87",
+      "lo": [
+        -1.576,
+        0.641,
+        -2.373
+      ],
+      "hi": [
+        -0.897,
+        1.979,
+        -1.695
+      ]
+    },
+    {
+      "name": "Object_88",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/window_102/cgaxis_models_46_05_01_006_90/Object_178/Object_88",
+      "lo": [
+        -1.555,
+        0.664,
+        -2.348
+      ],
+      "hi": [
+        -0.907,
+        1.956,
+        -1.699
+      ]
+    },
+    {
+      "name": "Object_89",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/window_102/cgaxis_models_46_05_01_006_90/cgaxis_models_46_05_006_85/Object_180/Object_89",
+      "lo": [
+        -1.363,
+        0.722,
+        -2.467
+      ],
+      "hi": [
+        -0.802,
+        1.898,
+        -1.906
+      ]
+    },
+    {
+      "name": "Object_90",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/window_102/cgaxis_models_46_05_01_006_90/cgaxis_models_46_05_007_86/Object_182/Object_90",
+      "lo": [
+        -1.362,
+        0.721,
+        -2.466
+      ],
+      "hi": [
+        -0.803,
+        1.899,
+        -1.907
+      ]
+    },
+    {
+      "name": "Object_91",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/window_102/cgaxis_models_46_05_01_006_90/cgaxis_models_46_05_01_004_87/Object_184/Object_91",
+      "lo": [
+        -0.765,
+        1.195,
+        -2.472
+      ],
+      "hi": [
+        -0.738,
+        1.3,
+        -2.445
+      ]
+    },
+    {
+      "name": "Object_92",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/window_102/cgaxis_models_46_05_01_006_90/cgaxis_models_46_05_03_004_88/Object_186/Object_92",
+      "lo": [
+        -1.389,
+        0.678,
+        -2.49
+      ],
+      "hi": [
+        -0.773,
+        1.942,
+        -1.874
+      ]
+    },
+    {
+      "name": "Object_93",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/window_102/cgaxis_models_46_05_01_006_90/cgaxis_models_46_05_04_003_89/Object_188/Object_93",
+      "lo": [
+        -0.788,
+        0.716,
+        -2.494
+      ],
+      "hi": [
+        -0.779,
+        1.904,
+        -2.485
+      ]
+    },
+    {
+      "name": "Object_94",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/window_102/cgaxis_models_46_05_01_1_96/Object_190/Object_94",
+      "lo": [
+        -0.851,
+        0.664,
+        -3.052
+      ],
+      "hi": [
+        -0.203,
+        1.956,
+        -2.403
+      ]
+    },
+    {
+      "name": "Object_95",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/window_102/cgaxis_models_46_05_01_1_96/cgaxis_models_46_05_01_3_91/Object_192/Object_95",
+      "lo": [
+        -0.975,
+        1.195,
+        -2.261
+      ],
+      "hi": [
+        -0.948,
+        1.3,
+        -2.234
+      ]
+    },
+    {
+      "name": "Object_96",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/window_102/cgaxis_models_46_05_01_1_96/cgaxis_models_46_05_02_92/Object_194/Object_96",
+      "lo": [
+        -0.97,
+        0.722,
+        -2.86
+      ],
+      "hi": [
+        -0.409,
+        1.898,
+        -2.299
+      ]
+    },
+    {
+      "name": "Object_97",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/window_102/cgaxis_models_46_05_01_1_96/cgaxis_models_46_05_03_1_93/Object_196/Object_97",
+      "lo": [
+        -0.993,
+        0.678,
+        -2.886
+      ],
+      "hi": [
+        -0.377,
+        1.942,
+        -2.27
+      ]
+    },
+    {
+      "name": "Object_98",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/window_102/cgaxis_models_46_05_01_1_96/cgaxis_models_46_05_04_1_94/Object_198/Object_98",
+      "lo": [
+        -0.997,
+        0.716,
+        -2.284
+      ],
+      "hi": [
+        -0.989,
+        1.904,
+        -2.276
+      ]
+    },
+    {
+      "name": "Object_99",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/window_102/cgaxis_models_46_05_01_1_96/cgaxis_models_46_05_05_95/Object_200/Object_99",
+      "lo": [
+        -0.969,
+        0.721,
+        -2.859
+      ],
+      "hi": [
+        -0.41,
+        1.899,
+        -2.3
+      ]
+    },
+    {
+      "name": "Object_100",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/window_102/cgaxis_models_46_05_01_2_97/Object_202/Object_100",
+      "lo": [
+        -0.876,
+        0.641,
+        -3.073
+      ],
+      "hi": [
+        -0.198,
+        1.979,
+        -2.394
+      ]
+    },
+    {
+      "name": "Object_101",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/window_102/cgaxis_models_46_05_03_003_98/Object_204/Object_101",
+      "lo": [
+        -1.548,
+        0.683,
+        -2.345
+      ],
+      "hi": [
+        -0.936,
+        1.937,
+        -1.733
+      ]
+    },
+    {
+      "name": "Object_102",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/window_102/cgaxis_models_46_05_03_2_99/Object_206/Object_102",
+      "lo": [
+        -0.848,
+        0.683,
+        -3.044
+      ],
+      "hi": [
+        -0.236,
+        1.937,
+        -2.433
+      ]
+    },
+    {
+      "name": "Object_103",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/window_102/cgaxis_models_46_05_04_004_100/Object_208/Object_103",
+      "lo": [
+        -0.939,
+        0.716,
+        -2.343
+      ],
+      "hi": [
+        -0.93,
+        1.904,
+        -2.333
+      ]
+    },
+    {
+      "name": "Object_104",
+      "path": "/scene/Meshes/Sketchfab_model/root/GLTF_SceneRootNode/window_102/cgaxis_models_46_05_04_2_101/Object_210/Object_104",
+      "lo": [
+        -0.846,
+        0.716,
+        -2.436
+      ],
+      "hi": [
+        -0.837,
+        1.904,
+        -2.426
+      ]
+    }
+  ]
+}

@@ -58,6 +58,8 @@ func run() -> void:
 	main._interact()
 	check(temple.active, "Temple front-gate interaction did not enter")
 	check(is_equal_approx(main.hotaru.global_position.y, temple.TEMPLE_GROUND_Y), "Temple did not raise Hotaru to veranda floor")
+	await physics_frame
+	check(not main.hotaru.test_move(main.hotaru.global_transform,Vector3(0,0,2.4)),"temple centre entry corridor has no column collision")
 	temple.leave(true)
 
 	# An outdoor zombie already near the temple must disappear and stop completely.

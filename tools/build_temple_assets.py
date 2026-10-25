@@ -56,6 +56,9 @@ for srcname,name,target in models:
    np.add.at(pv,mapping,v);np.add.at(pu,mapping,uv)
    v=pv/w[:,None];uv=pu/w[:,None];tris=mapping[tris]
    tris=tris[(tris[:,0]!=tris[:,1])&(tris[:,1]!=tris[:,2])&(tris[:,0]!=tris[:,2])]
+  if name=='temple':
+   from remove_temple_entry_column import without_entry_column
+   tris=without_entry_column(v,tris)
   normals=np.zeros_like(v);face=np.cross(v[tris[:,1]]-v[tris[:,0]],v[tris[:,2]]-v[tris[:,0]])
   for j in range(3):np.add.at(normals,tris[:,j],face)
   normals/=np.maximum(np.linalg.norm(normals,axis=1,keepdims=True),1e-10)

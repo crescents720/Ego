@@ -92,19 +92,20 @@ func _process(delta: float) -> void:
 
 func sync_state() -> void:
 	if not is_instance_valid(main):return
-	visible=not (is_instance_valid(main.factory) and main.factory.active) and not main.inside_rv and not main.inside_store and main.phase not in [main.Phase.TITLE,main.Phase.GAME_OVER] and not main.dialog_panel.visible
+	visible=not (is_instance_valid(main.hospital) and main.hospital.active) and not (is_instance_valid(main.factory) and main.factory.active) and not main.inside_rv and not main.inside_store and main.phase not in [main.Phase.TITLE,main.Phase.GAME_OVER] and not main.dialog_panel.visible
 	if is_instance_valid(main.opening) and main.opening.is_cinematic():visible=false
 	var target: Node3D=main.harbor.crane if is_instance_valid(main.harbor) and main.harbor.active else (main.rv if main.in_vehicle else main.hotaru)
 	center_world=Vector2(target.global_position.x,target.global_position.z)
 	var forward: Vector3=-target.global_transform.basis.z if main.in_vehicle else target.global_transform.basis.z
 	heading=map_direction(Vector2(forward.x,forward.z)).normalized()
-	title_label.text="小镇 · "+("吊装" if is_instance_valid(main.harbor) and main.harbor.active else ("驾驶" if main.in_vehicle else "步行"))
+	title_label.text=("医院园区 · " if is_instance_valid(main.hospital) and main.hospital.in_campus else "小镇 · ")+("吊装" if is_instance_valid(main.harbor) and main.harbor.active else ("驾驶" if main.in_vehicle else "步行"))
 
 func map_point(world: Vector2) -> Vector2:
 	var offset:=world-center_world
 	return Vector2(MAP_SIZE/2,MAP_SIZE/2)+map_direction(offset)*(MAP_SIZE/SPANS[zoom_index])
 
 func map_direction(offset: Vector2) -> Vector2:
+	if is_instance_valid(main.hospital) and main.hospital.in_campus:return offset
 	var direction:=Vector3(offset.x,0,offset.y)
 	return Vector2(direction.dot(main.camera.global_basis.x),-direction.dot(main.camera.global_basis.y))
 

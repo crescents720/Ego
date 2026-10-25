@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="780" viewBox="0 0 1100 780">
+<rect width="1100" height="780" fill="#f1f0e9"/>
+<g font-family="Microsoft YaHei, sans-serif" fill="#24444b">
+<text x="40" y="45" font-size="28" font-weight="bold">区立医院 · 楼层规划</text>
+<text x="40" y="75" font-size="15">主楼两层，附楼单层 · 6 间病房 · 与外观保持相同建筑轮廓</text>
+<text x="280" y="120" font-size="23" text-anchor="middle">1F · 接待与诊疗</text>
+<rect x="199.1" y="171.4" width="167.6" height="174.7" fill="#dae3dc" stroke="#859a95" stroke-width="1.5"/>
+<rect x="64.2" y="276.5" width="134.9" height="237.1" fill="#dae3dc" stroke="#859a95" stroke-width="1.5"/>
+<rect x="366.6" y="276.5" width="129.2" height="169.0" fill="#dae3dc" stroke="#859a95" stroke-width="1.5"/>
+<rect x="170.7" y="513.7" width="194.5" height="134.9" fill="#dae3dc" stroke="#859a95" stroke-width="1.5"/>
+<rect x="67.0" y="279.4" width="93.7" height="76.0" fill="#fffdf4" stroke="#859a95" stroke-width="1.5"/>
+<text x="113.9" y="317.3" text-anchor="middle" dominant-baseline="middle" font-size="14">101 双床</text>
+<rect x="67.0" y="355.3" width="93.7" height="76.7" fill="#fffdf4" stroke="#859a95" stroke-width="1.5"/>
+<text x="113.9" y="393.7" text-anchor="middle" dominant-baseline="middle" font-size="14">102 观察</text>
+<rect x="67.0" y="432.0" width="93.7" height="78.8" fill="#fffdf4" stroke="#859a95" stroke-width="1.5"/>
+<text x="113.9" y="471.4" text-anchor="middle" dominant-baseline="middle" font-size="14">办公室</text>
+<rect x="402.8" y="279.4" width="90.2" height="83.1" fill="#fffdf4" stroke="#859a95" stroke-width="1.5"/>
+<text x="447.9" y="320.9" text-anchor="middle" dominant-baseline="middle" font-size="14">检验室</text>
+<rect x="402.8" y="362.4" width="90.2" height="80.2" fill="#fffdf4" stroke="#859a95" stroke-width="1.5"/>
+<text x="447.9" y="402.5" text-anchor="middle" dominant-baseline="middle" font-size="14">手术室</text>
+<rect x="209.7" y="552.0" width="151.9" height="93.0" fill="#fffdf4" stroke="#859a95" stroke-width="1.5"/>
+<text x="285.7" y="598.5" text-anchor="middle" dominant-baseline="middle" font-size="14">太平间</text>
+<rect x="209.7" y="516.5" width="151.9" height="35.5" fill="#fffdf4" stroke="#859a95" stroke-width="1.5"/>
+<text x="285.7" y="534.2" text-anchor="middle" dominant-baseline="middle" font-size="14">准备区</text>
+<rect x="204.0" y="180.0" width="36.9" height="105.1" fill="#e1ca86" stroke="#859a95" stroke-width="1.5"/>
+<path d="M 204.0 180.0 h 36.92" stroke="#ab955d"/>
+<path d="M 204.0 188.6 h 36.92" stroke="#ab955d"/>
+<path d="M 204.0 197.3 h 36.92" stroke="#ab955d"/>
+<path d="M 204.0 205.9 h 36.92" stroke="#ab955d"/>
+<path d="M 204.0 214.6 h 36.92" stroke="#ab955d"/>
+<path d="M 204.0 223.3 h 36.92" stroke="#ab955d"/>
+<path d="M 204.0 231.9 h 36.92" stroke="#ab955d"/>
+<path d="M 204.0 240.6 h 36.92" stroke="#ab955d"/>
+<path d="M 204.0 249.3 h 36.92" stroke="#ab955d"/>
+<path d="M 204.0 257.9 h 36.92" stroke="#ab955d"/>
+<path d="M 204.0 266.6 h 36.92" stroke="#ab955d"/>
+<path d="M 204.0 275.2 h 36.92" stroke="#ab955d"/>
+<text x="222.5" y="232.5" text-anchor="middle" dominant-baseline="middle" font-size="12">楼梯</text>
+<text x="299.9" y="232.5" text-anchor="middle" dominant-baseline="middle" font-size="16">前台 / 候诊</text>
+<text x="282.8" y="424.2" text-anchor="middle" dominant-baseline="middle" font-size="19">庭院</text>
+<text x="280.0" y="366.0" text-anchor="middle" dominant-baseline="middle" font-size="15">主入口 ↑</text>
+<text x="280.0" y="495.2" text-anchor="middle" dominant-baseline="middle" font-size="12">← 西侧走廊通附楼</text>
+<text x="820" y="120" font-size="23" text-anchor="middle">2F · 住院层</text>
+<rect x="739.1" y="171.4" width="167.6" height="174.7" fill="#dae3dc" stroke="#859a95" stroke-width="1.5"/>
+<rect x="604.2" y="276.5" width="134.9" height="237.1" fill="#dae3dc" stroke="#859a95" stroke-width="1.5"/>
+<rect x="906.6" y="276.5" width="129.2" height="169.0" fill="#dae3dc" stroke="#859a95" stroke-width="1.5"/>
+<rect x="607.0" y="279.4" width="93.7" height="115.7" fill="#fffdf4" stroke="#859a95" stroke-width="1.5"/>
+<text x="653.9" y="337.2" text-anchor="middle" dominant-baseline="middle" font-size="14">201 双床</text>
+<rect x="607.0" y="395.1" width="93.7" height="115.7" fill="#fffdf4" stroke="#859a95" stroke-width="1.5"/>
+<text x="653.9" y="453.0" text-anchor="middle" dominant-baseline="middle" font-size="14">202 病房</text>
+<rect x="942.8" y="279.4" width="90.2" height="81.6" fill="#fffdf4" stroke="#859a95" stroke-width="1.5"/>
+<text x="987.9" y="320.2" text-anchor="middle" dominant-baseline="middle" font-size="14">203 病房</text>
+<rect x="942.8" y="361.0" width="90.2" height="81.6" fill="#fffdf4" stroke="#859a95" stroke-width="1.5"/>
+<text x="987.9" y="401.8" text-anchor="middle" dominant-baseline="middle" font-size="14">204 病房</text>
+<rect x="744.0" y="180.0" width="36.9" height="105.1" fill="#e1ca86" stroke="#859a95" stroke-width="1.5"/>
+<path d="M 744.0 180.0 h 36.92" stroke="#ab955d"/>
+<path d="M 744.0 188.6 h 36.92" stroke="#ab955d"/>
+<path d="M 744.0 197.3 h 36.92" stroke="#ab955d"/>
+<path d="M 744.0 205.9 h 36.92" stroke="#ab955d"/>
+<path d="M 744.0 214.6 h 36.92" stroke="#ab955d"/>
+<path d="M 744.0 223.3 h 36.92" stroke="#ab955d"/>
+<path d="M 744.0 231.9 h 36.92" stroke="#ab955d"/>
+<path d="M 744.0 240.6 h 36.92" stroke="#ab955d"/>
+<path d="M 744.0 249.3 h 36.92" stroke="#ab955d"/>
+<path d="M 744.0 257.9 h 36.92" stroke="#ab955d"/>
+<path d="M 744.0 266.6 h 36.92" stroke="#ab955d"/>
+<path d="M 744.0 275.2 h 36.92" stroke="#ab955d"/>
+<text x="762.5" y="232.5" text-anchor="middle" dominant-baseline="middle" font-size="12">楼梯</text>
+<text x="839.9" y="232.5" text-anchor="middle" dominant-baseline="middle" font-size="16">护士站</text>
+<text x="822.8" y="424.2" text-anchor="middle" dominant-baseline="middle" font-size="19">庭院</text>
+<text x="820.0" y="580.4" text-anchor="middle" dominant-baseline="middle" font-size="15">附楼上方无二层</text>
+<text x="40" y="727" font-size="15">操作：正门 E 进入 / 离开 · 门旁 E 开关门 · 实际行走上楼 · 右键或右侧拖动镜头</text>
+<text x="40" y="754" font-size="13">示意图仅标注房间与交通空间；家具和病床以游戏内布置为准。</text>
+</g></svg>
